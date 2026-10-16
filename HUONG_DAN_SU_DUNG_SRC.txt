@@ -1,0 +1,290 @@
+﻿==========================================================================
+                HƯỚNG DẪN SỬ DỤNG SRC NGỌC RỒNG (bản hợp nhất SRC + AWN)
+                Cập nhật: 03/10/2026
+==========================================================================
+
+MỤC LỤC
+  1. Thông tin chung
+  2. Chạy / tắt server
+  3. Kết nối từ máy cá nhân (DB, code)
+  4. File cấu hình Config.properties
+  5. Panel quản lý (admin)
+  6. Lệnh gõ trong cửa sổ server
+  7. Các thay đổi gameplay đã làm
+  8. Giờ sự kiện và chỗ chỉnh trong code
+  9. Giới hạn của client (BẮT BUỘC đọc trước khi sửa dữ liệu)
+ 10. Log và cách xem lỗi
+ 11. Sao lưu
+ 12. Bảo mật
+
+
+--------------------------------------------------------------------------
+1. THÔNG TIN CHUNG
+--------------------------------------------------------------------------
+- VPS ............... 160.30.136.55 (Windows Server 2022)
+- Thư mục project ... C:\Users\Administrator\Desktop\SRC
+- Code nguồn ........ C:\Users\Administrator\Desktop\SRC\src
+- Dữ liệu game ...... C:\Users\Administrator\Desktop\SRC\data  (icon, map, ...)
+- Bản AWN gốc ....... C:\AWN_Version  (chỉ để tham khảo, không chạy)
+- Cổng game ......... 14445
+- Database .......... MariaDB của XAMPP, chạy dạng service "MySQLXampp"
+                      (tự bật cùng Windows), DB đang dùng: nro_merge
+- DB khác ........... nro (SRC gốc trước khi hợp nhất), awn_ref (dữ liệu AWN)
+- Java .............. C:\Java\jdk21
+- IDE ............... NetBeans (mở project SRC)
+
+
+--------------------------------------------------------------------------
+2. CHẠY / TẮT SERVER
+--------------------------------------------------------------------------
+Chạy (khuyên dùng):
+  1. Vào VPS bằng Windows App / Remote Desktop.
+  2. Mở NetBeans, chọn project SRC.
+  3. Sau mỗi lần sửa code: chuột phải project -> Clean and Build.
+  4. Bấm Run. Server khởi động + cửa sổ Panel quản lý tự hiện.
+  5. Đợi dòng "Server initialized and listening on port 14445".
+
+Tắt:
+  - Nên bảo trì trước (Panel -> nút "Bảo Trì (30s)") để lưu dữ liệu người chơi,
+    sau đó bấm Stop trong NetBeans.
+
+Lưu ý:
+  - Chạy server ở chế độ ẩn (dịch vụ, SSH) thì panel KHÔNG hiện được.
+  - Mỗi lần chỉ chạy 1 server, chạy 2 cái sẽ lỗi trùng cổng 14445.
+  - 20 bot người chơi xuất hiện khoảng 15 giây sau khi server khởi động.
+
+
+--------------------------------------------------------------------------
+3. KẾT NỐI TỪ MÁY CÁ NHÂN
+--------------------------------------------------------------------------
+MySQL chỉ mở trong VPS (127.0.0.1), muốn xem DB từ máy mình thì mở đường hầm SSH.
+Trên Mac, mở Terminal và để nguyên cửa sổ này:
+
+    ssh -N -L 8080:127.0.0.1:80 -L 3307:127.0.0.1:3306 dataz
+
+  - Chrome:  http://localhost:8080/phpmyadmin   (đăng nhập user DB)
+  - Navicat / DBeaver / TablePlus:  host 127.0.0.1, port 3307, DB nro_merge
+
+Sửa code từ xa: VS Code + Remote-SSH tới host "dataz",
+mở thư mục C:\Users\Administrator\Desktop\SRC.
+
+
+--------------------------------------------------------------------------
+4. FILE CẤU HÌNH  Config.properties  (trong thư mục SRC)
+--------------------------------------------------------------------------
+Sửa xong phải khởi động lại server (trừ pet.vip.enabled - đọc mỗi lần dùng).
+
+  server.ip ............. IP gửi cho client (160.30.136.55)
+  server.port ........... cổng game (14445)
+  server.maxperip ....... số tài khoản tối đa trên 1 IP
+  server.maxplayer ...... số người chơi tối đa
+  server.expserver ...... nhân kinh nghiệm toàn server
+  server.waitlogin ...... giây chờ giữa 2 lần đăng nhập
+
+  database.name ......... DB đang dùng (nro_merge)
+  database.user / pass .. tài khoản DB
+  database.min / max .... số kết nối DB (2 / 12). ĐỪNG đặt max = 1, server sẽ treo.
+
+  napthe.partner_id / partner_key .. tài khoản cổng nạp thẻ (của bạn, đang để trống)
+
+  pariry.enabled ........ bật/tắt tính năng Pariry
+  bot.new.enabled ....... bot kiểu AWN cũ (đang tắt, nên để tắt)
+  bot.player.count ...... số bot giống người chơi (20; 0 = tắt)
+  pet.vip.enabled ....... đệ tử VIP (Mabư/Uub/KidBeer/Jiren): false = tạm khóa
+  minigame.taixiu_chanle.enabled .. Tài xỉu (Mèo Đỏ Đen) + Chẵn lẻ (Vua Cờ Bạc):
+                          false = tắt (mặc định), true = mở. Đọc mỗi lần dùng.
+  event.vulan / valentine / blackfriday / day2010 .. bật/tắt sự kiện
+
+
+--------------------------------------------------------------------------
+5. PANEL QUẢN LÝ (ADMIN)
+--------------------------------------------------------------------------
+Tự mở khi Run trong NetBeans. Các điểm cần biết:
+
+  - Bảo Trì (30s): đếm ngược 30 giây rồi bảo trì (lưu dữ liệu, đóng server).
+    Hẹn giờ bảo trì cũng đếm ngược 30 giây khi tới giờ.
+  - Triệu hồi Boss: danh sách đủ 144 boss, có cột "Vị trí (Map - Khu)".
+    Bấm "Làm mới vị trí" để quét lại. Nhấp đúp hoặc nút "TRIỆU HỒI NGAY".
+  - Quản lý Boss: sửa dữ liệu boss trong BossesData (193 bộ).
+  - Người chơi: sửa nhân vật.
+      * PHẢI cho nhân vật thoát game (hoặc kick) rồi mới lưu, panel sẽ chặn
+        nếu nhân vật đang online (vì server sẽ ghi đè khi họ thoát).
+      * Đồ mặc được tự xếp đúng ô theo loại item.
+  - Buff Item trong panel: CHƯA HOẠT ĐỘNG (server không nhận lệnh).
+    Muốn buff item hãy dùng menu admin trong game.
+  - Giftcode, Shop, Item, Map, Part, Radar, Danh hiệu, Drop, Sự kiện, Nạp:
+    sửa trực tiếp DB. Sửa xong thường phải khởi động lại server.
+  - AntiDDoS cần cài Npcap mới chạy được (chưa cài).
+
+
+--------------------------------------------------------------------------
+6. LỆNH GÕ TRONG CỬA SỔ SERVER (Output NetBeans)
+--------------------------------------------------------------------------
+  bt   : bảo trì sau 5 giây
+  bat  : bật bảo trì tự động
+  tat  : tắt bảo trì tự động
+
+
+--------------------------------------------------------------------------
+7. CÁC THAY ĐỔI GAMEPLAY ĐÃ LÀM
+--------------------------------------------------------------------------
+Đệ tử:
+  - Đệ tử thường CHỈ nhận được theo đường:
+      1. Đánh Broly thường cho máu tối đa của nó tăng lên từ 5 triệu trở lên
+         (Broly tăng máu dần khi bị đánh), rồi giết nó.
+      2. Broly chết -> Super Broly (máu tối thiểu 10 triệu) xuất hiện ở một khu
+         ngẫu nhiên trong cùng map. Broly chết lúc dưới 5 triệu thì không ra Super.
+      3. Mỗi Super Broly dẫn theo 1 đệ thường hành tinh ngẫu nhiên; người hạ
+         Super Broly (chưa có đệ) nhận đúng đệ đó. Đệ hạ boss thì tính cho chủ.
+    Chỉnh ngưỡng: src\nro\models\Boss\Broly\SuperBroly.java
+      BROLY_HP_TO_SPAWN = 5_000_000 ; MIN_HP = 10_000_000
+  - Super Broly tự xuất hiện (SuperBrolyNew, 5 con) KHÔNG cho đệ.
+  - Tori-Bot và NPC Unknown không còn tặng đệ.
+  - Đệ VIP tạm khóa (pet.vip.enabled=false): trứng Mabư không nở (vẫn giữ trứng),
+    item 1795 không dùng được.
+
+Capsule kích hoạt (item 1655):
+  - Mở ra luôn là món cấp thấp nhất theo hành tinh của người mở.
+  - Quái rơi trực tiếp:
+        map 1, 2, 8, 9, 15, 16 : 1/100 mỗi con
+        map 3, 10, 17          : 1/50 mỗi con
+    Cỏ bốn lá +15%. Quái do bot giết không rơi.
+    Chỉnh tỉ lệ: src\nro\models\mob\Mob.java, tìm "perKills".
+  - Vẫn có đường cũ: phân rã + tái tạo ở Bà Hạt Mít.
+
+Drabura (map Ma Bư 12h, đi theo Osin):
+  - Đếm chung toàn server: cứ 10-15 con Drabura chết (số ngẫu nhiên lại sau mỗi lần)
+    thì con đủ số rơi 1 món đồ thần linh ngẫu nhiên, có 1-7 sao (ô sao pha lê).
+    Cả server được thông báo khi có người nhận.
+  - Chỉnh: src\nro\models\Boss\MajinBuu_12h\DraburaThanLinhCounter.java
+    (MIN_KILLS = 10, MAX_KILLS = 15, số sao Util.nextInt(1, 7)).
+
+Tori-Bot (đổi VIP ở các làng):
+  - Trả bằng ĐIỂM SĂN BOSS (điểm sự kiện, mỗi lần hạ boss thường +5):
+        VIP 1 = 150 điểm, VIP 2 = 300, VIP 3 = 400, VIP 4 = 500
+  - Menu hiện điểm săn boss hiện có của người chơi. Tối đa 4 lần mua mỗi mùa
+    (mùa VIP: 05/06 - 05/12 hằng năm).
+  - Chỉnh giá: src\nro\models\npc_list\ToriBot.java, mảng VIP_COST.
+
+Nhiệm vụ chính mới (sau "Đi theo Ôsin"), mỗi bước hạ boss tính cả khi đệ hạ:
+  29 Ma Bư hồi sinh ........ đạt 50 tỷ SM -> ở map Ma Bư 14h (127) hạ lần lượt:
+                              Bư mập x2 -> Bư Còm x2 -> Super Bư x2 -> Bư Tênk x2 -> Bư Han x2 -> Kid Bư x2
+                              -> báo cáo với Ôsin (Ôsin ở Đại hội võ thuật, map 52)
+                              Kid Bư chỉ kết liễu được bằng QCKK (TĐ) / Laze (Namếc) / Bom (Xayda)
+  (Bư Còm là dạng mới của Ma Bư 14h, hình lấy từ Cải trang Mabư Còm; dữ liệu BossesData.BU_COM)
+  30 Thần Hủy Diệt thức tỉnh  đạt 60 tỷ SM -> hạ Berus x2 -> báo cáo với Whis (Hành tinh Bill, map 154)
+                              (Berus ở map 202 Trạm Huỷ Diệt Trái Đất: Làng Aru -> Vách núi Aru (42)
+                               -> đi hết mép TRÁI -> Trạm Huỷ Diệt Trái Đất)
+  31 Sự trở lại của Fide ... đạt 70 tỷ SM -> hạ Fide đại ca x2 -> hạ Golden Frieza x1
+  32 Anh em nhà Fide ....... đạt 80 tỷ SM -> hạ Frost x2 -> hạ Cooler x1
+  33 Tương lai đen tối ..... đạt 90 tỷ SM -> hạ Black Goku x2 -> hạ Zamasu x1
+  34 Broly huyền thoại ..... đạt 100 tỷ SM -> hạ Super Broly x1 -> hạ Cumber x1
+  35 Kẻ ký sinh Baby ....... đạt 110 tỷ SM -> hạ Baby x2 -> hạ Gomah x1
+  36 "bạn đã xong nhiệm vụ rồi" (kết thúc)
+  Thưởng mỗi nhiệm vụ: +5 điểm săn boss và +(số NV - 28) tỷ sức mạnh & tiềm năng
+  (không vượt giới hạn sức mạnh). Mốc trên 18 tỷ cần mở giới hạn sức mạnh.
+  Giới hạn sức mạnh cao nhất (nấc 9) đã nâng lên 120 tỷ nên NV 34, 35 làm được.
+  Chỉnh: src\nro\models\player\NPoint.java, getPowerLimit / getPowerNextLimit (case 9).
+  Dữ liệu: bảng task_main_template / task_sub_template (file SQL: tasks_29_35.sql).
+  Code: src\nro\models\services\TaskService.java (checkDoneTaskPower,
+        checkDoneTaskKillBossNew, rewardDoneTask).
+
+Set kích hoạt: CHỈ có set cấp thấp nhất của 3 hành tinh (từ capsule kích hoạt).
+  Nâng kích hoạt / kích hoạt VIP / đồ hủy diệt đã chặn trong code
+  (CombineService.isClosedCombine), dù menu có mở lại cũng không nâng được.
+
+Bà Hạt Mít (map 5): đã đóng "Nâng cấp Trang bị (1)" và "(2)".
+  Mở lại: src\nro\models\npc_list\BaHatMit.java, tìm chữ "Tạm đóng".
+
+Bot giống người chơi: tên 6 ký tự, đồ cơ bản, tự làm chuỗi nhiệm vụ đánh quái
+  đầu game theo hành tinh rồi đi luyện tập. Code: src\nro\models\Bot\BotNguoiChoi.java
+
+Map Boss bang hội: dùng map 249 (Map Boss của AWN), không đè lên map 165 của SRC.
+
+Làng Mori (map 7): đã bỏ NPC sự kiện Vu Lan (gây lag khi bấm).
+
+
+--------------------------------------------------------------------------
+8. GIỜ SỰ KIỆN VÀ CHỖ CHỈNH TRONG CODE
+--------------------------------------------------------------------------
+  Map Ma Bư 12h (đi theo Osin ở map 52):
+    - Giờ mở thật:  src\nro\models\utils\TimeUtil.java, hàm isMabuOpen()
+                    đang là  hour >= 12 && hour < 13   (12h00 - 12h59)
+    - Chữ hiển thị: src\nro\models\services_dungeon\MajinBuuService.java
+                    HOUR_OPEN_MAP_MABU = 12  (chỉ để Osin nói "Vào lúc 12h...")
+    -> Muốn đổi giờ phải sửa CẢ HAI chỗ cho khớp.
+  Ma Bư 14h:  TimeUtil.java, hàm isMabu14HOpen() (14h00 - 14h59)
+  Sự kiện 20/10 (Vườn Hoa Tri Ân), làm ngày 16/10/2026:
+    - Bật/tắt:   Config.properties  event.day2010=true/false
+                 event.day2010.end=2026-10-31 23:59  (tự tắt đúng giờ này,
+                 để trống = không tự tắt). Đổi xong phải khởi động lại server.
+    - NPC:       src\nro\models\npc_list\Day20_10.java (map 5, 13, 20)
+    - Logic:     src\nro\models\event_list\WomensDay\WomensDayService.java
+                 (tỉ lệ rơi từ quái, quà mở hộp, điểm tặng hoa, mốc TNSM toàn
+                 server, top tặng hoa, giờ kết thúc)
+    - Boss:      Kẻ Trộm Hoa  src\nro\models\boss\event\WomensDay\KeTromHoa.java
+                 (5 con, dữ liệu trong BossesData.KE_TROM_HOA)
+    - Shop:      20_10_EVENT (tab 76) và shop đổi điểm 20_10_EVENT_2 (tab 111,
+                 cột cost = số điểm 20/10). File: sql\event_2010_shop_20261016.sql
+    - Bộ đếm hoa toàn server: bảng event, dòng name = 'day_20_10'.
+    - Điểm/số bông của người chơi: cột player.data_event, vị trí 15 và 16.
+    - Giftcode:  2010 (sql\giftcode_2010_20261016.sql), hết hạn 01/11/2026.
+    - Hết sự kiện: xem top ở NPC (Thông Tin -> Đua Top) rồi trao giải bằng tay.
+  Tranh Ngọc Namếc: src\nro\models\map\DragonNamecWar\TranhNgoc.java
+                    đăng ký 11:50, mở 12:00, đóng 12:10
+  Bảo trì 30s / hẹn giờ: Panel (mục 5)
+
+
+--------------------------------------------------------------------------
+9. GIỚI HẠN CỦA CLIENT  (sửa vượt là client lỗi, trắng hành trang, quay mãi)
+--------------------------------------------------------------------------
+  - Option item (item_option_template): tối đa 255 dòng, id 0 - 254.
+  - Mob template và NPC template: id tối đa 127 (đang dùng gần hết).
+  - Map: tối đa 255 map (đang có 250, id 0 - 249).
+  - Danh sách item gửi client gói trong 2 gói ~65KB. Server tự cắt bớt mô tả
+    item nếu thiếu chỗ (mô tả item AWN id >= 2000 không gửi cho client).
+  - Sau khi thêm/sửa item, option, map, part: tăng phiên bản trong
+    src\nro\models\data\DataGame.java (vsItem, vsData, vsMap) rồi build lại,
+    để client tự tải lại dữ liệu. Hiện tại: vsData=11, vsMap=3, vsItem=11.
+  - Hình nhân vật/boss (part) lấy từ bảng part trong DB, server tạo lại file
+    data\update_data\part mỗi lần khởi động. Sửa part xong phải tăng vsData.
+    77 part trống (1761, 1762, 1869-1943) đã lấp bằng dữ liệu AWN (Gomah...).
+  - Icon item nằm ở data\icon\x1..x4\<icon_id>.png. Thiếu file thì client
+    hiện icon thay thế.
+
+
+--------------------------------------------------------------------------
+10. LOG VÀ CÁCH XEM LỖI
+--------------------------------------------------------------------------
+  - Log server:  C:\Users\Administrator\Desktop\SRC\logs\server-YYYYMMDD.log
+                 (ghi y hệt cửa sổ Output của NetBeans)
+                 Dòng "[Mạng] ..." cho biết người chơi bị ngắt kết nối vì lỗi gì.
+  - Log client (DragonBoy chạy bằng Whisky trên Mac):
+      ~/Library/Containers/com.franke.Whisky/Bottles/<bottle>/drive_c/users/
+      <tên>/AppData/LocalLow/DefaultCompany/DragonBoy/Player.log
+  - Lỗi hay gặp:
+      * "Access denied for user ..."  -> sai user/pass DB hoặc my.ini có
+        skip-name-resolve.  Kiểm tra C:\xampp\mysql\bin\my.ini.
+      * Client quay mãi / hành trang trống -> dữ liệu gửi client vượt giới hạn
+        (mục 9) hoặc chưa tăng phiên bản dữ liệu.
+      * "Port 14445 already in use" -> đang có server khác chạy.
+
+
+--------------------------------------------------------------------------
+11. SAO LƯU
+--------------------------------------------------------------------------
+  - Bản sao file trước mỗi lần sửa:  C:\setup\backup\  (theo từng thư mục)
+  - Bản sao DB:  C:\setup\backup\*.sql
+  - Tự sao lưu DB bằng lệnh (PowerShell trên VPS):
+      C:\xampp\mysql\bin\mysqldump.exe -u<user> -p<pass> nro_merge > D:\nro_merge_ngay.sql
+  - Nên sao lưu DB hằng ngày và trước khi sửa dữ liệu lớn.
+
+
+--------------------------------------------------------------------------
+12. BẢO MẬT
+--------------------------------------------------------------------------
+  - ĐỔI mật khẩu Administrator của VPS (đã từng gửi qua chat).
+  - Dùng mật khẩu DB khác mật khẩu Windows.
+  - Không mở cổng 3306 ra internet, chỉ dùng đường hầm SSH (mục 3).
+  - Tài khoản nạp thẻ (napthe.*) phải là của bạn.
+==========================================================================

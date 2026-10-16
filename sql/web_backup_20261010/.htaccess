@@ -1,0 +1,38 @@
+RewriteEngine on
+ErrorDocument 404 /404
+
+RewriteRule ^trang-chu$ index.php [L]
+RewriteRule ^Login$ pages/dangnhap.php [L]
+RewriteRule ^Logout$ pages/dangxuat.php [L]
+RewriteRule ^Register$ pages/dangky.php [L]
+RewriteRule ^ThongTin$ thong_tin_game.php [L]
+RewriteRule ^SuKienShare$ su_kien_share.php [L]
+RewriteRule ^BXH$ bxh.php [L]
+RewriteRule ^NapTien$ NapTien.php [L]
+RewriteRule ^napATM$ napatm.php [L]
+RewriteRule ^napCARD$ napthe.php [L]
+RewriteRule ^KichHoat$ pages/kichhoat.php [L]
+RewriteRule ^Profile$ pages/profile.php [L]
+RewriteRule ^Giftcode$ danhsach_gift.php [L]
+RewriteRule ^NhanGift$ pages/doigift.php [L]
+RewriteRule ^DoiMatKhau$ pages/doimatkhau.php [L]
+RewriteRule ^DoiThoiVang$ doi_thoi_vang.php [L]
+RewriteRule ^QuyDoi$ goldbar_callback.php [L]
+RewriteRule ^ADMIN$ Users/Admin/index.php [L]
+RewriteRule ^ADMIN/ACCOUNT$ Users/Admin/account/account.php [L]
+RewriteRule ^ADMIN/EDIT/([0-9]+)$ Users/Admin/account/edit.php?id=$1
+RewriteRule ^ADMIN/DELETE/([0-9]+)$ Users/Admin/account/delete.php?id=$1
+RewriteRule ^ADMIN/ADD_VND$ Users/Admin/account/account_vnd.php [L]
+RewriteRule ^ADMIN/SETTING$ Users/Admin/account/Setting.php [L]
+RewriteRule ^ADMIN/ADD-ITEMS$ Users/Admin/items/add.php [L]
+RewriteRule ^ADMIN/ITEMS$ Users/Admin/items/items.php [L]
+RewriteRule ^ADMIN/ITEMS/EDIT/([0-9]+)$ Users/Admin/items/edit.php?id=$1
+RewriteRule ^ADMIN/ITEMS/DELETE/([0-9]+)$ Users/Admin/items/delete.php?id=$1
+RewriteRule ^SHOPS$ Others/Shop.php [L]
+RewriteRule ^TRANS_ITEMS$ Others/Hiszosi.php [L]
+RewriteRule ^ITEMS$ api/Items.php [L]
+RewriteRule ^Captcha$ core/captcha.php [L]
+
+# Chuy?n hu?ng d?n trang Index.php khi file không t?n t?i
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /Index.php [L]
