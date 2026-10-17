@@ -1056,41 +1056,46 @@ public class ChangeMapService {
     }
 
     /**
-     * Boss nhiệm vụ bị chặn vào khu -> bước nhiệm vụ cuối cùng cần hạ boss đó.
-     * Người chơi đã qua bước này coi như xong nhiệm vụ của boss.
+     * Boss nhiệm vụ bị chặn vào khu -> id nhiệm vụ chính cuối cùng có boss đó.
+     * Trong khung giờ chặn, người đã qua nhiệm vụ chính này thì không vào được;
+     * đang làm đúng nhiệm vụ đó (bước nào cũng được) hoặc chưa tới thì vẫn vào.
      * Chỉ áp dụng cho Tiểu đội sát thủ, Fide và nhóm Android.
      */
     private static final java.util.Map<Integer, Integer> BOSS_NHIEM_VU = new java.util.HashMap<>();
 
     static {
-        // NV 20: tiểu đội sát thủ tính theo Tiểu đội trưởng
+        // NV 20: tiểu đội sát thủ
         for (int id : new int[]{BossID.SO_4, BossID.SO_3, BossID.SO_2, BossID.SO_1, BossID.TIEU_DOI_TRUONG}) {
-            BOSS_NHIEM_VU.put(id, ConstTask.TASK_20_5);
+            BOSS_NHIEM_VU.put(id, 20);
         }
-        // NV 21 + NV 31: Fide dùng ở cả 2 nhiệm vụ
-        BOSS_NHIEM_VU.put(BossID.FIDE, ConstTask.TASK_31_3);
+        // NV 21 + NV 31: Fide dùng ở cả 2 nhiệm vụ, tính theo NV 31
+        BOSS_NHIEM_VU.put(BossID.FIDE, 31);
         // NV 23 - 25
-        BOSS_NHIEM_VU.put(BossID.ANDROID_19, ConstTask.TASK_23_1);
-        BOSS_NHIEM_VU.put(BossID.DR_KORE, ConstTask.TASK_23_2);
-        BOSS_NHIEM_VU.put(BossID.ANDROID_15, ConstTask.TASK_24_1);
-        BOSS_NHIEM_VU.put(BossID.ANDROID_14, ConstTask.TASK_24_2);
-        BOSS_NHIEM_VU.put(BossID.ANDROID_13, ConstTask.TASK_24_3);
-        BOSS_NHIEM_VU.put(BossID.POC, ConstTask.TASK_25_1);
-        BOSS_NHIEM_VU.put(BossID.PIC, ConstTask.TASK_25_2);
-        BOSS_NHIEM_VU.put(BossID.KING_KONG, ConstTask.TASK_25_3);
+        BOSS_NHIEM_VU.put(BossID.ANDROID_19, 23);
+        BOSS_NHIEM_VU.put(BossID.DR_KORE, 23);
+        BOSS_NHIEM_VU.put(BossID.ANDROID_15, 24);
+        BOSS_NHIEM_VU.put(BossID.ANDROID_14, 24);
+        BOSS_NHIEM_VU.put(BossID.ANDROID_13, 24);
+        BOSS_NHIEM_VU.put(BossID.POC, 25);
+        BOSS_NHIEM_VU.put(BossID.PIC, 25);
+        BOSS_NHIEM_VU.put(BossID.KING_KONG, 25);
     }
 
     /**
-     * Khu có boss nhiệm vụ còn sống mà người chơi đã xong nhiệm vụ của boss đó
+     * Khu có boss nhiệm vụ còn sống mà người chơi đã qua nhiệm vụ chính của boss đó
+     * (chỉ so id nhiệm vụ chính, không so bước nhiệm vụ phụ)
      */
     private boolean hasBossNhiemVuDaXong(Player player, Zone zone) {
-        int idTask = TaskService.gI().getIdTask(player);
+        if (player.playerTask == null || player.playerTask.taskMain == null) {
+            return false;
+        }
+        int mainTask = player.playerTask.taskMain.id;
         List<Player> bosses = zone.getBosses();
         for (int i = bosses.size() - 1; i >= 0; i--) {
             Player boss = i < bosses.size() ? bosses.get(i) : null;
             if (boss != null && !boss.isDie()) {
-                Integer lastTask = BOSS_NHIEM_VU.get((int) boss.id);
-                if (lastTask != null && idTask > lastTask) {
+                Integer bossTask = BOSS_NHIEM_VU.get((int) boss.id);
+                if (bossTask != null && mainTask > bossTask) {
                     return true;
                 }
             }

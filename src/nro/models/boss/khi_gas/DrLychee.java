@@ -136,17 +136,24 @@ public class DrLychee extends Boss {
 
     @Override
     public void leaveMap() {
-        long bossDamage = Math.min((long) (this.nPoint.dame * 1.5), 200000000L);
-        long bossMaxHealth = Math.min((long) (this.nPoint.hpMax * 1.5), 2000000000L);
-        try {
-            clan.KhiGasHuyDiet.bosses.add(new Hatchiyack(
-                    zone,
-                    clan,
-                    level,
-                    (int) bossDamage,
-                    (int) bossMaxHealth
-            ));
-        } catch (Exception ex) {
+        // Đã dispose rồi (nPoint null) thì không làm gì nữa
+        if (this.nPoint == null) {
+            return;
+        }
+        // Chỉ gọi Hatchiyack khi khí gas còn mở, không gọi lúc đang đóng phó bản
+        if (clan != null && clan.KhiGasHuyDiet != null && clan.KhiGasHuyDiet.isOpened) {
+            long bossDamage = Math.min((long) (this.nPoint.dame * 1.5), 200000000L);
+            long bossMaxHealth = Math.min((long) (this.nPoint.hpMax * 1.5), 2000000000L);
+            try {
+                clan.KhiGasHuyDiet.bosses.add(new Hatchiyack(
+                        zone,
+                        clan,
+                        level,
+                        (int) bossDamage,
+                        (int) bossMaxHealth
+                ));
+            } catch (Exception ex) {
+            }
         }
         ChangeMapService.gI().exitMap(this);
         this.lastZone = null;

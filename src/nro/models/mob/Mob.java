@@ -996,32 +996,23 @@ public class Mob {
         }
 
         //========================Đồ Thần + Thức Ăn========================
-        if (MapService.gI().isMapCold(mapid)) {
+        boolean isMapCold = MapService.gI().isMapCold(mapid);
+        if (isMapCold) {
             if (player.isPet) {
                 player = ((Pet) player).master;
             }
-            int rate = 1;
-            if (player.itemTime.isUseCoBonLa) {
-                rate = (int) (rate * 0.85);
-            }
             if (Util.isTrue(1, 50000)) {
-                ItemMap it = ItemService.gI().randDoTL(this.zone, 1, x, yEnd, player.id);
-                list.add(it);
-                //   ChatGlobalService.gI().ThongBaoRoiDo(player, "[ Hệ Thống ] " + player.name + " vừa nhặt được " + it.itemTemplate.name + " tại " + this.zone.map.mapName + " khu " + this.zone.zoneId);
+                list.add(ItemService.gI().randDoTL(this.zone, 1, x, yEnd, player.id));
             }
         }
-        int rate1 = 100;
-        if (player.itemTime.isUseCoBonLa) {
-            rate1 = (int) (rate1 * 1.15);
-        }
-        if (Util.isTrue(3, 333)) {
-            if (player.setClothes.checkSetGod()) {
-                ItemMap it = new ItemMap(zone, Util.nextInt(663, 667), 1, x, yEnd, player.id);
-                list.add(it);
-            }
+        // Thức ăn (set thần): thường ~1/111 con, dùng Cỏ bốn lá 1/80 con
+        Player coBonLaOwner = player.isPet ? ((Pet) player).master : player;
+        boolean dropThucAn = coBonLaOwner.itemTime.isUseCoBonLa ? Util.isTrue(1, 80) : Util.isTrue(3, 333);
+        if (dropThucAn && player.setClothes.checkSetGod()) {
+            list.add(new ItemMap(zone, Util.nextInt(663, 667), 1, x, yEnd, player.id));
         }
 
-        if (MapService.gI().isMapCold(mapid)) {
+        if (isMapCold) {
             if (Util.isTrue(20, 100)) {
                 int rand = Util.nextInt(0, 4);
                 ItemMap it = new ItemMap(zone, 220 + rand, 1, x, yEnd, player.id);

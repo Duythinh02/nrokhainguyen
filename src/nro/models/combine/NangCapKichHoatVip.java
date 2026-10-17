@@ -6,7 +6,6 @@ import nro.models.services.Service;
 import nro.models.utils.Util;
 import nro.models.consts.ConstNpc;
 import nro.models.item.Item;
-import nro.models.item.Item.ItemOption;
 import nro.models.services.ItemService;
 import nro.models.combine.CombineService;
 
@@ -14,19 +13,6 @@ public class NangCapKichHoatVip {
 
     private static final int COST = 500_000_000;
 
-    private static boolean isVipLastItem(int tempId) {
-        int[] vipIds = {
-            555,557,559,
-            556,558,560,
-            562,564,566,
-            563,565,567,
-            561
-        };
-        for (int id : vipIds) {
-            if (id == tempId) return true;
-        }
-        return false;
-    }
     public static void showInfoCombine(Player player) {
         if (player.combineNew.itemsCombine.isEmpty()) {
             CombineService.gI().baHatMit.createOtherMenu(
@@ -113,25 +99,25 @@ public class NangCapKichHoatVip {
         }
         int[][][] items = {
             { 
-                {0,3,33,34,136,137,138,139,230,231,232,233,555},
-                {6,9,35,36,140,141,142,143,242,243,244,245,556},
-                {21,24,37,38,144,145,146,147,254,255,256,257,562},
-                {27,30,39,40,148,149,150,151,266,267,268,269,563},
-                {12,57,58,59,184,185,186,187,278,279,280,281,561}
+                {0,3,33,34,136,137,138,139,230,231,232,233},
+                {6,9,35,36,140,141,142,143,242,243,244,245},
+                {21,24,37,38,144,145,146,147,254,255,256,257},
+                {27,30,39,40,148,149,150,151,266,267,268,269},
+                {12,57,58,59,184,185,186,187,278,279,280,281}
             },
             { 
-                {1,4,41,42,152,153,154,155,234,235,236,237,557},
-                {7,10,43,44,156,157,158,159,246,247,248,249,558},
-                {22,25,45,46,160,161,162,163,258,259,260,261,564},
-                {28,31,47,48,164,165,166,167,270,271,272,273,565},
-                {12,57,58,59,184,185,186,187,278,279,280,281,561}
+                {1,4,41,42,152,153,154,155,234,235,236,237},
+                {7,10,43,44,156,157,158,159,246,247,248,249},
+                {22,25,45,46,160,161,162,163,258,259,260,261},
+                {28,31,47,48,164,165,166,167,270,271,272,273},
+                {12,57,58,59,184,185,186,187,278,279,280,281}
             },
             { 
-                {2,5,49,50,168,169,170,171,238,239,240,241,559},
-                {8,11,51,52,172,173,174,175,250,251,252,253,560},
-                {23,26,53,54,176,177,178,179,262,263,264,265,566},
-                {29,32,55,56,180,181,182,183,274,275,276,277,567},
-                {12,57,58,59,184,185,186,187,278,279,280,281,561}
+                {2,5,49,50,168,169,170,171,238,239,240,241},
+                {8,11,51,52,172,173,174,175,250,251,252,253},
+                {23,26,53,54,176,177,178,179,262,263,264,265},
+                {29,32,55,56,180,181,182,183,274,275,276,277},
+                {12,57,58,59,184,185,186,187,278,279,280,281}
             }
         };
 
@@ -151,32 +137,6 @@ public class NangCapKichHoatVip {
                 tempId,
                 options[player.gender][skhId]
         );
-
-        if (item != null && isVipLastItem(item.template.id)) {
-            int value;
-            switch (item.template.type) {
-                case 0:
-                    value = Util.nextInt(1200, 1400);
-                    item.itemOptions.add(0, new ItemOption(47, value));
-                    break;
-                case 1:
-                    value = Util.nextInt(48000, 55000);
-                    item.itemOptions.add(0, new ItemOption(6, value));
-                    break;
-                case 2:
-                    value = Util.nextInt(3500, 4000);
-                    item.itemOptions.add(0, new ItemOption(0, value));
-                    break;
-                case 3:
-                    value = Util.nextInt(48000, 55000);
-                    item.itemOptions.add(0, new ItemOption(7, value));
-                    break;
-                case 4:
-                    value = Util.nextInt(13, 15);
-                    item.itemOptions.add(0, new ItemOption(14, value));
-                    break;
-            }
-        }
 
         CombineService.gI().sendEffectSuccessCombine(player);
         InventoryService.gI().addItemBag(player, item);

@@ -974,6 +974,8 @@ public class PlayerDAO {
                 dataArray.add(player.event.getTransferPointReceived());
                 dataArray.add(player.event.get20_10Point());
                 dataArray.add(player.event.getFlower20_10());
+                dataArray.add(player.event.getCoinExchangeDay());
+                dataArray.add(player.event.getCoinExchangeToday());
                 String dataEvent = dataArray.toJSONString();
                 dataArray.clear();
 

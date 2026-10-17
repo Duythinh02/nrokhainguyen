@@ -107,6 +107,29 @@ public class PlayerEvent {
         transferPointReceived += num;
     }
 
+    // Giới hạn đổi điểm săn boss sang Coin Khai Nguyên mỗi ngày
+    public static final int COIN_EXCHANGE_DAILY_LIMIT = 100;
+    private int coinExchangeDay; // ngày dạng yyyyMMdd
+    private int coinExchangeToday;
+
+    private void resetCoinExchangeIfNewDay() {
+        int today = today();
+        if (coinExchangeDay != today) {
+            coinExchangeDay = today;
+            coinExchangeToday = 0;
+        }
+    }
+
+    public int getCoinExchangeRemaining() {
+        resetCoinExchangeIfNewDay();
+        return Math.max(0, COIN_EXCHANGE_DAILY_LIMIT - coinExchangeToday);
+    }
+
+    public void addCoinExchangeToday(int num) {
+        resetCoinExchangeIfNewDay();
+        coinExchangeToday += num;
+    }
+
     public void subEventPoint(int num) {
         eventPoint -= num;
     }

@@ -767,7 +767,7 @@ public class SkillService {
                     if (!MapService.gI().isMapOffline(player.zone.map.mapId)) {
                         for (Player pl : playersMap) {
                             if (!player.equals(pl) && canAttackPlayer(player, pl) && Util.getDistance(player, pl) <= rangeBom) {
-                                long dameHit = pl.isBoss ? player.effectSkill.isMonkey ? dame / 3 : dame / 2 : dame;
+                                long dameHit = dame;
                                 if (pl.isBoss) {
                                     dameHit = BossDamageLimit.limitTuSat(player, pl, dameHit);
                                 }

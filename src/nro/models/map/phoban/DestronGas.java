@@ -72,6 +72,7 @@ public class DestronGas implements Runnable {
             if (Util.canDoWithTime(lastTimeOpen, TIME_KHI_GAS_HUY_DIET) || (kickoutkghd && Util.canDoWithTime(timeKickOutKGHD, 60000))) {
                 finish();
                 dispose();
+                return;
             }
 
             boolean allCharactersDead = true;
@@ -249,10 +250,21 @@ public class DestronGas implements Runnable {
                 }
             }
         }
-        for (Boss boss : bosses) {
-            if (!boss.isDie()) {
-                boss.leaveMap();
+        // Tắt trước để DrLychee.leaveMap không gọi Hatchiyack mới vào list đang duyệt
+        this.isOpened = false;
+        for (Boss boss : new ArrayList<>(bosses)) {
+            // Boss đã dispose có nPoint = null, isDie() trả false nên phải bỏ qua
+            if (boss == null || boss.nPoint == null || boss.isDie()) {
+                continue;
             }
+            try {
+                boss.leaveMap();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (this.clan == null) {
+            return;
         }
         this.removeTextKhiGasHuyDiet();
         this.bosses.clear();

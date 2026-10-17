@@ -32,7 +32,7 @@ public class ToriBot extends Npc {
         LocalDateTime currentDateTime = LocalDateTime.now();
         if (currentDateTime.isAfter(VIP_SEASON_END_DATE)) {
             this.createOtherMenu(player, 0, "Ngươi tìm ta có việc gì?\nĐiểm săn boss của bạn: " + player.event.getEventPoint(),
-                    "Tặng điểm\nsăn boss", "Đổi Coin\nKhai Nguyên", "Đóng");
+                    "Tặng điểm\nsăn boss", "Đổi Coin\nKhai Nguyên", "Đổi\nHồng Ngọc", "Đóng");
         } else {
             int currentPurchases = player.vipPurchaseCount;
             String vipInfoMessage = "Lưu ý: nâng cấp VIP chỉ được tối đa 4 lần mỗi mùa (Bạn đã mua: " + currentPurchases + "/4 lần)";
@@ -64,7 +64,7 @@ public class ToriBot extends Npc {
                     "Tạo nhân vật mới sẽ được X2 Kinh nghiệm toàn mùa\n Nếu nâng cấp VIP sẽ được nhận\n nhiều ưu đãi hơn nữa.\n" + vipInfoMessage
                     + "\nĐiểm săn boss của bạn: " + player.event.getEventPoint()
                     + "\nGiá: VIP1 " + VIP_COST[1] + " - VIP2 " + VIP_COST[2] + " - VIP3 " + VIP_COST[3] + " - VIP4 " + VIP_COST[4] + " điểm",
-                    "Vip 1", "Vip 2", "Vip 3", "Vip 4", "Tặng điểm\nsăn boss", "Đổi Coin\nKhai Nguyên");
+                    "Vip 1", "Vip 2", "Vip 3", "Vip 4", "Tặng điểm\nsăn boss", "Đổi Coin\nKhai Nguyên", "Đổi\nHồng Ngọc");
         }
     }
 
@@ -83,6 +83,10 @@ public class ToriBot extends Npc {
                 }
                 case 1 -> {
                     Input.gI().createFormDoiCoinKhaiNguyen(pl);
+                    return;
+                }
+                case 2 -> {
+                    Input.gI().createFormDoiDiemHongNgoc(pl);
                     return;
                 }
             }

@@ -1,21 +1,22 @@
 package nro.models.boss;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import nro.models.consts.BossType;
 import nro.models.player.NewPet;
 import nro.models.player.Pet;
 import nro.models.player.Player;
 import nro.models.player.SetClothes;
 
 /**
- * Cân bằng dame 3 hành tinh khi đánh boss (chỉ boss, không ảnh hưởng đánh quái / PvP).
+ * Giới hạn dame lên boss nhiệm vụ: Kuku, Mập Đầu Đinh, Rambo, Tiểu đội sát thủ, Fide,
+ * Số 19, Số 20, Android 13/14/15, Pic, Poc, King Kong.
+ * Boss khác không giới hạn.
  *
- * - Mỗi người (đệ tử tính chung với chủ) chỉ gây được tối đa X% hpMax boss mỗi giây,
- *   X tùy theo máu boss; tính theo cửa sổ 2 giây.
+ * - Mỗi người (đệ tử tính chung với chủ) chỉ gây được tối đa 8% hpMax boss mỗi giây; tính theo cửa sổ 2 giây.
  * - Trần nhân theo trang bị: không set x0.6, set kích hoạt x1.0, set + đồ Thần x1.5, set + đồ Hủy Diệt x2.0.
  * - Tự sát không bị trần trên, thay bằng sàn/trần % hpMax riêng theo trang bị; mỗi người 1 lần / boss / 60 giây.
- * - Boss bị đánh bởi người chơi từ 2 hành tinh khác nhau: tỷ lệ rơi đồ Thần x1.10, đủ 3 hành tinh: x1.15.
+ * - Mọi boss bị đánh bởi người chơi từ 2 hành tinh khác nhau: tỷ lệ rơi đồ Thần x1.10, đủ 3 hành tinh: x1.15.
  */
 public final class BossDamageLimit {
 
@@ -23,9 +24,19 @@ public final class BossDamageLimit {
     private static final long TU_SAT_COOLDOWN_MS = 60_000;
     private static final long PLANET_WINDOW_MS = 60_000;
 
-    // [hpMax từ mức này trở lên, % hpMax mỗi giây]; dưới mức thấp nhất thì không giới hạn
-    private static final long[] HP_STEPS = {2_000_000_000L, 500_000_000L, 50_000_000L, 20_000_000L};
-    private static final double[] PERCENT_PER_SEC = {1.5, 2.5, 5, 8};
+    private static final Set<Integer> LIMITED_BOSS_IDS = Set.of(
+            BossID.KUKU, BossID.MAP_DAU_DINH, BossID.RAMBO,
+            // Tiểu đội sát thủ (cả 3 bộ id)
+            BossID.SO_4, BossID.SO_3, BossID.SO_2, BossID.SO_1, BossID.TIEU_DOI_TRUONG,
+            BossID.SO_4_NM, BossID.SO_3_NM, BossID.SO_2_NM, BossID.SO_1_NM, BossID.TIEU_DOI_TRUONG_NM,
+            BossID.SO_4_NAMEK, BossID.SO_3_NAMEK, BossID.SO_2_NAMEK, BossID.SO_1_NAMEK, BossID.TIEU_DOI_TRUONG_NAMEK,
+            BossID.FIDE,
+            BossID.ANDROID_19, BossID.DR_KORE,
+            BossID.ANDROID_13, BossID.ANDROID_14, BossID.ANDROID_15,
+            BossID.PIC, BossID.POC, BossID.KING_KONG);
+
+    // % hpMax mỗi giây
+    private static final double PERCENT_PER_SEC = 8;
 
     // Theo bậc trang bị: 0 = không set, 1 = set kích hoạt, 2 = set + đồ Thần, 3 = set + đồ Hủy Diệt
     private static final double[] TIER_MULTIPLIER = {0.6, 1.0, 1.5, 2.0};
@@ -43,8 +54,6 @@ public final class BossDamageLimit {
         private final Map<Long, Long> lastTuSat = new ConcurrentHashMap<>();
         // hành tinh (gender) -> lần cuối có người hành tinh đó đánh boss
         private final long[] lastHitByPlanet = new long[3];
-        // null = chưa xét; loại boss không đổi nên chỉ xét 1 lần
-        private Boolean limited;
 
         // Gọi khi boss hồi sinh / sang form mới để không giữ dữ liệu cũ
         public void reset() {
@@ -59,7 +68,7 @@ public final class BossDamageLimit {
 
     // Đánh thường / skill thường lên boss
     public static long limitAttack(Player plAtt, Player target, long dame) {
-        Boss boss = asLimitedBoss(target);
+        Boss boss = asBoss(target);
         Player owner = owner(plAtt);
         if (boss == null || owner == null || dame <= 0) {
             return dame;
@@ -69,11 +78,7 @@ public final class BossDamageLimit {
         if (!isLimitedBoss(boss)) {
             return dame;
         }
-        double percentPerSec = percentPerSecond(boss);
-        if (percentPerSec <= 0) {
-            return dame;
-        }
-        long budget = Math.max(1, (long) (boss.nPoint.hpMax * percentPerSec / 100 * (WINDOW_MS / 1000.0)
+        long budget = Math.max(1, (long) (boss.nPoint.hpMax * PERCENT_PER_SEC / 100 * (WINDOW_MS / 1000.0)
                 * TIER_MULTIPLIER[tier(owner)]));
         synchronized (boss.damageLimit) {
             long[] w = boss.damageLimit.windows.computeIfAbsent(owner.id, k -> new long[2]);
@@ -93,14 +98,14 @@ public final class BossDamageLimit {
 
     // Tự sát lên boss: sàn/trần theo % hpMax, mỗi người 1 lần / boss / 60 giây
     public static long limitTuSat(Player plAtt, Player target, long dame) {
-        Boss boss = asLimitedBoss(target);
+        Boss boss = asBoss(target);
         Player owner = owner(plAtt);
         if (boss == null || owner == null) {
             return dame;
         }
         long now = System.currentTimeMillis();
         recordPlanet(boss, owner, now);
-        if (!isLimitedBoss(boss) || percentPerSecond(boss) <= 0) {
+        if (!isLimitedBoss(boss)) {
             return dame;
         }
         Long last = boss.damageLimit.lastTuSat.get(owner.id);
@@ -130,42 +135,12 @@ public final class BossDamageLimit {
         return planets >= 3 ? DROP_BONUS_3_PLANETS : planets == 2 ? DROP_BONUS_2_PLANETS : 1;
     }
 
-    private static Boss asLimitedBoss(Player target) {
+    private static Boss asBoss(Player target) {
         return target instanceof Boss boss && target.nPoint != null ? boss : null;
     }
 
     private static boolean isLimitedBoss(Boss boss) {
-        Boolean limited = boss.damageLimit.limited;
-        if (limited == null) {
-            limited = computeLimited(boss);
-            boss.damageLimit.limited = limited;
-        }
-        return limited;
-    }
-
-    private static boolean computeLimited(Boss boss) {
-        if (boss.bossType != null) {
-            switch (boss.bossType) {
-                case PHOBAN, PHOBANBBH, PHOBANDT, PHOBANBDKB, PHOBANCDRD, PHOBANKGHD, YARDART, SKILLSUMMONED:
-                    return false;
-                default:
-                    break;
-            }
-        }
-        // Boss mô phỏng người chơi / luyện tập / võ đài: không giới hạn
-        String pkg = boss.getClass().getPackageName();
-        return !(pkg.endsWith(".sieu_hang") || pkg.endsWith(".luyen_tap_tu_dong")
-                || pkg.endsWith(".vo_dai_hat_mit") || pkg.endsWith(".dai_hoi_vo_thuat"));
-    }
-
-    private static double percentPerSecond(Boss boss) {
-        long hpMax = boss.nPoint.hpMax;
-        for (int i = 0; i < HP_STEPS.length; i++) {
-            if (hpMax >= HP_STEPS[i]) {
-                return PERCENT_PER_SEC[i];
-            }
-        }
-        return 0;
+        return LIMITED_BOSS_IDS.contains((int) boss.id);
     }
 
     private static Player owner(Player pl) {

@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import nro.models.consts.ConstItem;
 import nro.models.consts.ConstNpc;
 import nro.models.item.Item;
 import nro.models.item.Item.ItemOption;
@@ -136,15 +137,23 @@ public class ConsignShopService {
                     + " (đang có " + CoinKhaiNguyenService.count(pl) + ")");
             return;
         }
-        Item item = ItemService.gI().createNewItem(it.itemId);
-        item.quantity = it.quantity;
-        item.itemOptions.addAll(it.options);
+        Item item = toItem(it);
         it.isBuy = true;
         InventoryService.gI().addItemBag(pl, item);
         InventoryService.gI().sendItemBags(pl);
         Service.gI().sendThongBao(pl, "Bạn đã nhận được " + item.template.name);
         ConsignShopManager.gI().save();
         openShopKyGui(pl);
+    }
+
+    // Tạo item trả cho người chơi; copy option để item trong túi không dùng chung object với tin ký gửi
+    private Item toItem(ConsignItem it) {
+        Item item = ItemService.gI().createNewItem(it.itemId);
+        item.quantity = it.quantity;
+        for (ItemOption io : it.options) {
+            item.itemOptions.add(new ItemOption(io));
+        }
+        return item;
     }
 
     // Tìm món chưa bán theo id (duyệt thẳng, không cần lọc + sắp xếp cả shop)
@@ -266,9 +275,11 @@ public class ConsignShopService {
                     openShopKyGui(pl);
                     return;
                 }
-                Item item = ItemService.gI().createNewItem(it.itemId);
-                item.quantity = it.quantity;
-                item.itemOptions.addAll(it.options);
+                if (InventoryService.gI().getCountEmptyBag(pl) <= 0) {
+                    Service.gI().sendThongBao(pl, "Hành trang đã đầy");
+                    return;
+                }
+                Item item = toItem(it);
                 if (ConsignShopManager.gI().listItem.remove(it)) {
                     InventoryService.gI().addItemBag(pl, item);
                     InventoryService.gI().sendItemBags(pl);
@@ -324,18 +335,20 @@ public class ConsignShopService {
         return its;
     }
 
+    // Ký gửi được mọi vật phẩm, trừ: không thể giao dịch (option 30), đồ nhiệm vụ (type 8),
+    // vàng/ngọc nhặt rơi (type 9, 10) và chính Coin Khai Nguyên
     public boolean itemCanConsign(Item it) {
-        if (it != null && it.template != null) {
-            if (it.itemOptions.stream().anyMatch(op -> op.optionTemplate.id == 86)
-                    || it.itemOptions.stream().anyMatch(op -> op.optionTemplate.id == 87)
-                    || it.template.type == 14
-                    || it.template.type == 15
-                    || it.template.type == 6
-                    || it.template.id >= 14 && it.template.id <= 20) {
-                return true;
-            }
+        if (it == null || !it.isNotNullItem()) {
+            return false;
         }
-        return false;
+        switch (it.template.type) {
+            case 8, 9, 10:
+                return false;
+        }
+        if (it.template.id == ConstItem.COIN_KHAI_NGUYEN) {
+            return false;
+        }
+        return it.itemOptions.stream().noneMatch(op -> op.optionTemplate.id == 30);
     }
 
     public int getMaxId() {
@@ -380,13 +393,6 @@ public class ConsignShopService {
                 return;
             }
             Item it = ItemService.gI().copyItem(bagItem);
-            for (Item.ItemOption daubuoi : it.itemOptions) {
-                if (daubuoi.optionTemplate.id == 30) {
-                    Service.gI().sendThongBao(pl, "Vật phẩm không thể kí gửi");
-                    openShopKyGui(pl);
-                    return;
-                }
-            }
             if (quantity <= 0 || quantity > it.quantity) {
                 openShopKyGui(pl);
                 return;
@@ -427,6 +433,10 @@ public class ConsignShopService {
                     msg.writer().writeByte(0);
                     // Dựng danh sách 1 lần (trước đây dựng lại mỗi vòng lặp)
                     List<ConsignItem> canKiGui = getItemCanKiGui(pl);
+                    // Số lượng gửi bằng 1 byte: tối đa 127 món (tin đã đăng đứng trước nên không bị cắt)
+                    if (canKiGui.size() > 127) {
+                        canKiGui = canKiGui.subList(0, 127);
+                    }
                     msg.writer().writeByte(canKiGui.size());
                     for (ConsignItem itk : canKiGui) {
                         if (itk == null) {

@@ -87,6 +87,8 @@ public class Input {
     public static final int FIND_PLAYER_GIFT_RUBY = 34;
     public static final int TANG_DIEM_BOSS = 5166;
     public static final int DOI_COIN_KHAI_NGUYEN = 5167;
+    public static final int DOI_DIEM_HONG_NGOC = 5168;
+    public static final int HONG_NGOC_PER_POINT = 1000;
 
     private static Input intance;
 
@@ -717,6 +719,12 @@ case BOTITEM -> {
                     if (soDiem <= 0) {
                         break;
                     }
+                    int conDoi = player.event.getCoinExchangeRemaining();
+                    if (soDiem > conDoi) {
+                        Service.gI().sendThongBao(player, "Mỗi ngày chỉ đổi được " + nro.models.player.PlayerEvent.COIN_EXCHANGE_DAILY_LIMIT
+                                + " " + CoinKhaiNguyenService.NAME + ", hôm nay bạn còn đổi được " + conDoi);
+                        break;
+                    }
                     if (player.event.getEventPoint() < soDiem) {
                         Service.gI().sendThongBao(player, "Bạn không đủ điểm săn boss! Đang có " + player.event.getEventPoint() + " điểm.");
                         break;
@@ -727,10 +735,32 @@ case BOTITEM -> {
                         break;
                     }
                     player.event.subEventPoint(soDiem);
+                    player.event.addCoinExchangeToday(soDiem);
                     InventoryService.gI().sendItemBags(player);
                     Service.gI().sendThongBao(player, "Đã đổi " + soDiem + " điểm săn boss lấy " + soDiem + " " + CoinKhaiNguyenService.NAME
-                            + " (còn " + player.event.getEventPoint() + " điểm)");
+                            + " (còn " + player.event.getEventPoint() + " điểm, hôm nay còn đổi được " + player.event.getCoinExchangeRemaining() + ")");
                     nro.models.utils.Logger.fileLog("doi_coin_khai_nguyen", player.name + " (" + player.id + ") đổi " + soDiem + " điểm");
+                }
+                case DOI_DIEM_HONG_NGOC -> {
+                    int soDiem = parseSoDiem(player, text[0]);
+                    if (soDiem <= 0) {
+                        break;
+                    }
+                    if (player.event.getEventPoint() < soDiem) {
+                        Service.gI().sendThongBao(player, "Bạn không đủ điểm săn boss! Đang có " + player.event.getEventPoint() + " điểm.");
+                        break;
+                    }
+                    long soNgoc = (long) soDiem * HONG_NGOC_PER_POINT;
+                    if (player.inventory.ruby + soNgoc > Inventory.LIMIT_RUBY) {
+                        Service.gI().sendThongBao(player, "Hồng ngọc sau khi đổi vượt quá giới hạn " + Util.numberToMoney(Inventory.LIMIT_RUBY));
+                        break;
+                    }
+                    player.event.subEventPoint(soDiem);
+                    player.inventory.addRuby((int) soNgoc);
+                    PlayerService.gI().sendInfoHpMpMoney(player);
+                    Service.gI().sendThongBao(player, "Đã đổi " + soDiem + " điểm săn boss lấy " + Util.numberToMoney(soNgoc)
+                            + " hồng ngọc (còn " + player.event.getEventPoint() + " điểm)");
+                    nro.models.utils.Logger.fileLog("doi_diem_hong_ngoc", player.name + " (" + player.id + ") đổi " + soDiem + " điểm");
                 }
                 case TANG_NGOC_HONG -> {
                     Player pl = Client.gI().getPlayer(text[0]);
@@ -897,7 +927,13 @@ case BOTITEM -> {
 
     public void createFormDoiCoinKhaiNguyen(Player pl) {
         createForm(pl, DOI_COIN_KHAI_NGUYEN, "Đổi " + CoinKhaiNguyenService.NAME + "\nTỷ lệ: 1 điểm săn boss = 1 coin\nĐiểm săn boss đang có: "
-                + pl.event.getEventPoint(), new SubInput("Số điểm muốn đổi", NUMERIC));
+                + pl.event.getEventPoint() + "\nHôm nay còn đổi được: " + pl.event.getCoinExchangeRemaining() + "/"
+                + nro.models.player.PlayerEvent.COIN_EXCHANGE_DAILY_LIMIT, new SubInput("Số điểm muốn đổi", NUMERIC));
+    }
+
+    public void createFormDoiDiemHongNgoc(Player pl) {
+        createForm(pl, DOI_DIEM_HONG_NGOC, "Đổi Hồng Ngọc\nTỷ lệ: 1 điểm săn boss = " + Util.numberToMoney(HONG_NGOC_PER_POINT)
+                + " hồng ngọc\nĐiểm săn boss đang có: " + pl.event.getEventPoint(), new SubInput("Số điểm muốn đổi", NUMERIC));
     }
 
     public void createFormTangRuby(Player pl) {

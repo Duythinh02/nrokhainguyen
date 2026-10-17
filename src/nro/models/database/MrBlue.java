@@ -31,6 +31,7 @@ import nro.models.network.MySession;
 import nro.models.player_system.AntiLogin;
 import nro.models.services.ClanService;
 import nro.models.services.IntrinsicService;
+import nro.models.services.InventoryService;
 import nro.models.services.ItemService;
 import nro.models.map.service.MapService;
 import nro.models.services.Service;
@@ -60,6 +61,18 @@ import nro.models.npc.DuaHauEgg;
 import nro.models.player.KOLProgressData;
 
 public class MrBlue {
+
+    /**
+     * Đổi item cũ không dùng được sang bản mới khi nạp hành trang/rương.
+     * 1714 Pet Giru -> 2527, 1748 Pet tuần lộc -> 2532 (pet đi theo).
+     */
+    private static short replaceOldItemId(short tempId) {
+        return switch (tempId) {
+            case 1714 -> 2527;
+            case 1748 -> 2532;
+            default -> tempId;
+        };
+    }
 
     public static Player login(MySession session, AntiLogin al) {
         Player player = null;
@@ -383,7 +396,7 @@ public class MrBlue {
             for (int i = 0; i < dataArray.size(); i++) {
                 Item item;
                 JSONArray dataItem = (JSONArray) JSONValue.parse(dataArray.get(i).toString());
-                short tempId = Short.parseShort(String.valueOf(dataItem.get(0)));
+                short tempId = replaceOldItemId(Short.parseShort(String.valueOf(dataItem.get(0))));
                 if (tempId != -1) {
                     item = ItemService.gI().createNewItem(tempId, Integer.parseInt(String.valueOf(dataItem.get(1))));
                     JSONArray options = (JSONArray) JSONValue.parse(String.valueOf(dataItem.get(2)).replaceAll("\"", ""));
@@ -408,7 +421,7 @@ public class MrBlue {
             for (int i = 0; i < dataArray.size(); i++) {
                 Item item;
                 JSONArray dataItem = (JSONArray) JSONValue.parse(dataArray.get(i).toString());
-                short tempId = Short.parseShort(String.valueOf(dataItem.get(0)));
+                short tempId = replaceOldItemId(Short.parseShort(String.valueOf(dataItem.get(0))));
                 if (tempId != -1) {
                     item = ItemService.gI().createNewItem(tempId, Integer.parseInt(String.valueOf(dataItem.get(1))));
                     JSONArray options = (JSONArray) JSONValue.parse(String.valueOf(dataItem.get(2)).replaceAll("\"", ""));
@@ -441,6 +454,8 @@ public class MrBlue {
                 player.inventory.itemsBox.add(item);
             }
             dataArray.clear();
+            InventoryService.gI().mergeStacks(player.inventory.itemsBag);
+            InventoryService.gI().mergeStacks(player.inventory.itemsBox);
 
             //data box hòm thư
             try {
@@ -1227,6 +1242,10 @@ public class MrBlue {
                     }
                     if (dataArray.size() >= 17) {
                         player.event.setFlower20_10(Integer.parseInt(String.valueOf(dataArray.get(16))));
+                    }
+                    if (dataArray.size() >= 19) {
+                        player.event.setCoinExchangeDay(Integer.parseInt(String.valueOf(dataArray.get(17))));
+                        player.event.setCoinExchangeToday(Integer.parseInt(String.valueOf(dataArray.get(18))));
                     }
                 } else {
                 }

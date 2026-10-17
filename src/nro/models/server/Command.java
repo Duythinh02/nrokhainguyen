@@ -199,6 +199,30 @@ parameterizedCommands.put("upp", (player, text) -> {
 });
 
 
+        // cb <số lượng>: cộng Capsule Bang cho bang hội của mình (như điểm danh)
+        parameterizedCommands.put("cb ", (player, text) -> {
+            try {
+                int amount = Integer.parseInt(text.substring(3).trim());
+                if (amount <= 0) {
+                    Service.gI().sendThongBao(player, "Số lượng phải lớn hơn 0");
+                    return;
+                }
+                if (player.clan == null || player.clanMember == null) {
+                    Service.gI().sendThongBao(player, "Bạn chưa có bang hội");
+                    return;
+                }
+                player.clan.capsuleClan += amount;
+                player.clanMember.memberPoint += amount;
+                player.clanMember.clanPoint += amount;
+                player.clan.saveClanPoint();
+                nro.models.services.ClanService.gI().updateClanMembersToDB(player.clan);
+                nro.models.services.ClanService.gI().sendMyClan(player);
+                Service.gI().sendThongBao(player, "Đã cộng " + amount + " Capsule Bang. Bang đang có " + player.clan.capsuleClan);
+            } catch (Exception e) {
+                Service.gI().sendThongBao(player, "Cú pháp: cb <số lượng>");
+            }
+        });
+
         parameterizedCommands.put("i ", (player, text) -> {
             try {
                 String[] split = text.split(" ");

@@ -93,6 +93,8 @@ public class WomensDayService {
             Service.gI().sendThongBao(pl, "Hành trang đã đầy");
             return;
         }
+        // Lưu icon trước khi trừ: dùng món cuối thì item bị xóa (template = null)
+        short iconGift = item.template.iconID;
         InventoryService.gI().subQuantityItemsBag(pl, item, 1);
         short iconReward;
         String rewardName;
@@ -193,7 +195,7 @@ public class WomensDayService {
         }
         InventoryService.gI().sendItemBags(pl);
         Service.gI().sendMoney(pl);
-        CombineService.gI().sendEffectOpenItem(pl, item.template.iconID, iconReward);
+        CombineService.gI().sendEffectOpenItem(pl, iconGift, iconReward);
         Service.gI().sendThongBao(pl, "Bạn nhận được " + rewardName);
     }
 

@@ -240,6 +240,29 @@ public class InventoryService {
         }
     }
 
+    /**
+     * Gộp các ô cùng loại (item cộng dồn, option giống nhau) bị tách rời,
+     * ví dụ item trước đây chưa bật is_up_to_up.
+     */
+    public void mergeStacks(List<Item> list) {
+        for (int i = 0; i < list.size(); i++) {
+            Item base = list.get(i);
+            if (base == null || !base.isNotNullItem() || !base.template.isUpToUp) {
+                continue;
+            }
+            for (int j = i + 1; j < list.size(); j++) {
+                Item other = list.get(j);
+                if (other != null && other.isNotNullItem() && other.template.id == base.template.id
+                        && sameOptionsIgnoreExpiry(base.itemOptions, other.itemOptions)
+                        && (long) base.quantity + other.quantity <= 99999) {
+                    keepShorterExpiry(base, other);
+                    base.quantity += other.quantity;
+                    list.set(j, ItemService.gI().createItemNull());
+                }
+            }
+        }
+    }
+
     public Item finditemBongHoa(Player player, int soluong) {
         for (Item item : player.inventory.itemsBag) {
             if (item.isNotNullItem() && (item.template.id == 589) && item.quantity >= soluong) {
@@ -852,7 +875,7 @@ public class InventoryService {
         }
         if (itemAdd.template.isUpToUp) {
             for (Item it : items) {
-                if (!it.isNotNullItem() || it.template.id != itemAdd.template.id || (!checkListsEqual(it.itemOptions, itemAdd.itemOptions) && itemAdd.template.id != 2074 && !itemAdd.isDaNangCap() && !itemAdd.isManhTS()) || it.quantity >= 100_000_000) {
+                if (!it.isNotNullItem() || it.template.id != itemAdd.template.id || (!sameOptionsIgnoreExpiry(it.itemOptions, itemAdd.itemOptions) && itemAdd.template.id != 2074 && !itemAdd.isDaNangCap() && !itemAdd.isManhTS()) || it.quantity >= 100_000_000) {
                     continue;
                 }
 
@@ -861,12 +884,14 @@ public class InventoryService {
                         || itemAdd.template.id == 610 || itemAdd.template.type == 14 || itemAdd.template.id == 2048
                         || itemAdd.template.id > 2049 && itemAdd.template.id < 2056 || itemAdd.template.id == 821
                         || itemAdd.template.id == 2075 || itemAdd.template.id == ConstItem.COIN_KHAI_NGUYEN) {
+                    keepShorterExpiry(it, itemAdd);
                     it.quantity += itemAdd.quantity;
                     itemAdd.quantity = 0;
                     return true;
                 }
 
                 if (it.quantity < 99999) {
+                    keepShorterExpiry(it, itemAdd);
                     int add = 99999 - it.quantity;
                     if (itemAdd.quantity <= add) {
                         it.quantity += itemAdd.quantity;
@@ -905,6 +930,40 @@ public class InventoryService {
         }
 
         return true;
+    }
+
+    /**
+     * Như checkListsEqual nhưng bỏ qua số ngày còn lại của option 93 (hạn sử
+     * dụng), để vật phẩm nhận ở các ngày khác nhau vẫn gộp được một ô.
+     */
+    public static boolean sameOptionsIgnoreExpiry(List<ItemOption> list1, List<ItemOption> list2) {
+        if (list1.size() != list2.size()) {
+            return false;
+        }
+        for (int i = 0; i < list1.size(); i++) {
+            ItemOption a = list1.get(i);
+            ItemOption b = list2.get(i);
+            if (a.optionTemplate.id != b.optionTemplate.id || (a.param != b.param && a.optionTemplate.id != 93)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Khi gộp, ô gộp lấy hạn sử dụng ngắn hơn để không kéo dài hạn vật phẩm cũ.
+     */
+    private static void keepShorterExpiry(Item stack, Item add) {
+        for (ItemOption a : stack.itemOptions) {
+            if (a.optionTemplate.id != 93) {
+                continue;
+            }
+            for (ItemOption b : add.itemOptions) {
+                if (b.optionTemplate.id == 93 && b.param < a.param) {
+                    a.param = b.param;
+                }
+            }
+        }
     }
 
     private void __________________Kiểm_tra_điều_kiện_vật_phẩm______________() {

@@ -843,6 +843,8 @@ public class ShopService {
                 case 1733:
                 case 1734:
                 case 1749:
+                case 2527: // Pet Giru (pet đi theo)
+                case 2532: // Pet tuần lộc (pet đi theo)
                     capsuleClanPointPrice = 50;
                     break;
                 default:
