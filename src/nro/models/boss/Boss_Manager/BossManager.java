@@ -3,6 +3,7 @@ package nro.models.boss.Boss_Manager;
 import nro.models.boss.list.Gomah.Gomah;
 import nro.models.boss.Broly.SuperBrolyNew;
 import nro.models.boss.Tramhuydiet.Berus;
+import nro.models.boss.Tramhuydiet.Champa;
 import nro.models.boss.cumber.Cumber3;
 import nro.models.boss.cumber.Cumber2;
 import nro.models.boss.Broly.BrolyZone0;
@@ -221,6 +222,7 @@ public class BossManager implements Runnable {
         this.createBoss(BossID.ZAMASMAX);
         this.createBoss(BossID.DRABULA2);
         this.createBoss(BossID.BERUS);
+        this.createBoss(BossID.CHAMPA);
         this.createBoss(BossID.SUPER_BROLY_NEW, 5);
         this.createBoss(BossID.GOMAH);
         // Tạm đóng boss Nhất Tinh Long (BossID.TA_LONG); mở lại bằng cách bỏ comment dòng dưới
@@ -335,6 +337,8 @@ case BossID.DRABULA2 -> new Cumber2();
 case BossID.DRABULA3 -> new Cumber3();
 
 case BossID.BERUS -> new Berus();
+
+case BossID.CHAMPA -> new Champa();
 
 case BossID.SUPER_BROLY_NEW -> new SuperBrolyNew();
 

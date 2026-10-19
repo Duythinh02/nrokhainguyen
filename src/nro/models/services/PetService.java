@@ -3,6 +3,7 @@ package nro.models.services;
 import nro.models.consts.ConstDetu;
 import nro.models.utils.Logger;
 import nro.models.consts.ConstPlayer;
+import nro.models.item.Item;
 import nro.models.player.NewPet;
 import nro.models.player.Pet;
 import nro.models.player.Player;
@@ -385,6 +386,16 @@ public class PetService {
         pl.newPet.nPoint.stamina = 1;
         pl.newPet.nPoint.setBasePoint();
         pl.newPet.nPoint.setFullHpMp();
+    }
+
+    // Pet đi theo type 21: hình lấy thẳng từ head/body/leg của item template
+    public static boolean petFollowFromTemplate(Player pl, Item item) {
+        if (item == null || !item.isNotNullItem() || item.template.type != 21 || item.template.head < 0) {
+            return false;
+        }
+        Pet2(pl, item.template.head, item.template.body, item.template.leg);
+        Service.gI().point(pl);
+        return true;
     }
 
     public void createNormalBot(Player player, byte... limitPower) {

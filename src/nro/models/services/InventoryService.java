@@ -320,7 +320,7 @@ public class InventoryService {
 
         // Kiểm tra các loại item hợp lệ
         switch (item.template.type) {
-            case 0, 1, 2, 3, 4, 5, 32, 23, 24, 11, 27, 25 -> {
+            case 0, 1, 2, 3, 4, 5, 32, 23, 24, 11, 21, 27, 25 -> {
             }
             default -> {
                 Service.gI().sendThongBaoOK(player.isPet ? ((Pet) player).master : player, "Trang bị không phù hợp!1");
@@ -377,6 +377,7 @@ public class InventoryService {
             case 11:
                 index = 8;
                 break;
+            case 21: // pet đi theo (bản mới) dùng chung ô với pet type 27
             case 27:
                 index = 7;
                 break;
@@ -393,7 +394,7 @@ public class InventoryService {
             }
         }
 
-        if (player.isPet && (item.template.type == 23 || item.template.type == 24 || item.template.type == 27)) {
+        if (player.isPet && (item.template.type == 21 || item.template.type == 23 || item.template.type == 24 || item.template.type == 27)) {
             Player recipient = ((Pet) player).master;
             if (recipient == null) {
                 recipient = player;
@@ -1184,13 +1185,23 @@ public class InventoryService {
         return true;
     }
 
+    // 1 chồng thức ăn (663-667) có ít nhất 99 phần, null nếu không có
+    public Item findThucAn99(Player player) {
+        for (Item it : player.inventory.itemsBag) {
+            if (it != null && it.template != null && it.template.id >= 663 && it.template.id <= 667 && it.quantity >= 99) {
+                return it;
+            }
+        }
+        return null;
+    }
+
     public boolean x99ThucAn(Player player) {
-        Item doAn = player.inventory.itemsBag.stream().filter(it -> it != null && it.template != null && (it.template.id == 663 || it.template.id == 664 || it.template.id == 665 || it.template.id == 666 || it.template.id == 667) && it.quantity >= 99).findFirst().orElse(null);
-        return doAn != null;
+        return findThucAn99(player) != null;
     }
 
     public boolean canOpenBillShop(Player player) {
-        return fullSetThan(player) && x99ThucAn(player);
+        // Đổi từng món: 99 thức ăn + món Thần Linh tương ứng (kiểm tra lúc mua trong ShopService.buyItemHD)
+        return x99ThucAn(player);
     }
 
     public boolean optionCanUpgrade(int id) {

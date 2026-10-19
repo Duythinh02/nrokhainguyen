@@ -783,7 +783,6 @@ public class ItemService {
         short[] gang = {562, 564, 566};
         short[] giay = {563, 565, 567};
         short[] nhan = {561};
-        short[] options = {86, 87};
         /// Lựa chọn ngẫu nhiên trang bị
         if (Util.isTrue(10, 100)) {  // Nhẫn (10%)
             idTempTL = nhan[0];
@@ -796,7 +795,12 @@ public class ItemService {
         } else {  // Giày (25%)
             idTempTL = giay[Util.nextInt(3)];
         }
+        return randDoTL(zone, quantity, x, y, id, idTempTL);
+    }
 
+    // Tạo đồ thần linh với id cố định, chỉ số random đúng theo loại đồ đó (áo ra giáp, găng ra tấn công...)
+    public ItemMap randDoTL(Zone zone, int quantity, int x, int y, long id, short idTempTL) {
+        short[] options = {86, 87};
         int tiLe = Util.nextInt(100, 115);
         List<ItemOption> itemoptions = new ArrayList<>();
 

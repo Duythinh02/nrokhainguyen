@@ -30,7 +30,7 @@ public class PlayerEvent {
     }
 
     // Giới hạn điểm săn boss mỗi ngày (chỉ tính điểm từ diệt boss, điểm nhiệm vụ không bị giới hạn)
-    public static final int BOSS_POINT_DAILY_LIMIT = 400;
+    public static final int BOSS_POINT_DAILY_LIMIT = 700;
     private int bossPointToday;
     private int bossPointDay; // ngày dạng yyyyMMdd
 

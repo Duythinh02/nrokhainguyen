@@ -1581,7 +1581,9 @@ public class NPoint {
     }
 
     public void subHP(long sub) {
-        this.hp -= sub;
+        // Trừ bằng long: "hp -= sub" ép int nên đòn > ~2,1 tỷ có thể tràn thành số dương (boss hồi máu thay vì chết)
+        long remain = (long) this.hp - sub;
+        this.hp = (int) Math.max(Integer.MIN_VALUE, Math.min(Integer.MAX_VALUE, remain));
         if (this.hp <= 0) {
             this.hp = 0;
             this.setHp(0);

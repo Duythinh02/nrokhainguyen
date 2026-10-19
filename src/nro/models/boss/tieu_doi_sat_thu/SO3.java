@@ -28,8 +28,8 @@ public class SO3 extends Boss {
 
     @Override
     public void reward(Player plKill) {
-        int diem = 5;
-        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
+        // Boss nhiệm vụ Kuku -> Fide: không cộng điểm săn boss, chỉ tính số boss đã diệt
+        nro.models.services.BossHuntService.gI().onKillBoss(plKill, 0);
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);
         Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 190, Util.nextInt(20000, 30001),
           this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
@@ -76,9 +76,10 @@ public class SO3 extends Boss {
             return;
         }
         for (Boss boss : this.parentBoss.bossAppearTogether[this.parentBoss.currentLevel]) {
-            if ((boss.id == BossID.SO_2 || boss.id == BossID.SO_1) && !boss.isDie()) {
+            // NV 20 yêu cầu hạ Số 2 rồi mới tới Số 1: chỉ đánh thức Số 2, Số 1 do Số 2 gọi
+            if (boss.id == BossID.SO_2 && !boss.isDie()) {
                 boss.changeStatus(BossStatus.ACTIVE);
-//                break;
+                break;
             }
         }
     }

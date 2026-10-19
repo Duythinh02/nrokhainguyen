@@ -69,8 +69,32 @@ public class GiuMaDauBo extends Npc {
                         return;
                     }
 
+                    GauTuongCuop gauCu = null;
+                    int maxMobId = -1;
+                    for (Mob m : zone.mobs) {
+                        maxMobId = Math.max(maxMobId, m.id);
+                        if (m instanceof GauTuongCuop g) {
+                            if (!g.isDie()) {
+                                Service.gI().sendThongBao(player, "Gấu Tướng Cướp đang xuất hiện rồi!");
+                                return;
+                            }
+                            if (gauCu == null) {
+                                gauCu = g;
+                            }
+                        }
+                    }
+                    if (gauCu != null) {
+                        gauCu.respawn(player.location.x + Util.nextInt(-30, 30), player.location.y);
+                        for (Player p : zone.getPlayers()) {
+                            Service.gI().loadMob(p, gauCu);
+                        }
+                        Service.gI().sendThongBao(player, "Gấu Tướng Cướp đã xuất hiện!");
+                        return;
+                    }
+
                     // Tạo Gấu Tướng Cướp
                     Mob mobBase = new Mob();
+                    mobBase.id = maxMobId + 1; // id riêng, không trùng quái khác trong khu
                     mobBase.tempId = ConstMob.GAU_TUONG_CUOP;
                     mobBase.level = 1;
                     mobBase.location = new nro.models.player.Location();

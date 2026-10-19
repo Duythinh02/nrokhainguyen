@@ -61,7 +61,9 @@ import nro.models.utils.Logger;
 import nro.models.utils.SkillUtil;
 import nro.models.utils.Util;
 import nro.models.interfaces.IBoss;
-import java.io.IOException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Boss extends Player implements IBoss {
 
@@ -104,7 +106,7 @@ public class Boss extends Player implements IBoss {
 
     public int error;
 
-    public boolean prepareBom;
+    public volatile boolean prepareBom;
 
     public boolean isNotifyDisabled;
     public boolean isZone01SpawnDisabled;
@@ -371,6 +373,19 @@ public class Boss extends Player implements IBoss {
         if (this.effectSkill == null || this.effectSkill.isHaveEffectSkill() || (this.newSkill != null && this.newSkill.isStartSkillSpecial)) {
             return;
         }
+        // Lưới an toàn: máu về 0 ngoài injured (tràn số, trừ máu trực tiếp...) mà chưa qua die()
+        // thì boss bị kẹt "chết" trên map và không bao giờ hồi sinh -> cho chạy luồng chết bình thường
+        if (this.bossStatus == BossStatus.ACTIVE && this.nPoint.hp <= 0) {
+            Logger.error("Boss " + this.name + " (" + this.id + ") hết máu nhưng chưa xử lý chết, tự xử lý\n");
+            try {
+                this.die(null);
+            } catch (Exception e) {
+                // die() của boss con không chịu được plKill null -> vẫn cho chết để không kẹt lặp lỗi mỗi tick
+                Logger.error("Boss " + this.name + " die(null) lỗi: " + e + ", ép chuyển DIE\n");
+                this.changeStatus(BossStatus.DIE);
+            }
+            return;
+        }
         switch (this.bossStatus) {
             case CHAT_S, AFK, ACTIVE ->
                 this.autoLeaveMap();
@@ -621,6 +636,8 @@ public class Boss extends Player implements IBoss {
     }
 
     protected long lastTimeAttack;
+    // Lần cuối bị người chơi gây dame (BossDamageLimit ghi), dùng để không tự rời map khi đang bị đánh
+    protected long lastTimeHitByPlayer;
 
     @Override
     public void attack() {
@@ -674,6 +691,7 @@ public class Boss extends Player implements IBoss {
 
     @Override
     public void die(Player plKill) {
+        plKill = BossDamageLimit.ownerOrSelf(plKill); // đệ kết liễu: đồ rơi / thưởng tính cho chủ
         if (plKill != null) {
             TaskService.gI().checkDoneTaskKillBossNew(plKill, this);
         }
@@ -863,57 +881,64 @@ public class Boss extends Player implements IBoss {
 
     @Override
     public void setBom(Player plAtt) {
+        if (prepareBom) {
+            return;
+        }
+        prepareBom = true;
+        this.nPoint.hp = 1;
+        //gồng tự sát
         try {
-            if (!prepareBom) {
-                prepareBom = true;
-                this.nPoint.hp = 1;
-                long lastTime = System.currentTimeMillis();
-                //gồng tự sát
-                Service.gI().chat(Boss.this, "Rồi, rồi, mày xong rồi!");
-                Message msg;
-                try {
-                    msg = new Message(-45);
-                    msg.writer().writeByte(7);
-                    msg.writer().writeInt((int) Boss.this.id);
-                    msg.writer().writeShort(104);
-                    msg.writer().writeShort(2000);
-                    Service.gI().sendMessAllPlayerInMap(Boss.this, msg);
-                    msg.cleanup();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                while (prepareBom) {
-                    if (Util.canDoWithTime(lastTime, 2500)) {
-                        setDie(this);
-                        die(plAtt);
-                        long dame = Boss.this.nPoint.hpMax;
-                        for (Mob mob : Boss.this.zone.mobs) {
-                            mob.injured(Boss.this, dame, true);
-                        }
-                        List<Player> playersMap = Boss.this.zone.getNotBosses();
-                        if (!MapService.gI().isMapOffline(Boss.this.zone.map.mapId)) {
-                            //Sử dụng vòng for lặp ngược để hạn chế lỗi đồng bộ
-                            for (int i = playersMap.size() - 1; i >= 0; i--) {
-                                Player pl = playersMap.get(i);
-                                if (!Boss.this.equals(pl)) {
-                                    pl.injured(Boss.this, dame, false, false);
-                                    PlayerService.gI().sendInfoHpMpMoney(pl);
-                                    Service.gI().Send_Info_NV(pl);
-                                }
-                            }
-                        }
-                        prepareBom = false;
+            Service.gI().chat(Boss.this, "Rồi, rồi, mày xong rồi!");
+            Message msg = new Message(-45);
+            msg.writer().writeByte(7);
+            msg.writer().writeInt((int) Boss.this.id);
+            msg.writer().writeShort(104);
+            msg.writer().writeShort(2000);
+            Service.gI().sendMessAllPlayerInMap(Boss.this, msg);
+            msg.cleanup();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // Hẹn giờ nổ thay vì vòng lặp chờ 2.5s (vòng lặp cũ đốt CPU và giữ khóa injured của người đánh)
+        BOM_TIMER.schedule(() -> explodeBom(plAtt), 2500, TimeUnit.MILLISECONDS);
+    }
+
+    private void explodeBom(Player plAtt) {
+        try {
+            setDie(this);
+            die(plAtt);
+            Zone z = this.zone;
+            if (z == null) {
+                return;
+            }
+            long dame = this.nPoint.hpMax;
+            for (Mob mob : z.mobs) {
+                mob.injured(this, dame, true);
+            }
+            if (!MapService.gI().isMapOffline(z.map.mapId)) {
+                List<Player> playersMap = z.getNotBosses();
+                //Sử dụng vòng for lặp ngược để hạn chế lỗi đồng bộ
+                for (int i = playersMap.size() - 1; i >= 0; i--) {
+                    Player pl = playersMap.get(i);
+                    if (!this.equals(pl)) {
+                        pl.injured(this, dame, false, false);
+                        PlayerService.gI().sendInfoHpMpMoney(pl);
+                        Service.gI().Send_Info_NV(pl);
                     }
                 }
             }
         } catch (Exception e) {
-            if (prepareBom) {
-                prepareBom = false;
-            }
-            setDie(this);
-            die(plAtt);
+            e.printStackTrace();
+        } finally {
+            prepareBom = false;
         }
     }
+
+    private static final ScheduledExecutorService BOM_TIMER = Executors.newSingleThreadScheduledExecutor(r -> {
+        Thread t = new Thread(r, "boss-bom");
+        t.setDaemon(true);
+        return t;
+    });
 
 
     protected void goToPlayer(Player pl, boolean isTeleport) {

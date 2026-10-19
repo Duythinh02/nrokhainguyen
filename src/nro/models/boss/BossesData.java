@@ -3471,52 +3471,33 @@ public class BossesData {
             REST_15_M //second rest
     );
 
-    public static final BossData GOMAH1 = new BossData(
+            public static final BossData GOMAH1 = new BossData(
             "Gomah Hắc Ám", //name
             ConstPlayer.TRAI_DAT, //gender
-            new short[]{1910, 1912, 1913, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
+            new short[]{1910, 1912, 1913, -1, -1, -1}, //outfit
             100000, //dame
-            new long[]{2_000_000_000}, //hp
-            new int[]{194, 195}, //map join
-            new int[][]{
-                {Skill.THAI_DUONG_HA_SAN, 3, 30000},
-                {Skill.TAI_TAO_NANG_LUONG, 7, 30000},
-                {Skill.KAMEJOKO, 7, 10000},
-                {Skill.GALICK, 7, 1000}},
+            new long[]{2000000000L}, //hp
+            new int[]{194, 195}, //map
+            new int[][]{{Skill.THAI_DUONG_HA_SAN, 3, 30000}, {Skill.TAI_TAO_NANG_LUONG, 7, 35000}, {Skill.KAMEJOKO, 7, 10000}, {Skill.GALICK, 7, 1000}}, //skill
             new String[]{}, //text chat 1
-            new String[]{"|-1|Ta chính là người mang thân thể của Songoku",
-                "|-1|Sức mạnh của ta là không có giới hạn",
-                "|-1|Ta sẽ thống trị vũ trụ",
-                "|-1|Để ta nói cho nghe,người Sayan sau khi hồi phục sức mạnh sẽ tăng lên rất nhiều",
-                "|-2|Tại sao ngươi lại lấy thân thể của songoku chứ?"
-            }, //text chat 2
-
-            new String[]{"|-1|Các ngươi đã chọc giận ta thật rồi...",
-                "|-1|Biến hình! Gomah Tối Thượng!"}, //text chat 3
-            AppearType.ANOTHER_LEVEL //type appear
+            new String[]{"|-1|Ta chính là người mang thân thể của Songoku", "|-1|Sức mạnh của ta là không có giới hạn", "|-1|Ta sẽ thống trị vũ trụ", "|-1|Để ta nói cho nghe,người Sayan sau khi hồi phục sức mạnh sẽ tăng lên rất nhiều", "|-2|Tại sao ngươi lại lấy thân thể của songoku chứ?", "|-1|Các ngươi đã chọc giận ta thật rồi...", "|-1|Biến hình! Gomah Tối Thượng!"}, //text chat 2
+            new String[]{}, //text chat 3
+            AppearType.ANOTHER_LEVEL
     );
 
     // Dạng 3 của Gomah (dùng lại hình Gomah Hắc Ám)
-    public static final BossData GOMAH2 = new BossData(
+        public static final BossData GOMAH2 = new BossData(
             "Gomah Tối Thượng", //name
             ConstPlayer.TRAI_DAT, //gender
-            new short[]{1910, 1912, 1913, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
+            new short[]{1910, 1912, 1913, -1, -1, -1}, //outfit
             150000, //dame
-            new long[]{2_000_000_000}, //hp
-            new int[]{194, 195}, //map join
-            new int[][]{
-                {Skill.THAI_DUONG_HA_SAN, 3, 30000},
-                {Skill.TAI_TAO_NANG_LUONG, 7, 30000},
-                {Skill.KAMEJOKO, 7, 8000},
-                {Skill.GALICK, 7, 1000}},
+            new long[]{2000000000L}, //hp
+            new int[]{194, 195}, //map
+            new int[][]{{Skill.THAI_DUONG_HA_SAN, 3, 30000}, {Skill.TAI_TAO_NANG_LUONG, 7, 30000}, {Skill.KAMEJOKO, 7, 8000}, {Skill.GALICK, 7, 1000}}, //skill
             new String[]{}, //text chat 1
-            new String[]{"|-1|Đây mới là sức mạnh thật sự của ta!",
-                "|-1|Vũ trụ này sẽ thuộc về ta",
-                "|-2|Hắn còn mạnh hơn trước nữa!"
-            }, //text chat 2
-            new String[]{"|-1|Chúng ta sẽ gặp lại nhau sớm thôi",
-                "|-2|Ngươi nói gì chứ?"}, //text chat 3
-            AppearType.ANOTHER_LEVEL //type appear
+            new String[]{"|-1|Đây mới là sức mạnh thật sự của ta!", "|-1|Vũ trụ này sẽ thuộc về ta", "|-2|Hắn còn mạnh hơn trước nữa!", "|-1|Chúng ta sẽ gặp lại nhau sớm thôi", "|-2|Ngươi nói gì chứ?"}, //text chat 2
+            new String[]{}, //text chat 3
+            AppearType.ANOTHER_LEVEL
     );
 
         public static final BossData THANZM2 = new BossData(

@@ -782,28 +782,34 @@ public class ChangeMapService {
 
     public void exitMap(Player player) {
         if (player.zone != null) {
-            //xử thua pvp
-            if (player.pvp != null) {
-                player.pvp.lose(player, TYPE_LOSE_PVP.RUNS_AWAY);
-            }
-            if (player.isPl() && player.zone != null && player.isPKDHVT) {
-                player.isPKDHVT = false;
-            }
-            if (player.isPl() && player.clan != null && player.clan.ConDuongRanDoc != null
-                    && player.joinCDRD && player.clan.ConDuongRanDoc.allMobsDead && player.talkToThanMeo) {
-                player.timeChangeMap144 = System.currentTimeMillis();
-            }
-            BlackBallWarService.gI().dropBlackBall(player);
-            if (player.effectSkill.useTroi) {
-                EffectSkillService.gI().removeUseTroi(player);
-            }
-            if (player.effectSkin.xHPKI > 1 && !MapService.gI().isMapBlackBallWar(player.zone.map.mapId)) {
-                player.effectSkin.xHPKI = 1;
-                Service.gI().point(player);
-            }
-            if (player.effectSkin.xDame > 1 && !MapService.gI().isMapBlackBallWar(player.zone.map.mapId)) {
-                player.effectSkin.xDame = 1;
-                Service.gI().point(player);
+            // Các bước phụ lỗi (đối tượng đã dispose...) không được chặn việc rút khỏi khu,
+            // nếu không sẽ để lại "xác" nPoint = null trong khu làm lỗi người vào sau
+            try {
+                //xử thua pvp
+                if (player.pvp != null) {
+                    player.pvp.lose(player, TYPE_LOSE_PVP.RUNS_AWAY);
+                }
+                if (player.isPl() && player.zone != null && player.isPKDHVT) {
+                    player.isPKDHVT = false;
+                }
+                if (player.isPl() && player.clan != null && player.clan.ConDuongRanDoc != null
+                        && player.joinCDRD && player.clan.ConDuongRanDoc.allMobsDead && player.talkToThanMeo) {
+                    player.timeChangeMap144 = System.currentTimeMillis();
+                }
+                BlackBallWarService.gI().dropBlackBall(player);
+                if (player.effectSkill != null && player.effectSkill.useTroi) {
+                    EffectSkillService.gI().removeUseTroi(player);
+                }
+                if (player.effectSkin != null && player.effectSkin.xHPKI > 1 && !MapService.gI().isMapBlackBallWar(player.zone.map.mapId)) {
+                    player.effectSkin.xHPKI = 1;
+                    Service.gI().point(player);
+                }
+                if (player.effectSkin != null && player.effectSkin.xDame > 1 && !MapService.gI().isMapBlackBallWar(player.zone.map.mapId)) {
+                    player.effectSkin.xDame = 1;
+                    Service.gI().point(player);
+                }
+            } catch (Exception e) {
+                Logger.logException(ChangeMapService.class, e);
             }
             player.zone.removePlayer(player);
             if (!MapService.gI().isMapOffline(player.zone.map.mapId)) {

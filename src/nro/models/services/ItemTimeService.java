@@ -267,6 +267,9 @@ public class ItemTimeService {
     }
 
     public void sendTextTime(Player player, byte id, String text, int seconds) {
+        if (player == null) {
+            return;
+        }
         Message msg;
         try {
             msg = new Message(65);

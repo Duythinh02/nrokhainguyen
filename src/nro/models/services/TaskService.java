@@ -9,6 +9,7 @@ import nro.models.player.Player;
 import nro.models.consts.ConstTask;
 import nro.models.boss.Boss;
 import nro.models.boss.BossID;
+import nro.models.boss.BossDamageLimit;
 import nro.models.clan.ClanMember;
 import nro.models.consts.ConstAchievement;
 import nro.models.consts.ConstTaskBadges;
@@ -262,7 +263,7 @@ public class TaskService {
             }
             case ConstNpc.WHIS -> {
                 // NV 30: báo cáo với Whis ở Hành tinh Bill
-                return npc.mapId == 154 && doneTask(player, ConstTask.TASK_30_2);
+                return npc.mapId == 154 && doneTask(player, ConstTask.TASK_30_3);
             }
             case ConstNpc.OSIN -> {
                 return doneTask(player, ConstTask.TASK_28_0)
@@ -455,15 +456,17 @@ public class TaskService {
         }
     }
 
-    // Nhiệm vụ 29 - 35: gọi từ Boss.die cho mọi boss; đệ hạ boss thì tính cho chủ
+    // Nhiệm vụ 29 - 35: gọi từ Boss.die cho mọi boss; chia công giống checkDoneTaskKillBoss
     public void checkDoneTaskKillBossNew(Player plKill, Boss boss) {
-        Player player = plKill;
-        if (player != null && player.isPet && player instanceof nro.models.player.Pet pet) {
-            player = pet.master;
-        }
-        if (player == null || player.isBot || player.isBoss || player.isPet || boss == null) {
+        if (boss == null) {
             return;
         }
+        for (Player player : BossDamageLimit.questCreditPlayers(boss, plKill)) {
+            doneTaskKillBossNew(player, boss);
+        }
+    }
+
+    private void doneTaskKillBossNew(Player player, Boss boss) {
         switch ((int) boss.id) {
             case BossID.MABU -> {
                 // Ma Bư 14h (map 127) đổi dạng: Bư mập -> Bư Còm -> Super Bư -> Bư Tênk -> Bư Han -> Kid Bư
@@ -486,6 +489,8 @@ public class TaskService {
             }
             case BossID.BERUS ->
                 doneTask(player, ConstTask.TASK_30_1);
+            case BossID.CHAMPA ->
+                doneTask(player, ConstTask.TASK_30_2);
             case BossID.FIDE -> {
                 // NV 31: hạ lần lượt Fide đại ca cấp 1 -> 2 -> 3 (currentLevel 0, 1, 2)
                 switch (boss.currentLevel) {
@@ -565,83 +570,94 @@ public class TaskService {
         }
     }
 
-    public void checkDoneTaskKillBoss(Player player, Boss boss) {
-        if (player != null && !player.isBot && !player.isBoss && !player.isPet) {
-            AchievementService.gI().checkDoneTask(player, ConstAchievement.TRUM_KET_LIEU_BOSS);
-            switch ((int) boss.id) {
-                case BossID.KUKU ->
-                    doneTask(player, ConstTask.TASK_19_0);
-                case BossID.MAP_DAU_DINH ->
-                    doneTask(player, ConstTask.TASK_19_1);
-                case BossID.RAMBO ->
-                    doneTask(player, ConstTask.TASK_19_2);
-                case BossID.SO_4 ->
-                    doneTask(player, ConstTask.TASK_20_1);
-                case BossID.SO_3 ->
-                    doneTask(player, ConstTask.TASK_20_2);
-                case BossID.SO_2 ->
-                    doneTask(player, ConstTask.TASK_20_3);
-                case BossID.SO_1 ->
-                    doneTask(player, ConstTask.TASK_20_4);
-                case BossID.TIEU_DOI_TRUONG ->
-                    doneTask(player, ConstTask.TASK_20_5);
-                case BossID.FIDE -> {
-                    switch (boss.currentLevel) {
-                        case 0 ->
-                            doneTask(player, ConstTask.TASK_21_1);
-                        case 1 ->
-                            doneTask(player, ConstTask.TASK_21_2);
-                        case 2 ->
-                            doneTask(player, ConstTask.TASK_21_3);
-                    }
-                }
-                case BossID.ANDROID_19 ->
-                    doneTask(player, ConstTask.TASK_23_1);
-                case BossID.DR_KORE ->
-                    doneTask(player, ConstTask.TASK_23_2);
-                case BossID.POC ->
-                    doneTask(player, ConstTask.TASK_25_1);
-                case BossID.PIC ->
-                    doneTask(player, ConstTask.TASK_25_2);
-                case BossID.KING_KONG ->
-                    doneTask(player, ConstTask.TASK_25_3);
-                case BossID.ANDROID_13 ->
-                    doneTask(player, ConstTask.TASK_24_3);
-                case BossID.ANDROID_14 ->
-                    doneTask(player, ConstTask.TASK_24_2);
-                case BossID.ANDROID_15 ->
-                    doneTask(player, ConstTask.TASK_24_1);
+    // Nhiệm vụ 19 - 28: người kết liễu (đệ tính cho chủ) + người cùng khu góp >= 1% máu boss trong 60 giây gần nhất
+    public void checkDoneTaskKillBoss(Player plKill, Boss boss) {
+        if (boss == null) {
+            return;
+        }
+        Player killer = BossDamageLimit.ownerOrSelf(plKill);
+        for (Player player : BossDamageLimit.questCreditPlayers(boss, plKill)) {
+            if (player == killer) {
+                AchievementService.gI().checkDoneTask(player, ConstAchievement.TRUM_KET_LIEU_BOSS);
+            }
+            doneTaskKillBoss(player, boss);
+        }
+    }
 
-                case BossID.XEN_BO_HUNG -> {
-                    switch (boss.currentLevel) {
-                        case 0 ->
-                            doneTask(player, ConstTask.TASK_26_1);
-                        case 1 ->
-                            doneTask(player, ConstTask.TASK_26_2);
-                        case 2 ->
-                            doneTask(player, ConstTask.TASK_26_3);
-                    }
+    private void doneTaskKillBoss(Player player, Boss boss) {
+        switch ((int) boss.id) {
+            case BossID.KUKU ->
+                doneTask(player, ConstTask.TASK_19_0);
+            case BossID.MAP_DAU_DINH ->
+                doneTask(player, ConstTask.TASK_19_1);
+            case BossID.RAMBO ->
+                doneTask(player, ConstTask.TASK_19_2);
+            case BossID.SO_4 ->
+                doneTask(player, ConstTask.TASK_20_1);
+            case BossID.SO_3 ->
+                doneTask(player, ConstTask.TASK_20_2);
+            case BossID.SO_2 ->
+                doneTask(player, ConstTask.TASK_20_3);
+            case BossID.SO_1 ->
+                doneTask(player, ConstTask.TASK_20_4);
+            case BossID.TIEU_DOI_TRUONG ->
+                doneTask(player, ConstTask.TASK_20_5);
+            case BossID.FIDE -> {
+                switch (boss.currentLevel) {
+                    case 0 ->
+                        doneTask(player, ConstTask.TASK_21_1);
+                    case 1 ->
+                        doneTask(player, ConstTask.TASK_21_2);
+                    case 2 ->
+                        doneTask(player, ConstTask.TASK_21_3);
                 }
+            }
+            case BossID.ANDROID_19 ->
+                doneTask(player, ConstTask.TASK_23_1);
+            case BossID.DR_KORE ->
+                doneTask(player, ConstTask.TASK_23_2);
+            case BossID.POC ->
+                doneTask(player, ConstTask.TASK_25_1);
+            case BossID.PIC ->
+                doneTask(player, ConstTask.TASK_25_2);
+            case BossID.KING_KONG ->
+                doneTask(player, ConstTask.TASK_25_3);
+            case BossID.ANDROID_13 ->
+                doneTask(player, ConstTask.TASK_24_3);
+            case BossID.ANDROID_14 ->
+                doneTask(player, ConstTask.TASK_24_2);
+            case BossID.ANDROID_15 ->
+                doneTask(player, ConstTask.TASK_24_1);
 
-                case BossID.XEN_CON_1, BossID.XEN_CON_2, BossID.XEN_CON_3, BossID.XEN_CON_4, BossID.XEN_CON_5, BossID.XEN_CON_6, BossID.XEN_CON_7 ->
-                    doneTask(player, ConstTask.TASK_27_3);
-                case BossID.DRABURA, BossID.DRABURA_2, BossID.DRABURA_3 -> {
-                    doneTask(player, ConstTask.TASK_28_1);
-                    doneTask(player, ConstTask.TASK_28_5);
+            case BossID.XEN_BO_HUNG -> {
+                switch (boss.currentLevel) {
+                    case 0 ->
+                        doneTask(player, ConstTask.TASK_26_1);
+                    case 1 ->
+                        doneTask(player, ConstTask.TASK_26_2);
+                    case 2 ->
+                        doneTask(player, ConstTask.TASK_26_3);
                 }
-                case BossID.BUI_BUI, BossID.BUI_BUI_2 -> {
-                    doneTask(player, ConstTask.TASK_28_2);
-                    doneTask(player, ConstTask.TASK_28_3);
-                }
-                case BossID.YA_CON ->
-                    doneTask(player, ConstTask.TASK_28_4);
-                case BossID.MABU_12H ->
-                    doneTask(player, ConstTask.TASK_28_6);
-                case BossID.SIEU_BO_HUNG -> {
-                    switch (boss.currentLevel) {
-                        case 1 ->
-                            doneTask(player, ConstTask.TASK_27_4);
-                    }
+            }
+
+            case BossID.XEN_CON_1, BossID.XEN_CON_2, BossID.XEN_CON_3, BossID.XEN_CON_4, BossID.XEN_CON_5, BossID.XEN_CON_6, BossID.XEN_CON_7 ->
+                doneTask(player, ConstTask.TASK_27_3);
+            case BossID.DRABURA, BossID.DRABURA_2, BossID.DRABURA_3 -> {
+                doneTask(player, ConstTask.TASK_28_1);
+                doneTask(player, ConstTask.TASK_28_5);
+            }
+            case BossID.BUI_BUI, BossID.BUI_BUI_2 -> {
+                doneTask(player, ConstTask.TASK_28_2);
+                doneTask(player, ConstTask.TASK_28_3);
+            }
+            case BossID.YA_CON ->
+                doneTask(player, ConstTask.TASK_28_4);
+            case BossID.MABU_12H ->
+                doneTask(player, ConstTask.TASK_28_6);
+            case BossID.SIEU_BO_HUNG -> {
+                switch (boss.currentLevel) {
+                    case 1 ->
+                        doneTask(player, ConstTask.TASK_27_4);
                 }
             }
         }

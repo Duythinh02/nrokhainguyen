@@ -1253,24 +1253,28 @@ public class ShopService {
             Service.gI().sendThongBao(player, "Hành trang đã đầy, không thể chứa thêm.");
             return;
         }
+        Item doAn = null;
+        Item doThan = null;
+        if (item.template.level == 14) {
+            doAn = InventoryService.gI().findThucAn99(player);
+            if (doAn == null) {
+                Service.gI().sendThongBao(player, "Không có đủ 99 phần thức ăn");
+                return;
+            }
+            // Hủy Diệt 650-662 <-> Thần Linh 555-567 cùng loại, cùng hành tinh
+            int idThan = item.template.id - 95;
+            doThan = InventoryService.gI().findItemBag(player, idThan);
+            if (doThan == null) {
+                Service.gI().sendThongBao(player, "Cần 1 " + ItemService.gI().getTemplate(idThan).name + " trong hành trang để đổi");
+                return;
+            }
+        }
         if (!subMoneyByItemShopV2(player, is)) {
             return;
         }
-        if (item.template.level == 14) {
-            Item doAn = player.inventory.itemsBag.stream().filter(it -> it != null && it.template != null && (it.template.id == 663 || it.template.id == 664 || it.template.id == 665 || it.template.id == 666 || it.template.id == 667) && it.quantity >= 99).findFirst().orElse(null);
-            if (doAn != null) {
-                InventoryService.gI().subQuantityItemsBag(player, doAn, 99);
-            } else {
-                Service.gI().sendThongBao(player, "Không có đủ thức ăn");
-                return;
-            }
-        }
-        if (player.inventory.itemsBody.get(0) != null || player.inventory.itemsBody.get(1) != null || player.inventory.itemsBody.get(2) != null || player.inventory.itemsBody.get(3) != null || player.inventory.itemsBody.get(4) != null || player.inventory.itemsBody.get(5) != null) {
-            Item dothan = player.inventory.itemsBody.stream().filter(it -> it != null && it.template != null && it.template.level == 13).findFirst().orElse(null);
-            if (dothan == null) {
-                Service.gI().sendThongBao(player, "Không có đủ set thần");
-                return;
-            }
+        if (doAn != null) {
+            InventoryService.gI().subQuantityItemsBag(player, doAn, 99);
+            InventoryService.gI().subQuantityItemsBag(player, doThan, 1);
         }
         int param = 0;
         if (item.template.level == 14) {

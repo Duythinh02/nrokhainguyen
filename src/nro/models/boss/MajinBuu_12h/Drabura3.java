@@ -1,6 +1,7 @@
 package nro.models.boss.MajinBuu_12h;
 
 
+import nro.models.boss.BossDamageLimit;
 import nro.models.boss.Boss;
 import nro.models.boss.BossID;
 import nro.models.consts.BossStatus;
@@ -58,7 +59,7 @@ public class Drabura3 extends Boss {
 
     @Override
     public void reward(Player plKill) {
-        int diem = 5;
+        int diem = 3;
         nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
         int x = this.location.x; // đâyyyy
         int y = this.zone.map.yPhysicInTop(x, this.location.y - 24);
@@ -156,6 +157,7 @@ public class Drabura3 extends Boss {
 
     @Override
     public void die(Player plKill) {
+        plKill = BossDamageLimit.ownerOrSelf(plKill); // đệ kết liễu: thưởng tính cho chủ
         if (plKill != null) {
             reward(plKill);
             ServerNotify.gI().notify(plKill.name + ": Đã tiêu diệt được " + this.name + " mọi người đều ngưỡng mộ.");

@@ -145,8 +145,10 @@ public class Berus extends Boss {
             return;
         }
 
-        this.nPoint.dame += (pl.nPoint.dame * 2 / 100);
-        this.nPoint.hp += (pl.nPoint.hp * 2 / 100);
+        // Tính bằng long + cộng vào chỉ số gốc: trước đây pl.hp * 2 tràn int (người chơi > 1,07 tỷ HP)
+        // làm máu boss âm -> boss chết mà không qua die() nên không bao giờ hồi sinh
+        this.nPoint.dameg = (int) Math.min(Integer.MAX_VALUE, this.nPoint.dameg + (long) pl.nPoint.dame * 2 / 100);
+        this.nPoint.hpg = (int) Math.min(Integer.MAX_VALUE, this.nPoint.hpg + (long) pl.nPoint.hp * 2 / 100);
         this.nPoint.critg++;
         this.nPoint.calPoint();
         PlayerService.gI().hoiPhuc(this, pl.nPoint.hp, 0);

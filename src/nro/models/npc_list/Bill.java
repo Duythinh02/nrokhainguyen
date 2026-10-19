@@ -62,15 +62,15 @@ public class Bill extends Npc {
                             case 0 -> {
                                 if (InventoryService.gI().canOpenBillShop(player)) {
                                     createOtherMenu(player, 2,
-                                            "Đói bụng quá... ngươi mang cho ta 99 phần đồ ăn\n"
-                                            + "ta sẽ cho một món đồ Hủy Diệt.\n"
+                                            "Đói bụng quá... mỗi món đồ Hủy Diệt ngươi cần đưa ta\n"
+                                            + "99 phần đồ ăn và 1 món Thần Linh cùng loại, cùng hành tinh.\n"
                                             + "Nếu tâm trạng ta vui ngươi có thể nhận trang bị tăng đến 15%",
                                             "OK", "Từ chối");
                                     player.idMark.setIndexMenu(100);
                                 } else {
                                     createOtherMenu(player, 2,
-                                            "Ngươi trang bị đủ bộ 5 món trang bị Thần\n"
-                                            + "và mang 99 phần đồ ăn tới đây...\n"
+                                            "Ngươi mang 99 phần đồ ăn và món Thần Linh\n"
+                                            + "muốn đổi (để trong hành trang) tới đây...\n"
                                             + "rồi ta nói chuyện tiếp.",
                                             "OK");
                                     player.idMark.setIndexMenu(101);
@@ -94,12 +94,11 @@ public class Bill extends Npc {
                             doiNhanhItem(player);
                         }
                     }
-                }
-            }
-
-            case 2 -> {
-                if (select == 100 && InventoryService.gI().canOpenBillShop(player)) {
-                    ShopService.gI().opendShop(player, "BILL", true);
+                    case 100 -> {
+                        if (select == 0 && InventoryService.gI().canOpenBillShop(player)) {
+                            ShopService.gI().opendShop(player, "BILL", true);
+                        }
+                    }
                 }
             }
 

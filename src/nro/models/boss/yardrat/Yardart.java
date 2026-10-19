@@ -112,7 +112,7 @@ public abstract class Yardart extends Boss {
             try {
                 if (Util.canDoWithTime(this.lastTimeHoiHP, timeHoiHP)) {
                     if (Util.isTrue(1, 2)) {
-                        this.nPoint.hp += this.nPoint.hpMax * Util.nextInt(1, 5) / 100;
+                        this.nPoint.addHp((long) this.nPoint.hpMax * Util.nextInt(1, 5) / 100);
                     }
                     this.lastTimeHoiHP = System.currentTimeMillis();
                 }

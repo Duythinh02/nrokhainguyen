@@ -224,7 +224,7 @@ public class Goku extends Boss {
 
     @Override
     public void reward(Player plKill) {
-        int diem = 5;
+        int diem = 3;
         nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
         int x = this.location.x; // đâyyyy
         int y = this.zone.map.yPhysicInTop(x, this.location.y - 24);
@@ -291,7 +291,7 @@ public class Goku extends Boss {
                 this.chat("Xí hụt");
                 return 0;
             }
-            if (plAtt.isPl() && Util.isTrue(1, 5)) {
+            if (plAtt != null && plAtt.isPl() && Util.isTrue(1, 5)) {
                 plAtt.fightMabu.changePoint((byte) 1);
             }
             if (damage >= 20000000) {

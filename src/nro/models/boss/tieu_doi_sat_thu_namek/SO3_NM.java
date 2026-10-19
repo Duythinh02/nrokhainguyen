@@ -55,8 +55,8 @@ public class SO3_NM extends Boss {
        Service.gI().dropItemMap(this.zone, it);
         Service.gI().dropItemMap(this.zone, it1);
         Service.gI().dropItemMap(this.zone, it2);
-            int diem = 1;
-    nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
+            // Boss nhiệm vụ Kuku -> Fide: không cộng điểm săn boss, chỉ tính số boss đã diệt
+            nro.models.services.BossHuntService.gI().onKillBoss(plKill, 0);
     }
 
     @Override

@@ -1166,11 +1166,18 @@ public class Service {
     public void attackMob(Player pl, int mobId, boolean isMobMe, int masterId) {
         if (pl != null && pl.zone != null) {
             if (!isMobMe) {
+                // Ưu tiên con còn sống nếu trùng id (tránh skill trúng xác quái đã chết)
+                Mob target = null;
                 for (Mob mob : pl.zone.mobs) {
                     if (mob.id == mobId) {
-                        SkillService.gI().useSkill(pl, null, mob, -1, null);
-                        break;
+                        target = mob;
+                        if (!mob.isDie()) {
+                            break;
+                        }
                     }
+                }
+                if (target != null) {
+                    SkillService.gI().useSkill(pl, null, target, -1, null);
                 }
             } else {
                 Player plAtt = pl.zone.getPlayerInMap(masterId);

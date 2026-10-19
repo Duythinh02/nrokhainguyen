@@ -152,7 +152,8 @@ public class SieuBoHung extends Boss {
             return 0;
         }
 
-        if (!callCellCon && damage >= this.nPoint.hp) {
+        // Chỉ dạng Xên Hoàn Thiện (level 0) gọi 7 Xên con; dạng Siêu Bọ Hung không có con nên không hồi máu nữa
+        if (!callCellCon && this.currentLevel == 0 && damage >= this.nPoint.hp) {
             callCellCon();
             return 0;
         }

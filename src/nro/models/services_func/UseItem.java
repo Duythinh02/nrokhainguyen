@@ -282,6 +282,12 @@ public class UseItem {
                     case 24: //thú cưỡi cũ
                         InventoryService.gI().itemBagToBody(pl, indexBag);
                         break;
+                    case 21: //pet đi theo: hình lấy từ head/body/leg của item template
+                        InventoryService.gI().itemBagToBody(pl, indexBag);
+                        if (pl.inventory.itemsBody.size() > 7 && pl.inventory.itemsBody.get(7) == item) {
+                            PetService.petFollowFromTemplate(pl, item);
+                        }
+                        break;
                     case 11: //item bag
                         InventoryService.gI().itemBagToBody(pl, indexBag);
                         Service.gI().sendFlagBag(pl);

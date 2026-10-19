@@ -137,26 +137,30 @@ public class AnTrom extends Boss {
 
     @Override
     public void reward(Player plKill) {
+        // Không có người giết (boss tự xử lý chết) -> đồ rơi ai cũng nhặt được
+        long ownerId = plKill != null ? plKill.id : -1;
         if (goldAnTrom != 0) {
             goldAnTrom = goldAnTrom * 8 / 10;
             for (byte i = 0; i < 5; i++) {
                 int x = this.location.x + i * 3;
                 int y = this.zone.map.yPhysicInTop(x, this.location.y - 24);
-                ItemMap gold = new ItemMap(this.zone, 190, (int) (goldAnTrom / 5), x, y, plKill.id);
+                ItemMap gold = new ItemMap(this.zone, 190, (int) (goldAnTrom / 5), x, y, ownerId);
                 Service.gI().dropItemMap(this.zone, gold);
             }
             int x1 = this.location.x + Util.nextInt(-10, 10);
             int y1 = this.zone.map.yPhysicInTop(x1, this.location.y - 24);
-            ItemMap item1591 = new ItemMap(this.zone, 1591, 1, x1, y1, plKill.id);
+            ItemMap item1591 = new ItemMap(this.zone, 1591, 1, x1, y1, ownerId);
             Service.gI().dropItemMap(this.zone, item1591);
             
             int x2 = this.location.x + Util.nextInt(-10, 10);
             int y2 = this.zone.map.yPhysicInTop(x2, this.location.y - 24);
-            ItemMap item1594 = new ItemMap(this.zone, 1594, 1, x2, y2, plKill.id);
+            ItemMap item1594 = new ItemMap(this.zone, 1594, 1, x2, y2, ownerId);
             Service.gI().dropItemMap(this.zone, item1594);
-            
-            BadgesTaskService.updateCountBagesTask(plKill, ConstTaskBadges.BI_MOC_SACH_TUI, 1);
-            nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, 5);
+
+            if (plKill != null) {
+                BadgesTaskService.updateCountBagesTask(plKill, ConstTaskBadges.BI_MOC_SACH_TUI, 1);
+                nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, 5);
+            }
         }
     }
 

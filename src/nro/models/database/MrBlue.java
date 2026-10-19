@@ -1336,6 +1336,7 @@ public class MrBlue {
                     data.count = Integer.parseInt(obj.get("count").toString());
                     data.countMax = Integer.parseInt(obj.get("countMax").toString());
                     data.idBadgesReward = Integer.parseInt(obj.get("idBadgesReward").toString());
+                    BadgesTaskService.syncWithTemplate(data);
                     player.dataTaskBadges.add(data);
                 }
                 dataArray.clear();

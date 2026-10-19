@@ -1,5 +1,7 @@
 package nro.models.boss;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -7,6 +9,7 @@ import nro.models.player.NewPet;
 import nro.models.player.Pet;
 import nro.models.player.Player;
 import nro.models.player.SetClothes;
+import nro.models.server.Client;
 
 /**
  * Giới hạn dame lên boss nhiệm vụ: Kuku, Mập Đầu Đinh, Rambo, Tiểu đội sát thủ, Fide,
@@ -46,6 +49,9 @@ public final class BossDamageLimit {
     private static final double DROP_BONUS_2_PLANETS = 1.10;
     private static final double DROP_BONUS_3_PLANETS = 1.15;
 
+    private static final long CREDIT_WINDOW_MS = 60_000;
+    private static final long CREDIT_MIN_PERCENT = 1;
+
     public static final class State {
 
         // id chủ -> {thời điểm bắt đầu cửa sổ, dame đã gây trong cửa sổ}
@@ -54,11 +60,14 @@ public final class BossDamageLimit {
         private final Map<Long, Long> lastTuSat = new ConcurrentHashMap<>();
         // hành tinh (gender) -> lần cuối có người hành tinh đó đánh boss
         private final long[] lastHitByPlanet = new long[3];
+        // id chủ -> {lần đánh gần nhất, tổng dame đã gây trong đợt đánh liên tục}, dùng chia công nhiệm vụ
+        private final Map<Long, long[]> contributors = new ConcurrentHashMap<>();
 
         // Gọi khi boss hồi sinh / sang form mới để không giữ dữ liệu cũ
         public void reset() {
             windows.clear();
             lastTuSat.clear();
+            contributors.clear();
             java.util.Arrays.fill(lastHitByPlanet, 0);
         }
     }
@@ -76,6 +85,7 @@ public final class BossDamageLimit {
         long now = System.currentTimeMillis();
         recordPlanet(boss, owner, now);
         if (!isLimitedBoss(boss)) {
+            recordHit(boss, owner, dame, now);
             return dame;
         }
         long budget = Math.max(1, (long) (boss.nPoint.hpMax * PERCENT_PER_SEC / 100 * (WINDOW_MS / 1000.0)
@@ -92,6 +102,7 @@ public final class BossDamageLimit {
             }
             long dealt = Math.min(dame, remain);
             w[1] += dealt;
+            recordHit(boss, owner, dealt, now);
             return dealt;
         }
     }
@@ -106,6 +117,7 @@ public final class BossDamageLimit {
         long now = System.currentTimeMillis();
         recordPlanet(boss, owner, now);
         if (!isLimitedBoss(boss)) {
+            recordHit(boss, owner, dame, now);
             return dame;
         }
         Long last = boss.damageLimit.lastTuSat.get(owner.id);
@@ -117,7 +129,70 @@ public final class BossDamageLimit {
         // Sàn không quá gấp đôi dame gốc, tránh nick yếu tự sát hàng loạt ăn sàn % máu boss
         long min = Math.min((long) (boss.nPoint.hpMax * TU_SAT_MIN_PERCENT[t] / 100), dame * 2);
         long max = (long) (boss.nPoint.hpMax * TU_SAT_MAX_PERCENT[t] / 100);
-        return Math.max(min, Math.min(max, dame));
+        long dealt = Math.max(min, Math.min(max, dame));
+        recordHit(boss, owner, dealt, now);
+        return dealt;
+    }
+
+    /**
+     * Người được tính nhiệm vụ khi boss chết: người kết liễu (đệ tính cho chủ) + những ai cùng khu,
+     * đánh boss trong 60 giây gần nhất và đã gây ít nhất 1% hpMax trong đợt đánh đó.
+     */
+    public static List<Player> questCreditPlayers(Boss boss, Player plKill) {
+        List<Player> result = new ArrayList<>();
+        Player killer = ownerOrSelf(plKill);
+        if (isRealPlayer(killer)) {
+            result.add(killer);
+        }
+        if (boss == null || boss.nPoint == null) {
+            return result;
+        }
+        long now = System.currentTimeMillis();
+        long minDame = Math.max(1, boss.nPoint.hpMax * CREDIT_MIN_PERCENT / 100);
+        for (Map.Entry<Long, long[]> e : boss.damageLimit.contributors.entrySet()) {
+            long[] c = e.getValue();
+            if (now - c[0] > CREDIT_WINDOW_MS || c[1] < minDame) {
+                continue;
+            }
+            if (killer != null && killer.id == e.getKey()) {
+                continue;
+            }
+            Player pl = Client.gI().getPlayer(e.getKey());
+            if (isRealPlayer(pl) && pl.zone != null && pl.zone.equals(boss.zone)) {
+                result.add(pl);
+            }
+        }
+        return result;
+    }
+
+    // Đệ tử / đệ mới -> chủ; còn lại giữ nguyên
+    public static Player ownerOrSelf(Player pl) {
+        if (pl instanceof Pet pet && pet.master != null) {
+            return pet.master;
+        }
+        if (pl instanceof NewPet pet && pet.master != null) {
+            return pet.master;
+        }
+        return pl;
+    }
+
+    private static boolean isRealPlayer(Player pl) {
+        return pl != null && !pl.isBot && !pl.isBoss && !pl.isPet && !pl.isNewPet;
+    }
+
+    private static void recordHit(Boss boss, Player owner, long dealt, long now) {
+        if (dealt <= 0 || owner.isBot || boss.isDie()) {
+            return;
+        }
+        boss.lastTimeHitByPlayer = now;
+        long[] c = boss.damageLimit.contributors.computeIfAbsent(owner.id, k -> new long[2]);
+        synchronized (c) {
+            if (now - c[0] > CREDIT_WINDOW_MS) {
+                c[1] = 0; // ngưng đánh quá lâu thì tính lại từ đầu
+            }
+            c[0] = now;
+            c[1] += dealt;
+        }
     }
 
     // Hệ số tỷ lệ rơi đồ Thần theo số hành tinh cùng đánh boss trong 60 giây gần nhất

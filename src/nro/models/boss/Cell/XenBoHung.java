@@ -62,8 +62,8 @@ public class XenBoHung extends Boss {
             return;
         }
         ChangeMapService.gI().changeMapYardrat(this, this.zone, pl.location.x, pl.location.y);
-        this.nPoint.dameg += (pl.nPoint.dame * 5 / 100);
-        this.nPoint.hpg += (pl.nPoint.hp * 2 / 100);
+        this.nPoint.dameg = (int) Math.min(Integer.MAX_VALUE, this.nPoint.dameg + (long) pl.nPoint.dame * 5 / 100);
+        this.nPoint.hpg = (int) Math.min(Integer.MAX_VALUE, this.nPoint.hpg + (long) pl.nPoint.hp * 2 / 100);
         this.nPoint.critg++;
         this.nPoint.calPoint();
         PlayerService.gI().hoiPhuc(this, pl.nPoint.hp, 0);

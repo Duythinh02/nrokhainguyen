@@ -113,12 +113,9 @@ public class Hirudegarn extends BigBoss {
             if (Util.isTrue(1, 40)) {
                 short[] possibleIds = {555, 557, 559};
                 short idItem = possibleIds[Util.nextInt(possibleIds.length)];
-                ItemMap it = new ItemMap(this.zone, idItem, 1, this.location.x,
-                        this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), -1);
-                ItemMap itemWithOptions = ItemService.gI().randDoTL(this.zone, 1, this.location.x,
-                        this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), -1);
-                it.options.clear();
-                it.options.addAll(itemWithOptions.options);
+                // Chỉ số sinh theo đúng id áo (trước đây lấy chỉ số của 1 món TL random khác -> áo ra Tấn công)
+                ItemMap it = ItemService.gI().randDoTL(this.zone, 1, this.location.x,
+                        this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), -1, idItem);
                 Service.gI().dropItemMap(this.zone, it);
 
             }

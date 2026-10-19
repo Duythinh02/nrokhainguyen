@@ -28,8 +28,29 @@ public class GauTuongCuop extends Mob {
     @Override
     public void update() {
         if (!this.isDie()) {
+            // Không gọi super.update() nên phải tự cập nhật hiệu ứng (trói, thôi miên, choáng...) cho hết hạn
+            this.effectSkill.update();
             this.attack();
         }
+    }
+
+    /**
+     * Gọi lại con gấu đã chết trong khu (giữ nguyên id) thay vì tạo con mới trùng id 0:
+     * con mới trùng id thì skill nhắm mục tiêu (trói, thôi miên...) luôn trúng xác con cũ.
+     */
+    public void respawn(int x, int y) {
+        this.location.x = x;
+        this.location.y = y;
+        this.effectSkill.isAnTroi = false;
+        this.effectSkill.isThoiMien = false;
+        this.effectSkill.isBlindDCTT = false;
+        this.effectSkill.isStun = false;
+        this.effectSkill.isSocola = false;
+        this.effectSkill.isBinh = false;
+        this.damageMap.clear();
+        this.status = 5;
+        this.point.sethp(this.point.getHpFull());
+        this.lastAttackTime = System.currentTimeMillis();
     }
 
     @Override

@@ -57,7 +57,26 @@ public class Android14 extends Boss {
             this.callApk13();
             return 0;
         }
+        // NV 24 yêu cầu hạ Android 15 trước Android 14
+        if (damage >= this.nPoint.hp && isAndroid15Alive()) {
+            if (Util.isTrue(1, 5)) {
+                this.chat("Hạ Android 15 trước đi đã!");
+            }
+            return 0;
+        }
         return super.injured(plAtt, damage, piercing, isMobAttack);
+    }
+
+    private boolean isAndroid15Alive() {
+        if (this.bossAppearTogether == null || this.bossAppearTogether[this.currentLevel] == null) {
+            return false;
+        }
+        for (Boss boss : this.bossAppearTogether[this.currentLevel]) {
+            if (boss.id == BossID.ANDROID_15 && !boss.isDie() && boss.zone != null && boss.zone.equals(this.zone)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void callApk13() {

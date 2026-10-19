@@ -73,7 +73,7 @@ public abstract class TrainningBoss extends Boss {
 
     public void buffPea() {
         if (Util.canDoWithTime(lastTimeBuff, 30000)) {
-            this.nPoint.hp += this.nPoint.hpMax / 5;
+            this.nPoint.addHp(this.nPoint.hpMax / 5);
             this.nPoint.mp = this.nPoint.mpMax;
             Service.gI().sendInfoPlayerEatPea(this);
             lastTimeBuff = System.currentTimeMillis();

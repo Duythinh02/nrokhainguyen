@@ -1621,6 +1621,8 @@ public class Player implements Runnable {
                         PetService.Pet2(this, 1680, 1681, 1682);
                         Service.gI().point(this);
                     }
+                    default ->
+                        PetService.petFollowFromTemplate(this, it);
                 }
             }
         }
@@ -1670,6 +1672,17 @@ public class Player implements Runnable {
     }
 
     public void dispose() {
+        // Còn nằm trong khu thì rút ra trước khi hủy dữ liệu, tránh để lại nhân vật nPoint = null trong khu
+        if (zone != null) {
+            try {
+                ChangeMapService.gI().exitMap(this);
+            } catch (Exception e) {
+                Logger.logException(Player.class, e);
+            }
+            if (zone != null) {
+                zone.removePlayer(this);
+            }
+        }
         if (itemsTradeWVP != null) {
             if (!itemsTradeWVP.isEmpty()) {
                 for (Item item : itemsTradeWVP) {

@@ -14,6 +14,17 @@ import nro.models.task.BadgesTaskTemplate;
 
 public class BadgesTaskService {
 
+    // Lấy mốc + phần thưởng theo template hiện tại (sửa template thì dữ liệu cũ của người chơi cũng ăn theo)
+    public static void syncWithTemplate(BadgesTask data) {
+        for (BadgesTaskTemplate tpl : Manager.TASKS_BADGES_TEMPLATE) {
+            if (tpl.id == data.id) {
+                data.countMax = tpl.count;
+                data.idBadgesReward = tpl.idbadgesReward;
+                return;
+            }
+        }
+    }
+
     public static void createAndResetTask(Player player) {
         player.dataTaskBadges.clear();
         for (BadgesTaskTemplate BTT : Manager.TASKS_BADGES_TEMPLATE) {
@@ -42,6 +53,9 @@ public class BadgesTaskService {
     }
 
     public static void updateCountBagesTask(Player player, int id, int amount) {
+        if (player == null || player.dataTaskBadges == null) {
+            return;
+        }
         for (BadgesTask data : player.dataTaskBadges) {
             if (data.id == id) {
                 data.count += amount;

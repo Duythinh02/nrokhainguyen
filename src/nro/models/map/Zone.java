@@ -509,14 +509,14 @@ public class Zone {
         try {
             if (MapService.gI().isMapOffline(this.map.mapId)) {
                 //Load boss
-                for (Player pl : this.bosses) {
+                for (Player pl : new ArrayList<>(this.bosses)) {
                     if (!boss.equals(pl) && !pl.isPl() && !pl.isPet && !pl.isNewPet) {
                         infoPlayer(boss, pl);
                         infoPlayer(pl, boss);
                     }
                 }
             } else {
-                for (Player pl : this.bosses) {
+                for (Player pl : new ArrayList<>(this.bosses)) {
                     if (!boss.equals(pl)) {
                         infoPlayer(boss, pl);
                         infoPlayer(pl, boss);
@@ -529,6 +529,17 @@ public class Zone {
     }
 
     private void infoPlayer(Player plReceive, Player plInfo) {
+        // Nhân vật đã dispose (nPoint = null) mà còn sót trong khu: dọn luôn, không để lỗi dừng cả vòng tải khu
+        if (plInfo == null || plInfo.nPoint == null) {
+            if (plInfo != null) {
+                Logger.error("Zone " + this.map.mapId + "/" + this.zoneId + ": dọn nhân vật đã hủy còn sót " + plInfo.name + " (" + plInfo.id + ")\n");
+                removePlayer(plInfo);
+            }
+            return;
+        }
+        if (plReceive == null || plReceive.nPoint == null) {
+            return;
+        }
         Message msg;
         try {
             msg = new Message(-5);
