@@ -69,6 +69,8 @@ public class CombineService {
     public static final int TINH_THACH_HOA = 528;
     public static final int NANG_GIAP_LUYEN_TAP = 529;
     public static final int NANG_CAP_DO_HD = 601;
+    public static final int DOI_DO_THAN_LINH = 602;
+    public static final int PHAN_RA_DO_HUY_DIET = 603;
     private static CombineService instance;
     
     public final Npc baHatMit;
@@ -93,8 +95,16 @@ public class CombineService {
      * @param index
      */
     // Đã đóng: chỉ dùng set kích hoạt cấp thấp nhất của 3 hành tinh (không nâng kích hoạt / VIP / hủy diệt)
+    // Đóng luôn chế tạo đồ thiên sứ (thường + kích hoạt)
     public static boolean isClosedCombine(int type) {
-        return type == NANG_CAP_KICH_HOAT || type == NANG_CAP_KICH_HOAT_VIP || type == NANG_CAP_DO_HD;
+        return type == NANG_CAP_KICH_HOAT || type == NANG_CAP_KICH_HOAT_VIP || type == NANG_CAP_DO_HD
+                || type == CHE_TAO_TRANG_BI_THIEN_SU;
+    }
+
+    public static String closedCombineMessage(int type) {
+        return type == CHE_TAO_TRANG_BI_THIEN_SU
+                ? "Chức năng chế tạo đồ thiên sứ đã đóng"
+                : "Chức năng nâng cấp set kích hoạt đã đóng";
     }
 
     public void showInfoCombine(Player player, int[] index) {
@@ -102,7 +112,7 @@ public class CombineService {
             return;
         }
         if (isClosedCombine(player.combineNew.typeCombine)) {
-            nro.models.services.Service.gI().sendThongBao(player, "Chức năng nâng cấp set kích hoạt đã đóng");
+            nro.models.services.Service.gI().sendThongBao(player, closedCombineMessage(player.combineNew.typeCombine));
             return;
         }
         player.combineNew.clearItemCombine();
@@ -223,6 +233,12 @@ public class CombineService {
             case NANG_CAP_DO_HD:
                 NangCapDoHuyDiet.showInfoCombine(player);
                 break;
+            case DOI_DO_THAN_LINH:
+                DoiDoThanLinh.showInfoCombine(player);
+                break;
+            case PHAN_RA_DO_HUY_DIET:
+                PhanRaDoHuyDiet.showInfoCombine(player);
+                break;
         }
     }
 
@@ -233,7 +249,7 @@ public class CombineService {
      */
     public void startCombine(Player player) {
         if (isClosedCombine(player.combineNew.typeCombine)) {
-            nro.models.services.Service.gI().sendThongBao(player, "Chức năng nâng cấp set kích hoạt đã đóng");
+            nro.models.services.Service.gI().sendThongBao(player, closedCombineMessage(player.combineNew.typeCombine));
             return;
         }
         switch (player.combineNew.typeCombine) {
@@ -348,6 +364,12 @@ public class CombineService {
             case NANG_CAP_DO_HD:
                 NangCapDoHuyDiet.startCombine(player);
                 break;
+            case DOI_DO_THAN_LINH:
+                DoiDoThanLinh.startCombine(player);
+                break;
+            case PHAN_RA_DO_HUY_DIET:
+                PhanRaDoHuyDiet.startCombine(player);
+                break;
         }
         
         player.idMark.setIndexMenu(ConstNpc.IGNORE_MENU);
@@ -358,7 +380,7 @@ public class CombineService {
     
     public void startCombineVip(Player player, int n) {
         if (isClosedCombine(player.combineNew.typeCombine)) {
-            nro.models.services.Service.gI().sendThongBao(player, "Chức năng nâng cấp set kích hoạt đã đóng");
+            nro.models.services.Service.gI().sendThongBao(player, closedCombineMessage(player.combineNew.typeCombine));
             return;
         }
         switch (player.combineNew.typeCombine) {
@@ -381,7 +403,7 @@ public class CombineService {
      */
     public void openTabCombine(Player player, int type) {
         if (isClosedCombine(type)) {
-            nro.models.services.Service.gI().sendThongBao(player, "Chức năng nâng cấp set kích hoạt đã đóng");
+            nro.models.services.Service.gI().sendThongBao(player, closedCombineMessage(type));
             return;
         }
         player.combineNew.setTypeCombine(type);
@@ -744,6 +766,10 @@ public class CombineService {
                 return "Ta sẽ giúp con nâng cấp\nGiáp luyện tập";
             case NANG_CAP_DO_HD:
                 return "Ta sẽ phù phép\nnâng cấp đồ Thần Linh\nthành đồ Hủy Diệt";
+            case DOI_DO_THAN_LINH:
+                return "Ta sẽ đổi đồ Thần Linh\ncủa ngươi sang món khác\ncùng hành tinh";
+            case PHAN_RA_DO_HUY_DIET:
+                return "Ta sẽ phân rã\nđồ Huỷ Diệt của ngươi\nthành thức ăn";
             case EP_SAO_TRANG_BI:
                 return "Ta sẽ phù phép\ncho trang bị của ngươi\ntrở lên mạnh mẽ";
             case PHA_LE_HOA_TRANG_BI:
@@ -830,6 +856,10 @@ public class CombineService {
                 return "Vào hành trang\nChọn 1 Giáp luyện tập và Đá Hổ Phách\nSau đó chọn 'Nâng cấp'";
             case NANG_CAP_DO_HD:
                 return "Cần 1 món thần linh với 2 tỉ vàng\nSau đó chọn 'Nâng cấp'";
+            case DOI_DO_THAN_LINH:
+                return "Vào hành trang\nChọn 1 món Thần Linh (áo, quần, găng, giày, nhẫn)\nSau đó chọn 'Đổi'\nTỉ lệ: áo 25%, quần 20%, găng 15%,\ngiày 25%, nhẫn 15%\nPhí: 20 điểm săn boss + 10 thỏi vàng";
+            case PHAN_RA_DO_HUY_DIET:
+                return "Vào hành trang\nChọn 1 món Huỷ Diệt\nSau đó chọn 'Phân rã'\nNhận 30 - 60 phần thức ăn ngẫu nhiên";
             case EP_SAO_TRANG_BI:
                 return "Chọn trang bị\n(Áo, quần, găng, giày hoặc rađa) có ô đặt sao pha lê\nChọn loại sao pha lê\n"
                         + "Sau đó chọn 'Nâng cấp'";

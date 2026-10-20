@@ -29,6 +29,10 @@ public class MobDrop {
     }
 
     public static void DropItemReWardDoHuyDietKichHoat(Player player, int soluong, int x, int y) {
+        // Đã đóng: không rơi đồ huỷ diệt kích hoạt
+        if (true) {
+            return;
+        }
         Item itemHuyDiet = MobDrop.randomCS_DHD(MobDrop.list_do_huy_diet[player.gender][Util.nextInt(0, 4)], player.gender);
         ItemMap item = new ItemMap(player.zone,itemHuyDiet.template.id, soluong, Util.nextInt((x - 50), (x + 50)), y, player.id);
         item.options = itemHuyDiet.itemOptions;
@@ -65,7 +69,7 @@ public class MobDrop {
         if (nhd == itemId) {
             it.itemOptions.add(new ItemOption(14, new Random().nextInt(3) + 17)); //chí mạng 17-19%
         }
-        it.itemOptions.add(new ItemOption(21, 80));// yêu cầu sm 80 tỉ
+        it.itemOptions.add(new ItemOption(21, 60));// yêu cầu sm 60 tỉ
         it.itemOptions.add(new ItemOption(30, 1));// ko the gd
         return it;
     }

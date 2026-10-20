@@ -311,6 +311,31 @@ public class InventoryService {
         return item;
     }
 
+    // Đồ Hủy Diệt (650 - 662) yêu cầu 60 tỷ sức mạnh. Đồ mua ở shop Bill không có option 21
+    // và power_require = 0 nên trước đây ai (kể cả đệ 18 triệu) cũng mặc được.
+    private static final long POWER_DO_HUY_DIET = 60_000_000_000L;
+
+    // Sức mạnh yêu cầu để mặc: đồ Hủy Diệt cố định 60 tỷ, còn lại option 21 (tỷ) nếu có, không thì power_require
+    public static long getPowerRequire(Item item) {
+        if (item.template.id >= 650 && item.template.id <= 662) {
+            // Đồ cũ còn lưu option 21 = 80 tỷ -> sửa lại để hiển thị đúng 60 tỷ
+            for (Item.ItemOption io : item.itemOptions) {
+                if (io.optionTemplate.id == 21 && io.param > 60) {
+                    io.param = 60;
+                }
+            }
+            return POWER_DO_HUY_DIET;
+        }
+        long powerRequire = item.template.strRequire;
+        for (Item.ItemOption io : item.itemOptions) {
+            if (io.optionTemplate.id == 21) {
+                powerRequire = io.param * 1000000000L;
+                break;
+            }
+        }
+        return powerRequire;
+    }
+
     public Item putItemBody(Player player, Item item) {
         byte type = item.getType();
         Item sItem = item;
@@ -344,14 +369,7 @@ public class InventoryService {
         }
 
         // Kiểm tra yêu cầu sức mạnh
-        long powerRequire = item.template.strRequire;
-        for (Item.ItemOption io : item.itemOptions) {
-            if (io.optionTemplate.id == 21) {
-                powerRequire = io.param * 1000000000L;
-                break;
-            }
-        }
-        if (player.nPoint.power < powerRequire) {
+        if (player.nPoint.power < getPowerRequire(item)) {
             Service.gI().sendThongBaoOK(player.isPet ? ((Pet) player).master : player, "Sức mạnh không đủ yêu cầu!");
             return sItem;
         }
@@ -509,14 +527,7 @@ public class InventoryService {
                 Item itemBody = player.inventory.itemsBody.get(item.template.type == 32 ? 6 : item.template.type);
                 if (!itemBody.isNotNullItem()) {
                     if (item.template.gender == player.gender || item.template.gender == 3) {
-                        long powerRequire = item.template.strRequire;
-                        for (Item.ItemOption io : item.itemOptions) {
-                            if (io.optionTemplate.id == 21) {
-                                powerRequire = io.param * 1000000000L;
-                                break;
-                            }
-                        }
-                        if (powerRequire <= player.nPoint.power) {
+                        if (getPowerRequire(item) <= player.nPoint.power) {
                             player.inventory.itemsBody.set(item.template.type == 32 ? 6 : item.template.type, item);
                             player.inventory.itemsBox.set(index, itemBody);
                             done = true;

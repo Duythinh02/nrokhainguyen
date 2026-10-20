@@ -46,8 +46,9 @@ public class BaHatMit extends Npc {
                             "Chuyển hóa\nTrang bị",
                             "Võ đài\nSinh tử",
                             "Phân rã\nTrang bị\nKích hoạt",
-                            "Tái tạo\nCapsule\nKích hoạt"
-                            // Tạm đóng: "Nâng cấp\nTrang bị\n(1)", "Nâng cấp\nTrang bị\n(2)" (xử lý ở case 5, 6 bên dưới)
+                            "Tái tạo\nCapsule\nKích hoạt",
+                            "Đổi đồ\nThần linh"
+                            // Tạm đóng: "Nâng cấp\nTrang bị\n(1)", "Nâng cấp\nTrang bị\n(2)" (xử lý ở case 6, 7 bên dưới)
                     );
 
                 case 112 -> {
@@ -158,6 +159,8 @@ public class BaHatMit extends Npc {
                             case 4 ->
                                 CombineService.gI().openTabCombine(player, CombineService.TAI_TAO_CAPSULE_KH);
                             case 5 ->
+                                CombineService.gI().openTabCombine(player, CombineService.DOI_DO_THAN_LINH);
+                            case 6 ->
                                 createOtherMenu(player, 7001,
                                         "Ta có thể giúp gì cho ngươi ?",
                                         "Nâng cấp\nKích hoạt",
@@ -166,7 +169,7 @@ public class BaHatMit extends Npc {
                                         "Tinh ấn\nTrang bị",
                                         "Mở khoá\nVật phẩm",
                                         "Gia hạn\nVật phẩm");
-                            case 6 ->
+                            case 7 ->
                                 createOtherMenu(player, 7002,
                                         "Ta có thể giúp gì cho ngươi ?",
                                         "Ảo hoá\nTrang bị",
@@ -231,7 +234,7 @@ public class BaHatMit extends Npc {
                         }
                     } else if (player.idMark.getIndexMenu() == ConstNpc.MENU_START_COMBINE) {
                         switch (player.combineNew.typeCombine) {
-                        case CombineService.NANG_CAP_KICH_HOAT, CombineService.NANG_CAP_KICH_HOAT_VIP, CombineService.DAP_DO_AO_HOA, CombineService.PS_HOA_TRANG_BI, CombineService.TAY_PS_HOA_TRANG_BI, CombineService.MO_KHOA_ITEM, CombineService.NANG_CAP_CHAN_MENH, CombineService.AN_TRANG_BI, CombineService.GIA_HAN_VAT_PHAM, CombineService.SIEU_HOA, CombineService.TINH_THACH_HOA, CombineService.NANG_GIAP_LUYEN_TAP, CombineService.NANG_CAP_DO_HD -> {
+                        case CombineService.NANG_CAP_KICH_HOAT, CombineService.NANG_CAP_KICH_HOAT_VIP, CombineService.DAP_DO_AO_HOA, CombineService.PS_HOA_TRANG_BI, CombineService.TAY_PS_HOA_TRANG_BI, CombineService.MO_KHOA_ITEM, CombineService.NANG_CAP_CHAN_MENH, CombineService.AN_TRANG_BI, CombineService.GIA_HAN_VAT_PHAM, CombineService.SIEU_HOA, CombineService.TINH_THACH_HOA, CombineService.NANG_GIAP_LUYEN_TAP, CombineService.NANG_CAP_DO_HD, CombineService.DOI_DO_THAN_LINH -> {
                             if (select == 0) {
                                 CombineService.gI().startCombine(player);
                             }

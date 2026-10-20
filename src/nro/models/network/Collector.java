@@ -40,8 +40,9 @@ public final class Collector
                 }
                 msg.cleanup();
             }
-        } catch (java.io.EOFException | java.net.SocketException closed) {
-            // client tự đóng kết nối: bình thường
+        } catch (IOException closed) {
+            // client mất kết nối (tự thoát, tắt game, rớt mạng; Windows báo "connection was aborted/reset"):
+            // bình thường, không phải lỗi gói tin
         } catch (Exception exception) {
             nro.models.utils.Logger.error("[Mạng] Ngắt " + who(this.session) + " do lỗi đọc gói tin: " + exception + "\n");
         }

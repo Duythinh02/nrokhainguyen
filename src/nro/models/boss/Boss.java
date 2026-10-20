@@ -10,7 +10,6 @@ import nro.models.boss.Boss_Manager.TreasureUnderSeaManager;
 import nro.models.boss.Boss_Manager.FinalBossManager;
 import nro.models.boss.Boss_Manager.HalloweenEventManager;
 import nro.models.boss.Boss_Manager.ChristmasEventManager;
-import nro.models.boss.Boss_Manager.TrungThuEventManager;
 import nro.models.boss.Boss_Manager.YardartManager;
 import nro.models.boss.Boss_Manager.SnakeWayManager;
 import nro.models.boss.Boss_Manager.HungVuongEventManager;
@@ -116,6 +115,8 @@ public class Boss extends Player implements IBoss {
 
     public BossType bossType;
     public final BossDamageLimit.State damageLimit = new BossDamageLimit.State();
+    // 0.7 với boss nhiệm vụ trên 1,5 tỷ máu (QuestBossHp): sát thương nhận bị nhân hệ số này ở NPoint.subHP
+    public double damageTakenScale = 1;
 
     public Boss(int id, boolean isNotifyDisabled, boolean isZone01SpawnDisabled, BossData... data) throws Exception {
         this(id, data);
@@ -201,8 +202,10 @@ public class Boss extends Player implements IBoss {
                 SnakeWayManager.gI().addBoss(this);
             case PHOBANKGHD ->
                 GasDestroyManager.gI().addBoss(this);
-            case TRUNGTHU_EVENT ->
-                TrungThuEventManager.gI().addBoss(this);
+            // Boss Trung Thu (Khỉ đột, Nhật/Nguyệt thần, Gogeta/Omega) và Pikkon dùng cho NV 38, 40 quanh năm:
+            // cập nhật chung luồng BossManager thay vì manager sự kiện riêng
+            case TRUNGTHU_EVENT, VU_LAN_EVENT ->
+                BossManager.gI().addBoss(this);
             case HALLOWEEN_EVENT ->
                 HalloweenEventManager.gI().addBoss(this);
             case CHRISTMAS_EVENT ->
@@ -238,6 +241,7 @@ public class Boss extends Player implements IBoss {
         this.nPoint.dameg = (int) Math.min(Integer.MAX_VALUE, (long) data.getDame() * BOSS_STAT_MULTIPLIER);
         this.nPoint.hpg = (int) Math.min(Integer.MAX_VALUE, (long) data.getHp()[Util.nextInt(0, data.getHp().length - 1)] * BOSS_STAT_MULTIPLIER);
         this.nPoint.hp = nPoint.hpg;
+        QuestBossHp.apply(this); // boss NV 36 - 39: máu thật theo bảng, có thể > 2,1 tỷ
         this.nPoint.calPoint();
         this.initSkill();
         this.resetBase();

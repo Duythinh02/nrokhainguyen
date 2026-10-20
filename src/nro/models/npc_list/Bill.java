@@ -6,9 +6,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import nro.models.combine.CombineService;
 import nro.models.consts.ConstNpc;
 import nro.models.item.Item;
 import nro.models.npc.Npc;
+import nro.models.player.NPoint;
 import nro.models.player.Player;
 import nro.models.services.InventoryService;
 import nro.models.map.service.NpcService;
@@ -18,6 +20,7 @@ import nro.models.services.ItemService;
 import nro.models.services.PlayerService;
 import nro.models.services.Service;
 import nro.models.shop.ShopService;
+import nro.models.utils.Util;
 
 /**
  *
@@ -40,10 +43,15 @@ public class Bill extends Npc {
                 createOtherMenu(player, ConstNpc.BASE_MENU,
                         "...",
                         "Về\nthánh địa\nKaio", "Từ chối");
-            } else {
+            } else if (player.nPoint.power >= POWER_NANG_CAP_SUC_MANH) {
                 createOtherMenu(player, ConstNpc.BASE_MENU,
                         "Chưa tới giờ thi đấu, xem hướng dẫn để biết thêm chi tiết",
-                        "Nói\nchuyện", "Hướng\ndẫn\nthêm", "Đổi thức ăn\nlấy phiếu ăn", "Đổi phiếu ăn\nlấy quà", "Từ chối");
+                        "Nói\nchuyện", "Hướng\ndẫn\nthêm", "Đổi thức ăn\nlấy phiếu ăn", "Đổi phiếu ăn\nlấy quà", "Phân rã\nHuỷ Diệt", "Nâng cấp\nsức mạnh", "Từ chối");
+            } else {
+                // Chưa đủ 120 tỷ: ẩn nút Nâng cấp sức mạnh
+                createOtherMenu(player, ConstNpc.BASE_MENU,
+                        "Chưa tới giờ thi đấu, xem hướng dẫn để biết thêm chi tiết",
+                        "Nói\nchuyện", "Hướng\ndẫn\nthêm", "Đổi thức ăn\nlấy phiếu ăn", "Đổi phiếu ăn\nlấy quà", "Phân rã\nHuỷ Diệt", "Từ chối");
             }
         }
     }
@@ -87,6 +95,25 @@ public class Bill extends Npc {
                             case 3 -> {
                                 ShopService.gI().opendShop(player, "SHOP_SU_KIEN_VL", true);
                             }
+                            case 4 ->
+                                CombineService.gI().openTabCombine(player, CombineService.PHAN_RA_DO_HUY_DIET);
+                            case 5 -> {
+                                // Dưới 120 tỷ thì ô 5 là "Từ chối"
+                                if (player.nPoint.power >= POWER_NANG_CAP_SUC_MANH) {
+                                    menuNangCapSucManh(player);
+                                }
+                            }
+                        }
+                    }
+                    case ConstNpc.MENU_START_COMBINE -> {
+                        if (select == 0 && player.combineNew != null
+                                && player.combineNew.typeCombine == CombineService.PHAN_RA_DO_HUY_DIET) {
+                            CombineService.gI().startCombine(player);
+                        }
+                    }
+                    case MENU_NANG_CAP_SUC_MANH -> {
+                        if (select == 0) {
+                            nangCapSucManh(player);
                         }
                     }
                     case 10 -> {
@@ -108,6 +135,57 @@ public class Bill extends Npc {
                 }
             }
         }
+    }
+
+    // Nâng cấp sức mạnh: mở giới hạn mốc 10 -> NPoint.MAX_LIMIT_BILL, cần 120 tỷ sức mạnh, mỗi mốc 100 điểm săn boss
+    private static final int MENU_NANG_CAP_SUC_MANH = 20;
+    private static final long POWER_NANG_CAP_SUC_MANH = 120_000_000_000L;
+    private static final int COST_NANG_CAP_SUC_MANH = 100;
+
+    // Trả về lý do không nâng cấp được, null nếu nâng cấp được
+    private String checkNangCapSucManh(Player player) {
+        if (player.nPoint.power < POWER_NANG_CAP_SUC_MANH) {
+            return "Ngươi cần đạt " + Util.numberToMoney(POWER_NANG_CAP_SUC_MANH) + " sức mạnh mới được nâng cấp sức mạnh";
+        }
+        if (player.nPoint.limitPower >= NPoint.MAX_LIMIT_BILL) {
+            return "Sức mạnh của ngươi đã đạt tới mức tối đa";
+        }
+        if (player.nPoint.limitPower < NPoint.MAX_LIMIT) {
+            return "Ngươi cần mở hết giới hạn sức mạnh ở Tổ sư Kaio trước";
+        }
+        if (!player.nPoint.canOpenPower()) {
+            return "Ngươi cần đạt " + Util.numberToMoney(player.nPoint.getPowerLimit())
+                    + " sức mạnh (giới hạn hiện tại) mới nâng cấp tiếp được";
+        }
+        if (player.event.getEventPoint() < COST_NANG_CAP_SUC_MANH) {
+            return "Ngươi cần " + COST_NANG_CAP_SUC_MANH + " điểm săn boss, hiện có " + player.event.getEventPoint();
+        }
+        return null;
+    }
+
+    private void menuNangCapSucManh(Player player) {
+        String err = checkNangCapSucManh(player);
+        if (err != null) {
+            Service.gI().sendThongBao(player, err);
+            return;
+        }
+        createOtherMenu(player, MENU_NANG_CAP_SUC_MANH,
+                "Ta sẽ mở giới hạn sức mạnh của ngươi lên "
+                + Util.numberToMoney(player.nPoint.getPowerNextLimit()) + "\n"
+                + "Phí: " + COST_NANG_CAP_SUC_MANH + " điểm săn boss (đang có " + player.event.getEventPoint() + ")",
+                "Nâng cấp", "Từ chối");
+    }
+
+    private void nangCapSucManh(Player player) {
+        String err = checkNangCapSucManh(player);
+        if (err != null) {
+            Service.gI().sendThongBao(player, err);
+            return;
+        }
+        player.event.setEventPoint(player.event.getEventPoint() - COST_NANG_CAP_SUC_MANH);
+        player.nPoint.limitPower++;
+        Service.gI().sendThongBao(player, "Giới hạn sức mạnh của ngươi đã tăng lên "
+                + Util.numberToMoney(player.nPoint.getPowerLimit()));
     }
 
     private void doiNhanhItem(Player player) {

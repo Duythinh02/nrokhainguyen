@@ -41,13 +41,16 @@ public class GasManager extends Boss {
                 new String[]{},
                 new String[]{},
                 new String[]{},
-                86400
+                900 // NV 39: hồi sinh sau 15 phút (trước là 24 giờ)
         ));
         this.zone = zone;
     }
 
     @Override
     public void reward(Player plKill) {
+        if (!BossManager.QUEST_BOSS_DROP) { // NV 39: mặc định không rơi đồ
+            return;
+        }
         int[] itemDos = new int[]{1595, 1596, 1597, 1598};
         int randomDo = new Random().nextInt(itemDos.length);
         if (Util.isTrue(50, 100)) {
@@ -129,11 +132,5 @@ public class GasManager extends Boss {
             } catch (Exception ex) {
             }
         }
-    }
-
-    @Override
-    public void leaveMap() {
-        super.leaveMap();
-        BossManager.gI().removeBoss(this);
     }
 }

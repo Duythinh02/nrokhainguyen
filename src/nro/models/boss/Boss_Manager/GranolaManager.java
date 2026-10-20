@@ -11,6 +11,7 @@ import nro.models.utils.Util;
 public class GranolaManager extends Boss {
 
     private long lastTimeBlame;
+    private int blameDelay = 15000;
 
     public GranolaManager() throws Exception {
         super(BossID.GranolaManager, BossesData.GranolaManager);
@@ -18,13 +19,13 @@ public class GranolaManager extends Boss {
 
     @Override
     public void active() {
-        this.attack();
-        this.changeToTypeNonPK();
+        // NV 39: Granola là boss đánh được (trước đây đứng canh đường ở chế độ không PK)
+        super.active();
 
-        if (System.currentTimeMillis() - lastTimeBlame > 2000) {
-            this.chat("|7|Mau Quay Lại!!!");
-            this.chat("|7|Phía Trước Quá Nguy Hiểm!");
+        if (Util.canDoWithTime(lastTimeBlame, blameDelay)) {
+            this.chat("Ta là kẻ sống sót cuối cùng của tộc Cereal!");
             lastTimeBlame = System.currentTimeMillis();
+            blameDelay = Util.nextInt(10000, 20000);
         }
     }
 

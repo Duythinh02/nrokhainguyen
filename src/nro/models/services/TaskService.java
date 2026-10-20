@@ -124,11 +124,14 @@ public class TaskService {
         Service.gI().sendThongBao(player, "Nhiệm vụ tiếp theo của bạn là "
                 + player.playerTask.taskMain.subTasks.get(player.playerTask.taskMain.index).name);
         // Vào nhiệm vụ mới mà đã đủ sức mạnh thì tự hoàn thành bước "Đạt ... sức mạnh"
-        if (player.playerTask.taskMain.id >= 29 && player.playerTask.taskMain.id <= 35 && player.nPoint != null) {
+        if (player.playerTask.taskMain.id >= 29 && player.playerTask.taskMain.id <= 40 && player.nPoint != null) {
             checkDoneTaskPower(player, player.nPoint.power);
         }
         if (player.playerTask.taskMain.id == 31) {
             Service.gI().sendThongBao(player, "Hãy đến Đảo Kame gặp Quy Lão để nghe về nhiệm vụ mới");
+        }
+        if (getPowerTheNhiemVu(player) >= 0) {
+            Service.gI().sendThongBao(player, "Nhiệm vụ mới đã khoá! Đến Đảo Kame, chọn \"Mở khoá nhiệm vụ\" ở Quy Lão và hạ Quy Lão để nhận Thẻ nhiệm vụ");
         }
         // Vào NV 27 mà sức đánh gốc đã đủ thì tự hoàn thành bước nâng sức đánh
         if (player.playerTask.taskMain.id == 27 && player.nPoint != null) {
@@ -191,7 +194,10 @@ public class TaskService {
                         || doneTask(player, ConstTask.TASK_32_5)
                         || doneTask(player, ConstTask.TASK_33_7)
                         || doneTask(player, ConstTask.TASK_34_3)
-                        || doneTask(player, ConstTask.TASK_35_7));
+                        || doneTask(player, ConstTask.TASK_35_7)
+                        // NV 36, 40: báo cáo Quy Lão
+                        || doneTask(player, ConstTask.TASK_36_7)
+                        || doneTask(player, ConstTask.TASK_40_4));
             }
             case ConstNpc.TRUONG_LAO_GURU -> {
                 return player.gender == ConstPlayer.NAMEC && (doneTask(player, ConstTask.TASK_9_1)
@@ -262,8 +268,13 @@ public class TaskService {
                 return player.nPoint != null && player.nPoint.dameg >= DAME_GOC_NV27 && doneTask(player, ConstTask.TASK_27_0);
             }
             case ConstNpc.WHIS -> {
-                // NV 30: báo cáo với Whis ở Hành tinh Bill
-                return npc.mapId == 154 && doneTask(player, ConstTask.TASK_30_3);
+                // NV 30, 37: báo cáo với Whis ở Hành tinh Bill
+                return npc.mapId == 154 && (doneTask(player, ConstTask.TASK_30_3)
+                        || doneTask(player, ConstTask.TASK_37_8));
+            }
+            case ConstNpc.THUONG_DE -> {
+                // NV 38: báo cáo với Thượng Đế ở Thần điện
+                return npc.mapId == 45 && doneTask(player, ConstTask.TASK_38_5);
             }
             case ConstNpc.OSIN -> {
                 return doneTask(player, ConstTask.TASK_28_0)
@@ -286,58 +297,84 @@ public class TaskService {
         }
     }
 
+    // Bước "Đạt ... sức mạnh": {sức mạnh, id bước}. Xét theo đúng thứ tự (xong 1 bước có thể mở luôn bước sau, vd NV 11).
+    // NV 36 bước 0 chỉ hoàn thành bằng Thẻ nhiệm vụ (xem useTheNhiemVu) nên không có ở đây.
+    private static final long[][] POWER_TASKS = {
+        {16_000L, ConstTask.TASK_7_0},
+        {40_000L, ConstTask.TASK_8_0},
+        {200_000L, ConstTask.TASK_10_0},
+        {600_000_000L, ConstTask.TASK_20_0},
+        {2_000_000_000L, ConstTask.TASK_21_0},
+        {40_000L, ConstTask.TASK_11_0},
+        {500_000L, ConstTask.TASK_11_0},
+        {550_000L, ConstTask.TASK_11_1},
+        {600_000L, ConstTask.TASK_11_2},
+        // Nhiệm vụ 29 - 35 (sau Đi theo Ôsin)
+        {50_000_000_000L, ConstTask.TASK_29_0},
+        {60_000_000_000L, ConstTask.TASK_30_0},
+        {70_000_000_000L, ConstTask.TASK_31_0},
+        {80_000_000_000L, ConstTask.TASK_32_0},
+        {80_000_000_000L, ConstTask.TASK_33_0},
+        {100_000_000_000L, ConstTask.TASK_34_0},
+        {110_000_000_000L, ConstTask.TASK_35_0},
+        // Nhiệm vụ 37 - 40
+        {130_000_000_000L, ConstTask.TASK_37_0},
+        {140_000_000_000L, ConstTask.TASK_38_0},
+        {150_000_000_000L, ConstTask.TASK_39_0},
+        {170_000_000_000L, ConstTask.TASK_40_0},};
+
     public void checkDoneTaskPower(Player player, long power) {
         if (!player.isBoss && !player.isBot && !player.isPet) {
-            if (power >= 16000) {
-                doneTask(player, ConstTask.TASK_7_0);
-            }
-            if (power >= 40000) {
-                doneTask(player, ConstTask.TASK_8_0);
-            }
-            if (power >= 200000) {
-                doneTask(player, ConstTask.TASK_10_0);
-            }
-            if (power >= 600000000) {
-                doneTask(player, ConstTask.TASK_20_0);
-            }
-            if (power >= 2000000000L) {
-                doneTask(player, ConstTask.TASK_21_0);
-            }
-            if (power >= 40000) {
-                doneTask(player, ConstTask.TASK_11_0);
-            }
-            if (power >= 500000) {
-                doneTask(player, ConstTask.TASK_11_0);
-            }
-            if (power >= 550000) {
-                doneTask(player, ConstTask.TASK_11_1);
-            }
-            if (power >= 600000L) {
-                doneTask(player, ConstTask.TASK_11_2);
-            }
-            // Nhiệm vụ 29 - 35 (sau Đi theo Ôsin)
-            if (power >= 50_000_000_000L) {
-                doneTask(player, ConstTask.TASK_29_0);
-            }
-            if (power >= 60_000_000_000L) {
-                doneTask(player, ConstTask.TASK_30_0);
-            }
-            if (power >= 70_000_000_000L) {
-                doneTask(player, ConstTask.TASK_31_0);
-            }
-            if (power >= 80_000_000_000L) {
-                doneTask(player, ConstTask.TASK_32_0);
-            }
-            if (power >= 80_000_000_000L) {
-                doneTask(player, ConstTask.TASK_33_0); // NV 33: 80 tỷ
-            }
-            if (power >= 100_000_000_000L) {
-                doneTask(player, ConstTask.TASK_34_0);
-            }
-            if (power >= 110_000_000_000L) {
-                doneTask(player, ConstTask.TASK_35_0);
+            for (long[] t : POWER_TASKS) {
+                if (power >= t[0]) {
+                    doneTask(player, (int) t[1]);
+                }
             }
         }
+    }
+
+    // Thẻ nhiệm vụ: mở khoá nhiệm vụ mới. Nhiệm vụ trong danh sách có bước 0 "Dùng Thẻ nhiệm vụ",
+    // bước này không tự hoàn thành khi đủ sức mạnh. Ra nhiệm vụ mới thì thêm vào THE_NHIEM_VU_TASKS.
+    public static final int ITEM_THE_NHIEM_VU = 2692;
+    // {id nhiệm vụ, sức mạnh yêu cầu, id bước 0}
+    private static final long[][] THE_NHIEM_VU_TASKS = {
+        {36, 120_000_000_000L, ConstTask.TASK_36_0},};
+
+    // Dòng THE_NHIEM_VU_TASKS nếu đang ở bước "Dùng Thẻ nhiệm vụ", null nếu không cần thẻ
+    private long[] findTheNhiemVuTask(Player player) {
+        if (player.playerTask == null || player.playerTask.taskMain == null) {
+            return null;
+        }
+        for (long[] t : THE_NHIEM_VU_TASKS) {
+            if (isCurrentTask(player, (int) t[2])) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    // Sức mạnh yêu cầu nếu đang ở bước "Dùng Thẻ nhiệm vụ", -1 nếu không cần thẻ
+    public long getPowerTheNhiemVu(Player player) {
+        long[] t = findTheNhiemVuTask(player);
+        return t != null ? t[1] : -1;
+    }
+
+    public boolean useTheNhiemVu(Player player, Item item) {
+        if (item.template.id != ITEM_THE_NHIEM_VU) {
+            return false;
+        }
+        long[] t = findTheNhiemVuTask(player);
+        if (t == null) {
+            Service.gI().sendThongBao(player, "Bạn chưa cần mở khoá nhiệm vụ mới");
+        } else if (player.nPoint == null || player.nPoint.power < t[1]) {
+            Service.gI().sendThongBao(player, "Cần đạt " + Util.numberToMoney(t[1]) + " sức mạnh mới mở khoá được nhiệm vụ mới");
+        } else {
+            InventoryService.gI().subQuantityItemsBag(player, item, 1);
+            InventoryService.gI().sendItemBags(player);
+            Service.gI().sendThongBao(player, "Đã mở khoá nhiệm vụ mới!");
+            doneTask(player, (int) t[2]);
+        }
+        return true;
     }
 
     public void checkDoneTaskUseTiemNang(Player player) {
@@ -416,6 +453,9 @@ public class TaskService {
                 case 380: //may do
                     doneTask(player, ConstTask.TASK_27_1);
                     Service.gI().sendFlagBag(player);
+                    break;
+                case nro.models.consts.ConstItem.NHAN_THOI_KHONG_SAI_LECH: // NV 37: nhẫn rơi từ Gomah
+                    doneTask(player, ConstTask.TASK_37_6);
                     break;
                 case 77:
                     AchievementService.gI().checkDoneTask(player, ConstAchievement.TRUM_NHAT_NGOC);
@@ -565,6 +605,65 @@ public class TaskService {
                     }
                 }
             }
+            // NV 36: băng hải tặc Bojack (Bujin, Kogu, Zangya, Bido đi cùng Bojack)
+            case BossID.BUJIN ->
+                doneTask(player, ConstTask.TASK_36_1);
+            case BossID.KOGU ->
+                doneTask(player, ConstTask.TASK_36_2);
+            case BossID.ZANGYA ->
+                doneTask(player, ConstTask.TASK_36_3);
+            case BossID.BIDO ->
+                doneTask(player, ConstTask.TASK_36_4);
+            case BossID.BOJACK -> {
+                // Bojack (currentLevel 0) biến thành Siêu Bojack (currentLevel 1)
+                if (boss.currentLevel == 0) {
+                    doneTask(player, ConstTask.TASK_36_5);
+                } else {
+                    doneTask(player, ConstTask.TASK_36_6);
+                }
+            }
+            case BossID.SUPER_BOJACK ->
+                doneTask(player, ConstTask.TASK_36_6);
+            // NV 37: Death Beam do Fide Vàng gọi ra, rồi Chiler (mọi dạng)
+            case BossID.DEATH_BEAM_1 ->
+                doneTask(player, ConstTask.TASK_37_1);
+            case BossID.DEATH_BEAM_2 ->
+                doneTask(player, ConstTask.TASK_37_2);
+            case BossID.DEATH_BEAM_3 ->
+                doneTask(player, ConstTask.TASK_37_3);
+            case BossID.DEATH_BEAM_4 ->
+                doneTask(player, ConstTask.TASK_37_4);
+            case BossID.DEATH_BEAM_5 ->
+                doneTask(player, ConstTask.TASK_37_5);
+            case BossID.CHILER ->
+                doneTask(player, ConstTask.TASK_37_7); // bước 6 là nhặt Nhẫn thời không (Gomah)
+            // NV 38
+            case BossID.KHIDOT ->
+                doneTask(player, ConstTask.TASK_38_1);
+            case BossID.NHATTHAN ->
+                doneTask(player, ConstTask.TASK_38_2);
+            case BossID.NGUYETTHAN ->
+                doneTask(player, ConstTask.TASK_38_3);
+            case BossID.TA_LONG ->
+                doneTask(player, ConstTask.TASK_38_4);
+            // NV 39: các phân thân ở Thành Phố Sugar, rồi Granola ở Hành Tinh Cereal
+            case BossID.GasManager ->
+                doneTask(player, ConstTask.TASK_39_1);
+            case BossID.OilManager ->
+                doneTask(player, ConstTask.TASK_39_2);
+            case BossID.ElecManager ->
+                doneTask(player, ConstTask.TASK_39_3);
+            case BossID.MackiManager ->
+                doneTask(player, ConstTask.TASK_39_4);
+            case BossID.GranolaManager ->
+                doneTask(player, ConstTask.TASK_39_5);
+            // NV 40
+            case BossID.OMEGA ->
+                doneTask(player, ConstTask.TASK_40_1);
+            case BossID.GOGETA ->
+                doneTask(player, ConstTask.TASK_40_2);
+            case BossID.PIKKON ->
+                doneTask(player, ConstTask.TASK_40_3);
             default -> {
             }
         }
@@ -840,6 +939,39 @@ public class TaskService {
                     + "rồi hạ đủ 3 bản thể của Gomah (Tà Ám, Hắc Ám, Tối Thượng)\n"
                     + "ở Hành Tinh Cereal, Mảnh Đất Bỏ Hoang.\n"
                     + "Xong việc thì về đây báo cáo với ta.";
+            // Bước 0 (chưa mở khoá): giới thiệu nhiệm vụ mới + hướng dẫn hạ Quy Lão lấy Thẻ nhiệm vụ
+            case 36 -> player.playerTask.taskMain.index == 0
+                    ? "Con đã hoàn thành hết các nhiệm vụ cũ rồi!\n"
+                    + "Nhiệm vụ mới: Băng hải tặc vũ trụ của Bojack đã đổ bộ xuống Trái Đất,\n"
+                    + "con sẽ phải hạ Bujin, Kogu, Zangya, Bido, Bojack và Siêu Bojack.\n\n"
+                    + "Nhưng trước hết con phải chứng minh sức mạnh với ta:\n"
+                    + "1. Chọn \"Mở khoá nhiệm vụ\" ở menu của ta (Đảo Kame)\n"
+                    + "2. Thách đấu và hạ Quy Lão Kame trong 5 phút để nhận Thẻ nhiệm vụ\n"
+                    + "3. Đạt 120 tỷ sức mạnh rồi dùng Thẻ nhiệm vụ trong hành trang"
+                    : "Băng hải tặc vũ trụ của Bojack đã đổ bộ xuống Trái Đất!\n"
+                    + "Hạ lần lượt Bujin, Kogu, Zangya, Bido, Bojack\n"
+                    + "rồi hạ Siêu Bojack\n"
+                    + "(Rừng nấm, Rừng xương, Đông Karin, Rừng Bamboo, Nam Kamê...).\n"
+                    + "Xong việc thì về đây báo cáo với ta.";
+            case 37 -> "Fide Vàng đang gọi đám lính Death Beam tới.\n"
+                    + "Đạt 130 tỷ sức mạnh, hạ lần lượt Death Beam 1 đến 5\n"
+                    + "(Fide Vàng gọi ra ở Đông Karin, 21h - 22h),\n"
+                    + "hạ Gomah ở Hành Tinh Cereal để nhặt Nhẫn thời không (rất hiếm),\n"
+                    + "rồi hạ Chiler ở Khu hang động, Rừng nguyên thủy.\n"
+                    + "Xong thì đến Hành tinh Bill báo cáo với Whis.";
+            case 38 -> "Năng lượng âm của ngọc rồng đã sinh ra Rồng ác!\n"
+                    + "Đạt 140 tỷ sức mạnh, hạ lần lượt Khỉ đột, Nhật thần, Nguyệt thần\n"
+                    + "(Nhật thần và Nguyệt thần đi cùng nhau, hạ một người thì người kia bỏ đi),\n"
+                    + "rồi hạ Nhất Tinh Long ở Làng Kakarot.\n"
+                    + "Xong thì lên Thần điện báo cáo với Thượng Đế.";
+            case 39 -> "Kẻ sống sót cuối cùng của tộc Cereal đang gây chiến.\n"
+                    + "Đạt 150 tỷ sức mạnh, hạ lần lượt phân thân Gas, Oil, Elec, Macki\n"
+                    + "ở Thành Phố Sugar, rồi hạ phân thân Granola ở Hành Tinh Cereal.";
+            case 40 -> "Trận chiến cuối cùng: Gogeta và Omega xuất hiện!\n"
+                    + "Đạt 170 tỷ sức mạnh, hạ Omega rồi hạ Gogeta\n"
+                    + "(hai kẻ đi cùng nhau, hạ một kẻ thì kẻ kia bỏ đi),\n"
+                    + "sau đó hạ Pikkon ở Rừng Bamboo, Rừng dương xỉ, Nam Kamê.\n"
+                    + "Xong việc thì về đây báo cáo với ta.";
             default -> null;
         };
     }
@@ -848,14 +980,19 @@ public class TaskService {
         if (TaskService.gI().isCurrentTask(player, idTaskCustom)) {
             this.addDoneSubTask(player, 1);
             switch (idTaskCustom) {
-                // NV 31 - 34: báo cáo xong, Quy Lão giới thiệu nhiệm vụ kế tiếp (task đã được chuyển sang nhiệm vụ mới)
-                case ConstTask.TASK_31_5, ConstTask.TASK_32_5, ConstTask.TASK_33_7, ConstTask.TASK_34_3: {
-                    String intro = getQuyLaoIntro(player);
-                    npcSay(player, ConstNpc.QUY_LAO_KAME, "Giỏi lắm con, ta rất tự hào về con!\n\n"
-                            + (intro != null ? intro : ""));
+                // NV 31 - 36: báo cáo xong, Quy Lão giới thiệu nhiệm vụ kế tiếp (task đã được chuyển sang nhiệm vụ mới)
+                // NV 39: hạ Granola xong là sang NV 40, Quy Lão giới thiệu luôn
+                case ConstTask.TASK_31_5, ConstTask.TASK_32_5, ConstTask.TASK_33_7, ConstTask.TASK_34_3,
+                        ConstTask.TASK_35_7, ConstTask.TASK_36_7, ConstTask.TASK_39_5:
+                    npcSayWithIntro(player, ConstNpc.QUY_LAO_KAME, "Giỏi lắm con, ta rất tự hào về con!");
                     break;
-                }
-                case ConstTask.TASK_35_7:
+                case ConstTask.TASK_37_8:
+                    npcSayWithIntro(player, ConstNpc.WHIS, "Khá lắm, ngươi đã mạnh hơn nhiều rồi đấy.");
+                    break;
+                case ConstTask.TASK_38_5:
+                    npcSayWithIntro(player, ConstNpc.THUONG_DE, "Con đã trừ được Rồng ác, trái đất mang ơn con!");
+                    break;
+                case ConstTask.TASK_40_4:
                     npcSay(player, ConstNpc.QUY_LAO_KAME, "Tuyệt vời! Con đã đánh bại tất cả kẻ thù.\n"
                             + "Con đã hoàn thành toàn bộ chuỗi nhiệm vụ, trái đất bình yên là nhờ con đấy!");
                     break;
@@ -1308,6 +1445,12 @@ public class TaskService {
         text = transformName(player, text);
         int avatar = NpcService.gI().getAvatar(npcId);
         NpcService.gI().createTutorial(player, avatar, text);
+    }
+
+    // Báo cáo xong (task đã sang nhiệm vụ mới): NPC khen rồi giới thiệu nhiệm vụ kế tiếp
+    private void npcSayWithIntro(Player player, int npcId, String greeting) {
+        String intro = getQuyLaoIntro(player);
+        npcSay(player, npcId, intro != null ? greeting + "\n\n" + intro : greeting);
     }
 
     public void loadTask() {

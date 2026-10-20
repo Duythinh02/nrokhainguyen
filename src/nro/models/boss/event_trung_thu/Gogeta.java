@@ -44,45 +44,51 @@ public class Gogeta extends Boss {
         }
     }
 
-    @Override
-    public void afk() {
-        if (playerReward.isPl() && !isReward && this.zone != null) {
-            ItemMap it = new ItemMap(this.zone, 1685, 1,
-                    this.location.x,
+    // Đồ rơi sự kiện cho người hạ được boss cùng cặp (chỉ khi bật BossManager.QUEST_BOSS_DROP)
+    private void dropReward() {
+        ItemMap it = new ItemMap(this.zone, 1685, 1,
+                this.location.x,
+                this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24),
+                playerReward.id);
+
+        it.addOptionParam(50, 28);
+        it.addOptionParam(77, 28);
+        it.addOptionParam(103, 28);
+        it.addOptionParam(5, 25);
+        it.addOptionParam(14, 10);
+
+        if (Util.isTrue(95, 100)) {
+            it.addOptionParam(93, Util.nextInt(3, 7));
+        }
+
+        Service.gI().dropItemMap(this.zone, it);
+
+        if (Util.isTrue(50, 100)) {
+            ItemMap vp = new ItemMap(this.zone, 1699, 1,
+                    this.location.x + Util.nextInt(-20, 20),
                     this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24),
                     playerReward.id);
 
-            it.addOptionParam(50, 28);
-            it.addOptionParam(77, 28);
-            it.addOptionParam(103, 28);
-            it.addOptionParam(5, 25);
-            it.addOptionParam(14, 10);
-
-            if (Util.isTrue(95, 100)) {
-                it.addOptionParam(93, Util.nextInt(3, 7));
-            }
-
-            Service.gI().dropItemMap(this.zone, it);
+            vp.addOptionParam(50, Util.nextInt(13, 15));
+            vp.addOptionParam(77, Util.nextInt(13, 16));
+            vp.addOptionParam(103, Util.nextInt(13, 16));
+            vp.addOptionParam(80, Util.nextInt(1, 10));
+            vp.addOptionParam(14, 5);
 
             if (Util.isTrue(50, 100)) {
-                ItemMap vp = new ItemMap(this.zone, 1699, 1,
-                        this.location.x + Util.nextInt(-20, 20),
-                        this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24),
-                        playerReward.id);
-
-                vp.addOptionParam(50, Util.nextInt(13, 15));
-                vp.addOptionParam(77, Util.nextInt(13, 16));
-                vp.addOptionParam(103, Util.nextInt(13, 16));
-                vp.addOptionParam(80, Util.nextInt(1, 10));
-                vp.addOptionParam(14, 5);
-
-                if (Util.isTrue(50, 100)) {
-                    vp.addOptionParam(93, Util.nextInt(3, 7));
-                }
-
-                Service.gI().dropItemMap(this.zone, vp);
+                vp.addOptionParam(93, Util.nextInt(3, 7));
             }
 
+            Service.gI().dropItemMap(this.zone, vp);
+        }
+    }
+
+    @Override
+    public void afk() {
+        if (playerReward.isPl() && !isReward && this.zone != null) {
+            if (nro.models.boss.Boss_Manager.BossManager.QUEST_BOSS_DROP) { // NV 38, 40: mặc định không rơi đồ
+                dropReward();
+            }
             isReward = true;
             lastTimeReward = System.currentTimeMillis();
             this.chat("Cảm ơn đã giúp ta tiêu diệt hắn!");

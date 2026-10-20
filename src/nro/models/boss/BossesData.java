@@ -3916,7 +3916,7 @@ public class BossesData {
             new short[]{1555, 1556, 1557, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
             100_000, //dame
             new long[]{2_000_000_000L}, //hp
-            new int[]{168}, //map join
+            new int[]{27, 28, 29}, //map join: Rừng Bamboo, Rừng dương xỉ, Nam Kamê (NV 40; trước là Địa ngục tầng 2 chỉ vào được khi có sự kiện Vu Lan)
             new int[][]{
                 {Skill.LIEN_HOAN, 1, Util.nextInt(500, 1000)}},
             new String[]{},

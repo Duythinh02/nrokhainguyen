@@ -55,8 +55,7 @@ public class SUPER_BOJACK extends Boss {
         Service.gI().dropItemMap(this.zone, it);
         Service.gI().dropItemMap(this.zone, it1);
         Service.gI().dropItemMap(this.zone, it2);
-        int diem = 5;
-        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
+        nro.models.services.BossHuntService.gI().onKillBoss(plKill, 0); // boss NV 36 - 40: không cộng điểm săn boss
     }
 
     @Override

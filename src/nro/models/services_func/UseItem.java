@@ -296,6 +296,9 @@ public class UseItem {
                         InventoryService.gI().itemBagToBody(pl, indexBag);
                     }
                     default:
+                        if (TaskService.gI().useTheNhiemVu(pl, item)) {
+                            break;
+                        }
                         // Quà sự kiện 20/10 (Lời chúc, Hộp quà, Thiệp chúc VIP, Lời chúc VIP)
                         if (WomensDayService.useItem(pl, item)) {
                             break;

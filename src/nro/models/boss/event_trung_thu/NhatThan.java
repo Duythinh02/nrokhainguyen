@@ -51,7 +51,7 @@ public class NhatThan extends Boss {
             it.options.add(new Item.ItemOption(14, Util.nextInt(1, 10)));
             it.options.add(new Item.ItemOption(154, 0));
             it.options.add(new Item.ItemOption(93, Util.nextInt(1, 15)));
-            Service.gI().dropItemMap(this.zone, it);
+            nro.models.boss.Boss_Manager.BossManager.dropQuestBossItem(this.zone, it); // NV 38, 40: mặc định không rơi đồ
             isReward = true;
             lastTimeReward = System.currentTimeMillis();
             this.chat("Được! hảo hán!");

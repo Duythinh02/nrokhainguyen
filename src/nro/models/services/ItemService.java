@@ -1139,23 +1139,23 @@ public class ItemService {
         item.quantity = quantity;
         item.createTime = System.currentTimeMillis();
         if (item.template.type == 0) {
-            item.itemOptions.add(new Item.ItemOption(21, 80));
+            item.itemOptions.add(new Item.ItemOption(21, 60));
             item.itemOptions.add(new Item.ItemOption(47, Util.nextInt(1200, 2100)));
         }
         if (item.template.type == 1) {
-            item.itemOptions.add(new Item.ItemOption(21, 80));
+            item.itemOptions.add(new Item.ItemOption(21, 60));
             item.itemOptions.add(new Item.ItemOption(22, Util.nextInt(60, 80)));
         }
         if (item.template.type == 2) {
-            item.itemOptions.add(new Item.ItemOption(21, 80));
+            item.itemOptions.add(new Item.ItemOption(21, 60));
             item.itemOptions.add(new Item.ItemOption(0, Util.nextInt(8500, 11000)));
         }
         if (item.template.type == 3) {
-            item.itemOptions.add(new Item.ItemOption(21, 80));
+            item.itemOptions.add(new Item.ItemOption(21, 60));
             item.itemOptions.add(new Item.ItemOption(23, Util.nextInt(59, 82)));
         }
         if (item.template.type == 4) {
-            item.itemOptions.add(new Item.ItemOption(21, 80));
+            item.itemOptions.add(new Item.ItemOption(21, 60));
             item.itemOptions.add(new Item.ItemOption(14, Util.nextInt(5, 18)));
         }
         item.content = item.getContent();

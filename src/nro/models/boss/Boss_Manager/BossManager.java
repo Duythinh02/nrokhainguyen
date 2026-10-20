@@ -161,6 +161,16 @@ public class BossManager implements Runnable {
 
     private static BossManager instance;
     public static byte ratioReward = 10;
+    // Boss sự kiện / phân thân được bật quanh năm cho NV 38 - 40 (Khỉ đột, Nhật/Nguyệt thần, Gogeta/Omega,
+    // phân thân Gas/Oil/Elec/Macki): false = không rơi đồ sự kiện (cải trang, diều, pet...), true = rơi như cũ
+    public static boolean QUEST_BOSS_DROP = false;
+
+    // Rơi đồ sự kiện của các boss trên, chỉ khi bật QUEST_BOSS_DROP
+    public static void dropQuestBossItem(Zone zone, nro.models.map.ItemMap item) {
+        if (QUEST_BOSS_DROP) {
+            nro.models.services.Service.gI().dropItemMap(zone, item);
+        }
+    }
 
     public static BossManager gI() {
         if (instance == null) {
@@ -225,8 +235,17 @@ public class BossManager implements Runnable {
         this.createBoss(BossID.CHAMPA);
         this.createBoss(BossID.SUPER_BROLY_NEW, 5);
         this.createBoss(BossID.GOMAH);
-        // Tạm đóng boss Nhất Tinh Long (BossID.TA_LONG); mở lại bằng cách bỏ comment dòng dưới
-        // this.createBoss(BossID.TA_LONG);
+        // ---- Boss nhiệm vụ 38 - 40 (xuất hiện quanh năm, không phụ thuộc sự kiện)
+        this.createBoss(BossID.TA_LONG);
+        this.createBoss(BossID.KHIDOT, 2);
+        this.createBoss(BossID.NGUYETTHAN, 2); // Nhật thần đi cùng
+        this.createBoss(BossID.GasManager);
+        this.createBoss(BossID.OilManager);
+        this.createBoss(BossID.ElecManager);
+        this.createBoss(BossID.MackiManager);
+        this.createBoss(BossID.GranolaManager);
+        this.createBoss(BossID.GOGETA, 2); // Omega đi cùng
+        this.createBoss(BossID.PIKKON);
 }
 
     public void createBoss(int bossID, int total) {
@@ -502,6 +521,17 @@ case BossID.BROLY ->
                     new DeathBeam4();
                 case BossID.DEATH_BEAM_5 ->
                     new DeathBeam5();
+                // NV 39: phân thân Gas, Oil, Elec, Macki (Thành Phố Sugar) và Granola (Hành Tinh Cereal)
+                case BossID.GasManager ->
+                    new GasManager(null, 0, 0, 0);
+                case BossID.OilManager ->
+                    new OilManager(null, 0, 0, 0);
+                case BossID.ElecManager ->
+                    new ElecManager(null, 0, 0, 0);
+                case BossID.MackiManager ->
+                    new MackiManager(null, 0, 0, 0);
+                case BossID.GranolaManager ->
+                    new GranolaManager();
                 case BossID.BIMA ->
                     new BiMa();
                 case BossID.MATROI ->

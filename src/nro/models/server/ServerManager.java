@@ -216,7 +216,6 @@ public class ServerManager {
             new Thread(TreasureUnderSeaManager.gI(), "Update treasure under sea boss").start();
             new Thread(SnakeWayManager.gI(), "Update snake way boss").start();
             new Thread(GasDestroyManager.gI(), "Update gas destroy boss").start();
-
             new Thread(BotManager.gI(), "Thread Bot Game").start();
             // Bot giống người chơi thật (số lượng: bot.player.count trong Config.properties)
             new Thread(() -> {

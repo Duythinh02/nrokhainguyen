@@ -90,7 +90,9 @@ public class Clan {
         this.level = 1;
         this.createTime = (int) (System.currentTimeMillis() / 1000);
         this.members = new ArrayList<>();
-        this.membersInGame = new ArrayList<>();
+        // Thread-safe: đăng nhập / thoát game chạy trên nhiều luồng, ArrayList thường bị lọt phần tử null
+        // -> mở doanh trại / BDKB / CDRD / khí gas bị NullPointerException và huỷ ngay ("0s rồi mất")
+        this.membersInGame = new java.util.concurrent.CopyOnWriteArrayList<>();
         this.clanMessages = new ArrayList<>();
     }
 
@@ -236,7 +238,11 @@ public class Clan {
     }
 
     public void addMemberOnline(Player player) {
-        this.membersInGame.add(player);
+        if (player != null) {
+            // Đăng nhập lại tạo Player mới: bỏ bản cũ cùng id (và ô null nếu có) rồi mới thêm
+            this.membersInGame.removeIf(pl -> pl == null || pl.id == player.id);
+            this.membersInGame.add(player);
+        }
     }
 
     public void removeMemberOnline(ClanMember cm, Player player) {
@@ -244,18 +250,13 @@ public class Clan {
             this.membersInGame.remove(player);
         }
         if (cm != null) {
-            for (int i = this.membersInGame.size() - 1; i >= 0; i--) {
-                if (this.membersInGame.get(i).id == cm.id) {
-                    this.membersInGame.remove(i);
-                    break;
-                }
-            }
+            this.membersInGame.removeIf(pl -> pl == null || pl.id == cm.id);
         }
     }
 
     public Player getPlayerOnline(int playerId) {
         for (Player player : this.membersInGame) {
-            if (player.id == playerId) {
+            if (player != null && player.id == playerId) {
                 return player;
             }
         }

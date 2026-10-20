@@ -180,7 +180,7 @@ public class ItemTimeService {
     }
 
     public void sendTextDoanhTrai(Player player) {
-        if (player.clan != null && !player.clan.haveGoneDoanhTrai
+        if (player != null && player.clan != null && !player.clan.haveGoneDoanhTrai
                 && player.clan.lastTimeOpenDoanhTrai != 0) {
             int secondPassed = (int) ((System.currentTimeMillis() - player.clan.lastTimeOpenDoanhTrai) / 1000);
             int secondsLeft = (RedRibbonHQ.TIME_DOANH_TRAI / 1000) - secondPassed;
@@ -192,7 +192,7 @@ public class ItemTimeService {
     }
 
     public void sendTextTimePickDoanhTrai(Player player) {
-        if (player.clan != null && player.clan.doanhTrai != null && player.clan.doanhTrai.isTimePicking) {
+        if (player != null && player.clan != null && player.clan.doanhTrai != null && player.clan.doanhTrai.isTimePicking) {
             int secondPassed = (int) ((System.currentTimeMillis() - player.clan.doanhTrai.lastTimePick) / 1000);
             int secondsLeft = (RedRibbonHQ.TIME_PICK_DOANH_TRAI / 1000) - secondPassed;
             if (secondsLeft < 0 || secondsLeft > 1800) {
@@ -203,7 +203,7 @@ public class ItemTimeService {
     }
 
     public void sendTextBanDoKhoBau(Player player) {
-        if (player.clan != null
+        if (player != null && player.clan != null
                 && player.clan.lastTimeOpenBanDoKhoBau != 0) {
             int secondPassed = (int) ((System.currentTimeMillis() - player.clan.lastTimeOpenBanDoKhoBau) / 1000);
             int secondsLeft = (BanDoKhoBau.TIME_BAN_DO_KHO_BAU / 1000) - secondPassed;
@@ -219,7 +219,7 @@ public class ItemTimeService {
     }
 
     public void sendTextConDuongRanDoc(Player player) {
-        if (player.clan != null
+        if (player != null && player.clan != null
                 && player.clan.lastTimeOpenConDuongRanDoc != 0) {
             int secondPassed = (int) ((System.currentTimeMillis() - player.clan.lastTimeOpenConDuongRanDoc) / 1000);
             int secondsLeft = (SnakeWay.TIME_CON_DUONG_RAN_DOC / 1000) - secondPassed;
@@ -231,7 +231,7 @@ public class ItemTimeService {
     }
 
     public void sendTextKhiGasHuyDiet(Player player) {
-        if (player.clan != null
+        if (player != null && player.clan != null
                 && player.clan.lastTimeOpenKhiGasHuyDiet != 0) {
             int secondPassed = (int) ((System.currentTimeMillis() - player.clan.lastTimeOpenKhiGasHuyDiet) / 1000);
             int secondsLeft = (DestronGas.TIME_KHI_GAS_HUY_DIET / 1000) - secondPassed;
@@ -300,7 +300,7 @@ public class ItemTimeService {
 
 
     public void sendTextMapBossBangHoi(Player player) {
-        if (player.clan != null && player.clan.lastTimeOpenBossOfTheGangs != 0) {
+        if (player != null && player.clan != null && player.clan.lastTimeOpenBossOfTheGangs != 0) {
             int secondPassed = (int) ((System.currentTimeMillis() - player.clan.lastTimeOpenBossOfTheGangs) / 1000);
             int secondsLeft = (BossOfTheGangs.TIME_MAP_BOSS_BANG_HOI / 1000) - secondPassed;
             if (secondsLeft < 0 || secondsLeft > 1800) {

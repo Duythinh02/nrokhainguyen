@@ -21,7 +21,7 @@ public class KhiDot extends Boss {
     public void reward(Player plKill) {
         ItemMap it = new ItemMap(this.zone, 1045, 1, this.location.x, this.zone.map.yPhysicInTop(this.location.x,
                 this.location.y - 24), plKill.id);
-        Service.gI().dropItemMap(this.zone, it);
+        nro.models.boss.Boss_Manager.BossManager.dropQuestBossItem(this.zone, it); // NV 38, 40: mặc định không rơi đồ
     }
 
     @Override

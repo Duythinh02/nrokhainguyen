@@ -23,6 +23,10 @@ public class ThuongDe extends Npc {
          if (canOpenNpc(player)) {
             switch (mapId) {
                 case 45 -> {
+                    // NV 38: báo cáo với Thượng Đế
+                    if (nro.models.services.TaskService.gI().checkDoneTaskTalkNpc(player, this)) {
+                        return;
+                    }
                     if (player.clan != null && player.clan.ConDuongRanDoc != null && player.joinCDRD && player.clan.ConDuongRanDoc.allMobsDead && !player.talkToThuongDe) {
                         Service.gI().sendThongBao(player, "Hãy xuống gặp thần mèo Karin");
                         this.createOtherMenu(player, ConstNpc.BASE_MENU, "Hãy xuống gặp thần mèo Karin", "OK");

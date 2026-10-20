@@ -1,5 +1,6 @@
 package nro.models.npc_list;
 
+import nro.models.boss.mo_khoa_nv.QuyLaoBoss;
 import nro.models.consts.ConstNpc;
 import nro.models.item.Item;
 import nro.models.map.phoban.BanDoKhoBau;
@@ -97,6 +98,9 @@ public class QuyLaoKame extends Npc {
                 menu.add("Đổi điểm\nsự kiện\n[" + player.event.getEventPoint() + "]");
                 menu.add("Nhận quà\nKOL");
                 menu.add("Nhận quà\nKOL VIP");
+                if (canMoKhoaNhiemVu(player)) {
+                    menu.add("Mở khoá\nnhiệm vụ");
+                }
                 if (ruacon != null && ruacon.quantity >= 1) {
                     menu.add("Giao\nRùa con");
                 }
@@ -151,6 +155,9 @@ public class QuyLaoKame extends Npc {
             case ConstNpc.KOL_VIP_REWARD_MENU:
                 handleKOLQuestRewardConfirm(player, select, true);
                 break;
+            case MENU_MO_KHOA_NV:
+                handleMenuMoKhoaNhiemVu(player, select);
+                break;
         }
     }
 
@@ -169,9 +176,58 @@ public class QuyLaoKame extends Npc {
                 handleKOLQuest(player, true);
                 break;
             case 4:
+                if (canMoKhoaNhiemVu(player)) {
+                    handleMoKhoaNhiemVu(player);
+                } else {
+                    handleTradeRuacon(player);
+                }
+                break;
+            case 5:
                 handleTradeRuacon(player);
                 break;
         }
+    }
+
+    private static final int MENU_MO_KHOA_NV = 9361;
+
+    // Nút "Mở khoá nhiệm vụ" chỉ hiện khi đang ở bước "Dùng Thẻ nhiệm vụ" (NV 36 bước đầu)
+    private boolean canMoKhoaNhiemVu(Player player) {
+        return TaskService.gI().getPowerTheNhiemVu(player) >= 0;
+    }
+
+    // Mở khoá nhiệm vụ: nói chuyện xong thì gọi boss Quy Lão (QuyLaoBoss), hạ được rơi Thẻ nhiệm vụ
+    private void handleMoKhoaNhiemVu(Player player) {
+        long power = TaskService.gI().getPowerTheNhiemVu(player);
+        if (power < 0) {
+            this.createOtherMenu(player, ConstNpc.IGNORE_MENU, "Con chưa cần mở khoá nhiệm vụ mới đâu.\n"
+                    + "Khi hoàn thành hết nhiệm vụ hiện có, hãy quay lại tìm ta.", "Đóng");
+            return;
+        }
+        if (InventoryService.gI().findItemBag(player, TaskService.ITEM_THE_NHIEM_VU) != null) {
+            this.createOtherMenu(player, ConstNpc.IGNORE_MENU, "Con đã có Thẻ nhiệm vụ rồi,\n"
+                    + "hãy mở hành trang và dùng nó để mở khoá nhiệm vụ mới.", "Đóng");
+            return;
+        }
+        if (QuyLaoBoss.isFighting(player)) {
+            Service.gI().sendThongBao(player, "Con đang thử thách với ta rồi đấy!");
+            return;
+        }
+        this.createOtherMenu(player, MENU_MO_KHOA_NV, "Con đã hoàn thành hết nhiệm vụ rồi sao? Giỏi lắm!\n"
+                + "Phía trước là những kẻ thù mạnh hơn rất nhiều.\n"
+                + "Muốn có Thẻ nhiệm vụ để đi tiếp, con phải đánh bại được ta.\n"
+                + "Con có 5 phút, chỉ mình con (và đệ tử) được ra tay.\n"
+                + "Sau đó dùng thẻ khi đã đạt " + Util.numberToMoney(power) + " sức mạnh.",
+                "Thách đấu", "Để sau");
+    }
+
+    private void handleMenuMoKhoaNhiemVu(Player player, int select) {
+        if (select != 0 || TaskService.gI().getPowerTheNhiemVu(player) < 0 || QuyLaoBoss.isFighting(player)) {
+            return;
+        }
+        if (InventoryService.gI().findItemBag(player, TaskService.ITEM_THE_NHIEM_VU) != null) {
+            return;
+        }
+        QuyLaoBoss.spawn(player);
     }
 
     private void handleTalk(Player player) {

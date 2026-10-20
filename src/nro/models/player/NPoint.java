@@ -38,6 +38,8 @@ import nro.models.utils.TimeUtil;
 public class NPoint {
 
     public static final byte MAX_LIMIT = 9;
+    // Mốc cao nhất mở được ở Thần Huỷ Diệt (hành tinh Bill)
+    public static final byte MAX_LIMIT_BILL = 12;
 
     @lombok.Getter @Setter
     private Player player;
@@ -1581,6 +1583,10 @@ public class NPoint {
     }
 
     public void subHP(long sub) {
+        // Boss nhiệm vụ trên 1,5 tỷ máu (QuestBossHp): chỉ nhận 70% sát thương
+        if (sub > 0 && player instanceof nro.models.boss.Boss boss && boss.damageTakenScale < 1) {
+            sub = Math.max(1, (long) (sub * boss.damageTakenScale));
+        }
         // Trừ bằng long: "hp -= sub" ép int nên đòn > ~2,1 tỷ có thể tràn thành số dương (boss hồi máu thay vì chết)
         long remain = (long) this.hp - sub;
         this.hp = (int) Math.max(Integer.MIN_VALUE, Math.min(Integer.MAX_VALUE, remain));
@@ -1750,7 +1756,14 @@ public class NPoint {
             case 8:
                 return 80010000000L;
             case 9:
-                return 120_000_000_000L; // mốc cuối của server (trước là 90,01 tỷ)
+                return 120_000_000_000L; // mốc cuối mở bằng Tổ sư Kaio / Quốc vương (trước là 90,01 tỷ)
+            // Mốc 10 - 12: chỉ mở ở Thần Huỷ Diệt (Bill.java), 100 điểm săn boss mỗi mốc
+            case 10:
+                return 140_000_000_000L;
+            case 11:
+                return 160_000_000_000L;
+            case 12:
+                return 180_000_000_000L;
             default:
                 return 0;
         }
@@ -1777,7 +1790,14 @@ public class NPoint {
             case 8:
                 return 80010000000L;
             case 9:
-                return 120_000_000_000L; // mốc cuối của server (trước là 90,01 tỷ)
+                return 120_000_000_000L; // mốc cuối mở bằng Tổ sư Kaio / Quốc vương (trước là 90,01 tỷ)
+            // Mốc 10 - 12: chỉ mở ở Thần Huỷ Diệt (Bill.java), 100 điểm săn boss mỗi mốc
+            case 10:
+                return 140_000_000_000L;
+            case 11:
+                return 160_000_000_000L;
+            case 12:
+                return 180_000_000_000L;
             default:
                 return 0;
         }
@@ -1804,6 +1824,9 @@ public class NPoint {
             case 8:
                 return 550000;
             case 9:
+            case 10:
+            case 11:
+            case 12:
                 return 600000; // max HP/KI gốc của server
             default:
                 return 0;
@@ -1831,6 +1854,9 @@ public class NPoint {
             case 8:
                 return 25000;
             case 9:
+            case 10:
+            case 11:
+            case 12:
                 return 27000; // max sức đánh gốc của server
             default:
                 return 0;
@@ -1856,6 +1882,9 @@ public class NPoint {
             case 7:
             case 8:
             case 9:
+            case 10:
+            case 11:
+            case 12:
                 return 1500; // max giáp gốc của server
             default:
                 return 0;
@@ -1883,6 +1912,9 @@ public class NPoint {
             case 8:
                 return 9;
             case 9:
+            case 10:
+            case 11:
+            case 12:
                 return 10;
             default:
                 return 0;

@@ -8,7 +8,9 @@ import nro.models.utils.Logger;
 import nro.models.player.Player;
 import nro.models.services.Service;
 import nro.models.utils.Util;
+import nro.models.consts.ConstItem;
 import nro.models.consts.ConstPlayer;
+import nro.models.consts.ConstTask;
 import nro.models.consts.ConstTaskBadges;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,20 +76,15 @@ public class Gomah extends Boss {
                 Util.nextInt(28000, 30000), x + Util.nextInt(-15, 15), y, plKill.id);
         Service.gI().dropItemMap(zone, vang);
 
-        // ================== 5. Nhẫn nhiệm vụ 31 ==================
+        // ================== 5. Nhẫn thời không: chỉ rơi cho người đang ở bước nhặt nhẫn NV 37, khoảng 15 con ra 1 nhẫn ==================
         try {
-            if (plKill.playerTask != null
-                    && plKill.playerTask.taskMain != null
-                    && plKill.playerTask.taskMain.id == 31) {
-
-                if (Util.isTrue(1, 3)) {
-                    ItemMap missionRing = new ItemMap(this.zone, (short) 992, 1,
-                            x + Util.nextInt(-10, 10), y, plKill.id);
-                    Service.gI().dropItemMap(zone, missionRing);
-                }
+            if (TaskService.gI().getIdTask(plKill) == ConstTask.TASK_37_6 && Util.isTrue(1, 15)) {
+                ItemMap missionRing = new ItemMap(this.zone, (short) ConstItem.NHAN_THOI_KHONG_SAI_LECH, 1,
+                        x + Util.nextInt(-10, 10), y, plKill.id);
+                Service.gI().dropItemMap(zone, missionRing);
             }
         } catch (Exception e) {
-            Logger.logException(Gomah.class, e, "Lỗi drop nhẫn nhiệm vụ 31");
+            Logger.logException(Gomah.class, e, "Lỗi drop nhẫn nhiệm vụ 37");
         }
 
         // ================== 6. Túi siêu ấn ==================

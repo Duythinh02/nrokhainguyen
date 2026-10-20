@@ -96,14 +96,10 @@ public class Whis extends Npc {
         switch (select) {
             case 0 ->
                 ShopService.gI().opendShop(player, "THIEN_SU", false);
-            case 1 -> {
-                if (!player.setClothes.checkSetDes()) {
-                    createOtherMenu(player, ConstNpc.IGNORE_MENU,
-                            "Ngươi hãy trang bị đủ 5 món trang bị Hủy Diệt rồi ta nói chuyện tiếp.", "OK");
-                } else {
-                    CombineService.gI().openTabCombine(player, CombineService.CHE_TAO_TRANG_BI_THIEN_SU);
-                }
-            }
+            case 1 ->
+                // Đã đóng chế tạo đồ thiên sứ
+                createOtherMenu(player, ConstNpc.IGNORE_MENU,
+                        "Chức năng chế tạo đồ thiên sứ đã đóng.", "OK");
         }
     }
 
