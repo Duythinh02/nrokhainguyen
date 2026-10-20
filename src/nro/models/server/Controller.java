@@ -72,6 +72,19 @@ public class Controller implements IMessageHandler {
         return instance;
     }
 
+    // Lệnh điều khiển nhân vật bị chặn với người xem khi hợp thể (di chuyển, đánh, chiêu, đồ, đổi map/khu, giao dịch,
+    // mua bán, mở NPC). Vẫn cho chọn menu (32) để trả lời hộp thoại và tách hợp thể.
+    private static boolean isBlockedForFusionWatcher(byte cmd) {
+        switch (cmd) {
+            case -7, 54, -60, -45, 34, -20, -43, -40, 18, 21, -23, -33, -91, -15, -16, -86, 6, 7, -81, 29, 33 -> {
+                return true;
+            }
+            default -> {
+                return false;
+            }
+        }
+    }
+
     @Override
     public void onMessage(ISession s, Message _msg) {
         long st = System.currentTimeMillis();
@@ -80,6 +93,15 @@ public class Controller implements IMessageHandler {
         try {
             player = _session.player;
             byte cmd = _msg.command;
+            // Người xem khi hợp thể Gogeta với người chơi khác: không điều khiển được nhân vật
+            Player fusionLeader = player != null && !player.fusionLeader ? player.fusionPartner : null;
+            if (fusionLeader != null && isBlockedForFusionWatcher(cmd)) {
+                if (cmd != -7) {
+                    Service.gI().hideWaitDialog(player);
+                    Service.gI().sendThongBao(player, "Đang hợp thể, bạn chỉ xem được. Bấm vào " + fusionLeader.name + " để tách hợp thể");
+                }
+                return;
+            }
             switch (cmd) {
                 case -100:
                     if (player == null) {
@@ -262,7 +284,12 @@ public class Controller implements IMessageHandler {
                     break;
                 case -107:
                     if (player != null) {
-                        Service.gI().showInfoPet(player);
+                        // Đang hợp thể với người chơi khác: nút Đệ tử đổi thành Tách hợp thể
+                        if (player.fusionPartner != null) {
+                            nro.models.services.PlayerFusionService.showMenuTach(player);
+                        } else {
+                            Service.gI().showInfoPet(player);
+                        }
                     }
                     break;
                 case -108:

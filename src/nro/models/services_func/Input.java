@@ -88,6 +88,8 @@ public class Input {
     public static final int TANG_DIEM_BOSS = 5166;
     public static final int DOI_COIN_KHAI_NGUYEN = 5167;
     public static final int DOI_DIEM_HONG_NGOC = 5168;
+    public static final int SU_DO_BAI_SU = 5169;
+    public static final int SU_DO_DUOI = 5170;
     public static final int HONG_NGOC_PER_POINT = 1000;
 
     private static Input intance;
@@ -667,6 +669,10 @@ case BOTITEM -> {
                         }
                     }
                 }
+                case SU_DO_BAI_SU ->
+                    nro.models.services.SuDoService.requestBaiSu(player, text.length > 0 ? text[0] : "");
+                case SU_DO_DUOI ->
+                    nro.models.services.SuDoService.duoiDeTu(player, text.length > 0 ? text[0] : "");
                 case TANG_DIEM_BOSS -> {
                     if (text.length < 2) {
                         Service.gI().sendThongBao(player, "Vui lòng nhập tên nhân vật và số điểm");

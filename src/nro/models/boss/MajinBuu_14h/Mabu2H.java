@@ -47,6 +47,11 @@ public class Mabu2H extends Boss {
     private void eatPlayersInTheMap() {
         int numPlayers = 0;
         for (Player pl : this.zone.getPlayers()) {
+            // Ai sendMabuEat sẽ bỏ qua (không phải người chơi / đang bị giữ) thì không đánh dấu, tránh kẹt isMabuHold = true
+            if (pl == null || !pl.isPl() || pl.isDie() || pl.isMabuHold || pl.maBuHold != null || isPreparingFinisher(pl)
+                    || nro.models.services.PlayerFusionService.isWatcher(pl)) {
+                continue;
+            }
             if (Util.isTrue(1, 5)) {
                 pl.isMabuHold = true;
                 Service.gI().sendMabuEat(this, pl);
@@ -57,6 +62,12 @@ public class Mabu2H extends Boss {
         if (numPlayers > 0) {
             this.chat("Măm măm");
         }
+    }
+
+    // Đang nạp laze / quả cầu kênh khí / tự sát: không ăn, nếu không đòn nạp mất trắng (laze hồi 5-6 phút)
+    private static boolean isPreparingFinisher(Player pl) {
+        return pl.playerSkill != null
+                && (pl.playerSkill.prepareLaze || pl.playerSkill.prepareQCKK || pl.playerSkill.prepareTuSat);
     }
 
     private void petrifyPlayersInTheMap() {
@@ -125,22 +136,25 @@ public class Mabu2H extends Boss {
     @Override
     public synchronized int injured(Player plAtt, long damage, boolean piercing, boolean isMobAttack) {
         if (!this.isDie()) {
-            if (!piercing && Util.isTrue(10, 100)) {
+            // Kid Bư chỉ bị kết liễu bằng chiêu đặc biệt của mỗi hành tinh:
+            // Trái Đất - Quả cầu kênh khí, Namếc - Laze (Makankosappo), Xayda - Bom (Tự sát)
+            boolean isKidBu = this.currentLevel == this.data.length - 1;
+            boolean finisher = false;
+            if (isKidBu && plAtt != null && plAtt.playerSkill != null && plAtt.playerSkill.skillSelect != null) {
+                int skillId = plAtt.playerSkill.skillSelect.template.id;
+                finisher = skillId == Skill.QUA_CAU_KENH_KHI || skillId == Skill.MAKANKOSAPPO || skillId == Skill.TU_SAT;
+            }
+            // Chiêu kết liễu hồi 5-6 phút: không cho "Xí hụt", trước đây 10% laze mất trắng nên Kid Bư không chết
+            if (!piercing && !finisher && Util.isTrue(10, 100)) {
                 this.chat("Xí hụt");
                 return 0;
             }
 
-            if (plAtt.isPl() && Util.isTrue(1, 5)) {
+            if (plAtt != null && plAtt.isPl() && Util.isTrue(1, 5)) {
                 plAtt.fightMabu.changePercentPoint((byte) 1);
             }
-            if (this.currentLevel == this.data.length - 1) {
-                // Kid Bư chỉ bị kết liễu bằng chiêu đặc biệt của mỗi hành tinh:
-                // Trái Đất - Quả cầu kênh khí, Namếc - Laze (Makankosappo), Xayda - Bom (Tự sát)
-                int skillId = plAtt.playerSkill.skillSelect.template.id;
-                boolean finisher = skillId == Skill.QUA_CAU_KENH_KHI || skillId == Skill.MAKANKOSAPPO || skillId == Skill.TU_SAT;
-                if (!finisher) {
-                    damage = damage >= this.nPoint.hp ? 0 : damage;
-                }
+            if (isKidBu && !finisher) {
+                damage = damage >= this.nPoint.hp ? 0 : damage;
             }
 
             if (damage >= 30000000) {

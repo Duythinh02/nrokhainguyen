@@ -45,6 +45,18 @@ public class BossHuntService {
         if (owner == null || owner.event == null) {
             return;
         }
+        // Hợp thể Gogeta với người chơi khác: chia đôi điểm, người dẫn nhận phần lẻ
+        Player partner = PlayerFusionService.isLeader(owner) ? owner.fusionPartner : null;
+        if (partner != null && partner.event != null && point > 0) {
+            int partnerPoint = point / 2;
+            point -= partnerPoint;
+            int addedPartner = partner.event.addBossPointDaily(partnerPoint);
+            Service.gI().sendThongBao(partner, addedPartner > 0
+                    ? "+" + addedPartner + " Point chia từ hợp thể (hôm nay " + partner.event.getBossPointToday()
+                    + "/" + PlayerEvent.BOSS_POINT_DAILY_LIMIT + ")"
+                    : "Hôm nay đã đủ " + PlayerEvent.BOSS_POINT_DAILY_LIMIT + " điểm săn boss");
+            addRankPoint(partner, addedPartner);
+        }
         int added = owner.event.addBossPointDaily(point);
         if (added > 0) {
             Service.gI().sendThongBao(owner, "+" + added + " Point (hôm nay " + owner.event.getBossPointToday()
@@ -54,6 +66,21 @@ public class BossHuntService {
                     + " điểm săn boss, có cái nịt điểm!");
         }
         onKillBoss(owner, added);
+    }
+
+    // Cộng điểm bảng xếp hạng săn boss mà không tính thêm 1 boss đã diệt (người được chia điểm khi hợp thể)
+    private void addRankPoint(Player pl, int point) {
+        if (pl == null || pl.isBot || !pl.isPl() || point <= 0) {
+            return;
+        }
+        final long playerId = pl.id;
+        writer.execute(() -> {
+            try {
+                LocalManager.executeUpdate("update player set event_point_boss = event_point_boss + ? where id = ?", point, playerId);
+            } catch (Exception e) {
+                Logger.logException(BossHuntService.class, e, "Lỗi ghi điểm săn boss " + playerId);
+            }
+        });
     }
 
     /**

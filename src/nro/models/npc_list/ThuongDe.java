@@ -10,9 +10,18 @@ import nro.models.map.service.NpcService;
 import nro.models.services.Service;
 import nro.models.map.service.ChangeMapService;
 import nro.models.services_func.LuckyRound;
+import nro.models.services_func.LuckyRoundBossPoint;
 import nro.models.shop.ShopService;
 
 public class ThuongDe extends Npc {
+
+    private static final int MENU_QUAY_DIEM_BOSS = 7801;
+
+    private void menuQuayDiemBoss(Player player) {
+        createOtherMenu(player, MENU_QUAY_DIEM_BOSS, LuckyRoundBossPoint.info(player),
+                "Quay 1 lần\n(" + LuckyRoundBossPoint.PRICE + " điểm)",
+                "Quay 10 lần\n(" + LuckyRoundBossPoint.PRICE * 10 + " điểm)", "Đóng");
+    }
 
     public ThuongDe(int mapId, int status, int cx, int cy, int tempId, int avartar) {
         super(mapId, status, cx, cy, tempId, avartar);
@@ -107,7 +116,7 @@ public class ThuongDe extends Npc {
                                         + (player.inventory.itemsBoxCrackBall.size()
                                         - InventoryService.gI().getCountEmptyListItem(player.inventory.itemsBoxCrackBall))
                                         + " món)",
-                                        "Xóa hết\ntrong rương", "Đóng");
+                                        "Xóa hết\ntrong rương", "Quay bằng\nđiểm\nsăn boss", "Đóng");
                         }
                     } else if (player.idMark.getIndexMenu() == 2001) {
                         switch (select) {
@@ -150,6 +159,15 @@ public class ThuongDe extends Npc {
                                         "Con có chắc muốn xóa hết vật phẩm trong rương phụ? Sau khi xóa "
                                         + "sẽ không thể khôi phục!",
                                         "Đồng ý", "Hủy bỏ");
+                            case 4 ->
+                                menuQuayDiemBoss(player);
+                        }
+                    } else if (player.idMark.getIndexMenu() == MENU_QUAY_DIEM_BOSS) {
+                        switch (select) {
+                            case 0 ->
+                                LuckyRoundBossPoint.spin(player, 1);
+                            case 1 ->
+                                LuckyRoundBossPoint.spin(player, 10);
                         }
                     }
                 }

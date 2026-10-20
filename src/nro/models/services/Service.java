@@ -1738,6 +1738,8 @@ public class Service {
                 player.idMark.setAcpTrade(false);
                 return;
             }
+            // Nút Hợp thể / Tách hợp thể (Bông tai VIP)
+            PlayerFusionService.showSubMenu(player, pl);
 //            SubMenuService.gI().showMenu(player);
         } catch (Exception e) {
             Logger.logException(Service.class, e);

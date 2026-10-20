@@ -825,6 +825,18 @@ public class UseItem {
                             case 921: //bông tai
                                 UseItem.gI().usePorata2(pl);
                                 break;
+                            case nro.models.services.PlayerFusionService.ITEM_BONG_TAI_VIP: // hợp thể với người chơi
+                                if (pl.fusionPartner != null) {
+                                    nro.models.services.PlayerFusionService.separate(pl, pl.name + " tách hợp thể");
+                                } else {
+                                    Service.gI().sendThongBaoOK(pl, "Bông tai VIP: bấm vào người chơi khác, chọn \"Hợp thể\".\n"
+                                            + "Cả 2 người đều có Bông tai VIP, một người mặc CT Goku SSJ4,\n"
+                                            + "người kia mặc CT Cađíc SSJ4, đứng cùng khu.\n"
+                                            + "Người mời điều khiển Gogeta, người kia đi theo và xem.\n"
+                                            + "Điểm săn boss khi hợp thể được chia đôi cho 2 người.\n"
+                                            + "Dùng lại Bông tai VIP để tách hợp thể.");
+                                }
+                                break;
                                 case 1819: //bông tai
                                 UseItem.gI().usePorata3(pl);
                                 break;

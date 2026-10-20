@@ -28,8 +28,8 @@ public class SO4 extends Boss {
 
 @Override
     public void reward(Player plKill) {
-        // Boss nhiệm vụ Kuku -> Fide: không cộng điểm săn boss, chỉ tính số boss đã diệt
-        nro.models.services.BossHuntService.gI().onKillBoss(plKill, 0);
+        // Boss nhiệm vụ Kuku -> Fide: 5 điểm săn boss như mọi boss
+        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, 5);
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);
         Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, 190, Util.nextInt(20000, 30001),
           this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));

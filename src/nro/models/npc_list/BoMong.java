@@ -2,7 +2,10 @@ package nro.models.npc_list;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import nro.models.clan.ClanMember;
 import nro.models.consts.ConstNpc;
+import nro.models.server.Client;
+import nro.models.services.ClanService;
 import nro.models.consts.ConstTask;
 import nro.models.item.Item;
 import nro.models.services.AchievementService;
@@ -10,7 +13,6 @@ import nro.models.npc.Npc;
 import nro.models.player.Player;
 import nro.models.services.InventoryService;
 import nro.models.services.ItemService;
-import nro.models.services.PlayerService;
 import nro.models.services.Service;
 import nro.models.services.TaskService;
 import nro.models.services_func.Input;
@@ -21,6 +23,33 @@ import nro.models.services_func.Input;
  *
  */
 public class BoMong extends Npc {
+
+    // Quà điểm danh mỗi ngày
+    private static final int DIEM_DANH_DIEM_BOSS = 50;
+    private static final int DIEM_DANH_THOI_VANG = 200;
+    private static final int DIEM_DANH_CAPSULE_BANG = 20;
+
+    // Cộng Capsule Bang cho bang của người chơi (giống điểm danh bang ở Giữ Ma Đậu Bò), false nếu chưa có bang
+    private static boolean addCapsuleBang(Player player, int soLuong) {
+        if (player.clan == null) {
+            return false;
+        }
+        player.clan.capsuleClan += soLuong;
+        for (ClanMember cm : player.clan.getMembers()) {
+            if (cm.id == player.id) {
+                cm.memberPoint += soLuong;
+                cm.clanPoint += soLuong;
+                break;
+            }
+        }
+        for (ClanMember cm : player.clan.getMembers()) {
+            Player pl = Client.gI().getPlayer(cm.id);
+            if (pl != null) {
+                ClanService.gI().sendMyClan(pl);
+            }
+        }
+        return true;
+    }
 
     public BoMong(int mapId, int status, int cx, int cy, int tempId, int avartar) {
         super(mapId, status, cx, cy, tempId, avartar);
@@ -86,16 +115,24 @@ public class BoMong extends Npc {
                                     return;
                                 }
                             }
+                            if (InventoryService.gI().getCountEmptyBag(player) < 1) {
+                                Service.gI().sendThongBao(player, "Hành trang cần ít nhất 1 ô trống để điểm danh");
+                                return;
+                            }
                             player.lastCheckIn = LocalDateTime.now();
-                            player.inventory.gem += 10000;
+                            player.event.addEventPoint(DIEM_DANH_DIEM_BOSS);
                             Item item457 = ItemService.gI().createNewItem((short) 457);
-                            item457.quantity = 100;
+                            item457.quantity = DIEM_DANH_THOI_VANG;
                             item457.itemOptions.add(new Item.ItemOption(30, 0));
                             InventoryService.gI().addItemBag(player, item457);
-                            PlayerService.gI().sendInfoHpMpMoney(player);
+                            boolean coBang = addCapsuleBang(player, DIEM_DANH_CAPSULE_BANG);
                             InventoryService.gI().sendItemBags(player);
 
-                            Service.gI().sendThongBao(player, "Điểm danh thành công! Bạn nhận được 10.000 ngọc và 100 thỏi vàng.");
+                            Service.gI().sendThongBaoOK(player, "Điểm danh thành công! Nhận được:\n"
+                                    + DIEM_DANH_DIEM_BOSS + " điểm săn boss\n"
+                                    + DIEM_DANH_THOI_VANG + " thỏi vàng\n"
+                                    + (coBang ? DIEM_DANH_CAPSULE_BANG + " Capsule Bang"
+                                            : "(Chưa có bang hội nên không nhận được " + DIEM_DANH_CAPSULE_BANG + " Capsule Bang)"));
                         }
 
                     }

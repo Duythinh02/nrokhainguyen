@@ -660,6 +660,12 @@ public class NpcFactory {
                         break;
                     }
 
+                    case nro.models.services.SuDoService.MENU_XAC_NHAN_BAI_SU ->
+                        nro.models.services.SuDoService.confirmBaiSu(player, select);
+                    case nro.models.services.PlayerFusionService.MENU_XAC_NHAN_HOP_THE ->
+                        nro.models.services.PlayerFusionService.confirm(player, select);
+                    case nro.models.services.PlayerFusionService.MENU_TACH_HOP_THE ->
+                        nro.models.services.PlayerFusionService.confirmTach(player, select);
                     case ConstNpc.CONFIRM_REMOVE_ALL_ITEM_LUCKY_ROUND -> {
                         if (select == 0) {
                             for (int i = 0; i < player.inventory.itemsBoxCrackBall.size(); i++) {

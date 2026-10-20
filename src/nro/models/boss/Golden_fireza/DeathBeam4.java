@@ -47,7 +47,7 @@ public class DeathBeam4 extends Boss {
     }
     @Override
     public void reward(Player plKill) {
-        nro.models.services.BossHuntService.gI().onKillBoss(plKill, 0); // boss NV 36 - 40: không cộng điểm săn boss
+        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, 5);
         ItemMap CaiTrangFideVang = new ItemMap(zone, 629,1, this.location.x + Util.nextInt(-50, 50), this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id);
         CaiTrangFideVang.options.add(new Item.ItemOption(30, 1));
         CaiTrangFideVang.options.add(new Item.ItemOption(50, 20));

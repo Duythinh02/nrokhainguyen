@@ -360,6 +360,15 @@ public class Player implements Runnable {
     public long lastChallengeGauTuongCuopTime;
     public long lastChallengeGauTuopCuopTime;
     public LocalDateTime lastCheckIn;
+    // Sư đồ (SuDoService): tải lúc đăng nhập từ bảng su_do
+    public long suPhuId = -1;
+    public int suDoMilestone;
+    public final java.util.Set<Long> deTuIds = java.util.concurrent.ConcurrentHashMap.newKeySet();
+    public volatile boolean suDoBuff;
+    // Hợp thể Gogeta giữa 2 người chơi (PlayerFusionService): người dẫn fusionLeader = true, người xem = false
+    public volatile Player fusionPartner;
+    public volatile boolean fusionLeader;
+    public long lastPlayerFusionEnd;
 
     public Player() {
         LearnSkill = new LearnSkill();
@@ -828,6 +837,9 @@ public class Player implements Runnable {
     }
 
     public short getHead() {
+        if (fusionLeader && fusionPartner != null) {
+            return nro.models.services.PlayerFusionService.GOGETA_HEAD;
+        }
         if (this.isPl() && this.pet != null && this.fusion.typeFusion == ConstPlayer.HOP_THE_GOGETA || this.fusion.typeFusion == ConstPlayer.LUONG_LONG_NHAT_THE || this.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || this.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || this.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3) {
             Item item = inventory.itemsBody.get(5);
             Item petItem = pet.inventory.itemsBody.get(5);
@@ -882,6 +894,9 @@ public class Player implements Runnable {
     }
 
     public short getBody() {
+        if (fusionLeader && fusionPartner != null) {
+            return nro.models.services.PlayerFusionService.GOGETA_BODY;
+        }
         if (this.isPl() && this.pet != null && this.fusion.typeFusion == ConstPlayer.HOP_THE_GOGETA || this.fusion.typeFusion == ConstPlayer.LUONG_LONG_NHAT_THE || this.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || this.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || this.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3) {
             Item item = inventory.itemsBody.get(5);
             Item petItem = pet.inventory.itemsBody.get(5);
@@ -942,6 +957,9 @@ public class Player implements Runnable {
     }
 
     public short getLeg() {
+        if (fusionLeader && fusionPartner != null) {
+            return nro.models.services.PlayerFusionService.GOGETA_LEG;
+        }
         if (this.isPl() && this.pet != null && this.fusion.typeFusion == ConstPlayer.HOP_THE_GOGETA || this.fusion.typeFusion == ConstPlayer.LUONG_LONG_NHAT_THE || this.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA || this.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA2 || this.fusion.typeFusion == ConstPlayer.HOP_THE_PORATA3) {
             Item item = inventory.itemsBody.get(5);
             Item petItem = pet.inventory.itemsBody.get(5);
@@ -1060,6 +1078,10 @@ public class Player implements Runnable {
     }
 
     protected synchronized int injuredLong(Player plAtt, long damage, boolean piercing, boolean isMobAttack) {
+        // Người xem khi hợp thể với người chơi khác không nhận sát thương
+        if (fusionPartner != null && !fusionLeader) {
+            return 0;
+        }
         if (!this.isDie()) {
             if (plAtt != null && !plAtt.equals(this)) {
                 setTemporaryEnemies(plAtt);

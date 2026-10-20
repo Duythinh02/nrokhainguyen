@@ -36,7 +36,7 @@ public class DataGame {
     public static byte vsData = 15;
     public static byte vsMap = 3;
     public static byte vsSkill = 1;
-    public static byte vsItem = 12;
+    public static byte vsItem = 13; // 13: thêm Bông tai VIP (2693)
     public static int vsRes = 1;
     public static short maxSmallVersion = 32767;
 

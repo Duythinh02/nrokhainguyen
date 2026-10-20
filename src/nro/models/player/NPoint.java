@@ -245,6 +245,12 @@ public class NPoint {
         if (this.player.rewardBlackBall.timeOutOfDateReward[6] > System.currentTimeMillis()) {
             tlNeDon += RewardBlackBall.R7S_1;
         }
+        // Sư đồ cùng khu (SuDoService.updateBuffs)
+        if (this.player.suDoBuff) {
+            this.tlDame.add(nro.models.services.SuDoService.BUFF_DAME);
+            this.tlHp.add(nro.models.services.SuDoService.BUFF_HP_KI);
+            this.tlMp.add(nro.models.services.SuDoService.BUFF_HP_KI);
+        }
         // Lấy tất cả option danh hiệu
         List<Item.ItemOption> options = BagesTemplate.sendListItemOption(player);
 
@@ -869,6 +875,11 @@ public class NPoint {
         if (this.player.fusion.typeFusion != ConstPlayer.NON_FUSION) {
             hpMax += this.player.pet.nPoint.hpMax;
         }
+        // Hợp thể Gogeta với người chơi khác: người dẫn cộng HP của người xem
+        Player fusionPartner = this.player.fusionLeader ? this.player.fusionPartner : null;
+        if (fusionPartner != null && fusionPartner.nPoint != null) {
+            hpMax += fusionPartner.nPoint.hpMax;
+        }
 
         // Xử lý bổ huyết
         if (this.player.itemTime != null && this.player.itemTime.isUseBoHuyet && !this.player.itemTime.isUseBoHuyet2) {
@@ -1010,6 +1021,10 @@ public class NPoint {
         if (this.player.fusion.typeFusion
                 != 0) {
             mpMax += this.player.pet.nPoint.mpMax;
+        }
+        Player fusionPartner = this.player.fusionLeader ? this.player.fusionPartner : null;
+        if (fusionPartner != null && fusionPartner.nPoint != null) {
+            mpMax += fusionPartner.nPoint.mpMax;
         }
 
         // Xử lý bổ khí
@@ -1180,6 +1195,10 @@ public class NPoint {
         // Xử lý hợp thể
         if (this.player.fusion.typeFusion != 0) {
             dame += this.player.pet.nPoint.dame;
+        }
+        Player fusionPartner = this.player.fusionLeader ? this.player.fusionPartner : null;
+        if (fusionPartner != null && fusionPartner.nPoint != null) {
+            dame += fusionPartner.nPoint.dame;
         }
 
         // Lấy tất cả option danh hiệu
@@ -1924,6 +1943,9 @@ public class NPoint {
     public void powerUp(long power) {
         this.power += power;
         TaskService.gI().checkDoneTaskPower(player, this.power);
+        if (player.suPhuId > 0) {
+            nro.models.services.SuDoService.onPowerUp(player);
+        }
     }
 
     public void tiemNangUp(long tiemNang) {

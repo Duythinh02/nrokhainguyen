@@ -434,7 +434,9 @@ public class Zone {
 
         //Lỗi
         for (Player pl : this.notBosses) {
-            if (pl != null && (pl.effectSkin == null || !pl.effectSkin.isVoHinh) && pl.maBuHold == null && !pl.isMabuHold) {
+            // Bỏ qua người xem khi hợp thể với người chơi khác (không nhận sát thương, không cho làm lá chắn)
+            if (pl != null && (pl.effectSkin == null || !pl.effectSkin.isVoHinh) && pl.maBuHold == null && !pl.isMabuHold
+                    && !nro.models.services.PlayerFusionService.isWatcher(pl)) {
                 plNotVoHinh.add(pl);
             }
         }
@@ -538,6 +540,10 @@ public class Zone {
             return;
         }
         if (plReceive == null || plReceive.nPoint == null) {
+            return;
+        }
+        // Người xem khi hợp thể với người chơi khác (và đệ tử của họ) không hiện với người khác
+        if (plReceive != plInfo && nro.models.services.PlayerFusionService.isHiddenFrom(plInfo, plReceive)) {
             return;
         }
         Message msg;

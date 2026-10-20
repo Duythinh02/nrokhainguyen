@@ -35,4 +35,1898 @@
 [0m[0;35mTotal database loading time: 11211 (ms)
 [0m[0;32m[0;31mUpdate maps thread started success!
 [0m[0;32mServer initialized and listening on port 14445
+[0m[0;31mSuccessfully loaded file properties!
+[0m[ServerMain] WARN com.zaxxer.hikari.HikariConfig - User Management - idleTimeout is close to or more than maxLifetime, disabling it.
+[0;32m[0;35mSuccessfully loaded part (2102)
+[0m[0;32mData version (vsData): 16
+[0m[0;32m[0;31mSuccessfully loaded bg item template (597)
+[0m[0;32m[0;35mSuccessfully loaded arr head 2 frames (52)
+[0m[0;32m[0;31mSuccessfully loaded clan (35), clan next id: 42
+[0m[0;32m[0;35mSuccessfully loaded skill (3)
+[0m[0;32m[0;31mSuccessfully loaded head avatar (464)
+[0m[0;32m[0;35mSuccessfully loaded flag bag (156)
+[0m[0;32m[0;31mSuccessfully loaded intrinsic (208)
+[0m[0;32m[0;35mSuccessfully loaded task (42)
+[0m[0;32m[0;31mSuccessfully loaded side task (59)
+[0m[0;32m[0;35mSuccessfully loaded task badges (18)
+[0m[0;32m[0;31mSuccessfully loaded clan task (59)
+[0m[0;32m[0;35mSuccessfully loaded achievement (20)
+[0m[0;32m[0;31mSuccessfully loaded map item template (2693 items)
+[0m[0;32m[0;35mSuccessfully loaded map item option template (255)
+[0m[0;35m[1m[12:16:06] [CONNECT]      Panel quản trị đã sẵn sàng[0m
+[0;32m[0;31mSuccessfully loaded shop (62)
+[0m[0;32m[0;35mSuccessfully loaded notify (0)
+[0m[0;32m[0;31mSuccessfully loaded images by name (146)
+[0m[0;32m[0;35mSuccessfully loaded mount (47)
+[0m[0;32mSuccessfully loaded kol task (7)
+[0m[0;32mSuccessfully loaded event task (59)
+[0m[0;32m[0;31mSuccessfully loaded Consign Item (61)
+[0m[0;32m[0;35mSuccessfully loaded mob template (127)
+[0m[0;32m[0;31mSuccessfully loaded npc template (125)
+[0m[0;32m[0;35mSuccessfully loaded badges template (16)
+[0m[0;32m[0;31mSuccessfully loaded map template (250)
+[0m[0;32m[0;35mSuccessfully loaded radar template (21)
+[0m[0;32m[0;31mSuccessfully loaded giftcode (4)
+[0m[0;32m[0;35mSuccessfully Top Su Kien (100)
+[0m[0;32m[0;31mSuccessfully top Thach Dau Whis (100)
+[0m[0;35mTotal database loading time: 11704 (ms)
+[0m[0;32m[0;31mUpdate maps thread started success!
+[0m[0;32mServer initialized and listening on port 14445
+[0m[0;32mIcon có version mới: 19
+[0m[0;33m[12:16] - Player Login: akksa: 3365 ms
+[0m[0;33m[12:16] - Player Login: onebbi: 3060 ms
+[0m[0;33m[12:16] - Player Login: laze1hp: 4529 ms
+[0m[0;32m[0;35mlaze1hp: Data update successfully....[0m
+[0;32m[0;35m12h16m: Player laze1hp save successfully! 53ms
+[0m[0;33m[12:16] - Player Login: hfphwngg: 63 ms
+[0m[0;33m[12:16] - Player Login: quanhai38: 192 ms
+[0m[0;33m[12:16] - Player Login: laze1hp: 32 ms
+[0m[0;33m[12:16] - Player Login: gauxayda: 82 ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m12h16m: Player quanhai38 save successfully! 16ms
+[0m[0;33m[12:16] - Player Login: quanhai38: 35 ms
+[0m[0;32mĐã tạo 20 bot người chơi
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m12h16m: Player quanhai38 save successfully! 15ms
+[0m[0;33m[12:16] - Player Login: ngocr0ng: 35 ms
+[0m[0;33m[12:16] - Player Login: quanhai38: 38 ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m12h16m: Player quanhai38 save successfully! 15ms
+[0m[0;33m[12:17] - Player Login: onebi: 51 ms
+[0m[0;31mBoss Bui Bui (-238) hết máu nhưng chưa xử lý chết, tự xử lý
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m12h17m: Player onebi save successfully! 21ms
+[0m[0;33m[12:17] - Player Login: onebi: 51 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m12h17m: Player onebi save successfully! 12ms
+[0m[0;33m[12:17] - Player Login: onebi: 39 ms
+[0m[0;33m[12:17] - Player Login: quanhai38: 55 ms
+[0m[0;33m[12:17] - Player Login: carrot: 55 ms
+[0m[0;33m[12:19] - Player Login: yuamikami: 47 ms
+[0m[0;32m[0;35mlaze1hp: Data update successfully....[0m
+[0;32m[0;35m12h19m: Player laze1hp save successfully! 12ms
+[0m[0;33m[12:19] - Player Login: lucifer01: 39 ms
+[0m[0;33m[12:19] - Player Login: eimifukada: 34 ms
+[0m[0;32m[0;35makksa: Data update successfully....[0m
+[0;32m[0;35m12h20m: Player akksa save successfully! 14ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m12h20m: Player hfphwngg save successfully! 11ms
+[0m[0;33m[12:20] - Player Login: akksa: 32 ms
+[0m[0;33m[12:21] - Player Login: hfphwngg: 80 ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m12h21m: Player onebbi save successfully! 8ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m12h21m: Player gauxayda save successfully! 9ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m12h21m: Player ngocr0ng save successfully! 10ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m12h21m: Player onebi save successfully! 12ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m12h21m: Player quanhai38 save successfully! 12ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m12h21m: Player carrot save successfully! 13ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m12h21m: Player yuamikami save successfully! 10ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m12h21m: Player lucifer01 save successfully! 7ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m12h21m: Player eimifukada save successfully! 11ms
+[0m[0;32m[0;35makksa: Data update successfully....[0m
+[0;32m[0;35m12h21m: Player akksa save successfully! 10ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m12h21m: Player hfphwngg save successfully! 11ms
+[0m[0;35mTự lưu 11 người chơi online: 127 ms
+[0m[0;33m[12:21] - Player Login: laze1hp: 39 ms
+[0m[0;32m[0;35mlaze1hp: Data update successfully....[0m
+[0;32m[0;35m12h23m: Player laze1hp save successfully! 13ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m12h26m: Player onebbi save successfully! 14ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m12h26m: Player gauxayda save successfully! 10ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m12h26m: Player ngocr0ng save successfully! 11ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m12h26m: Player onebi save successfully! 12ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m12h26m: Player quanhai38 save successfully! 11ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m12h26m: Player carrot save successfully! 12ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m12h26m: Player yuamikami save successfully! 11ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m12h26m: Player lucifer01 save successfully! 10ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m12h26m: Player eimifukada save successfully! 11ms
+[0m[0;32m[0;35makksa: Data update successfully....[0m
+[0;32m[0;35m12h26m: Player akksa save successfully! 7ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m12h26m: Player hfphwngg save successfully! 12ms
+[0m[0;35mTự lưu 11 người chơi online: 137 ms
+[0m[0;31mBoss Mabư (-236) hết máu nhưng chưa xử lý chết, tự xử lý
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m12h28m: Player lucifer01 save successfully! 12ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m12h29m: Player yuamikami save successfully! 13ms
+[0m[0;33m[12:29] - Player Login: yuamikami: 44 ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m12h31m: Player onebbi save successfully! 15ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m12h31m: Player gauxayda save successfully! 33ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m12h31m: Player ngocr0ng save successfully! 12ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m12h31m: Player onebi save successfully! 10ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m12h31m: Player quanhai38 save successfully! 11ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m12h31m: Player carrot save successfully! 12ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m12h31m: Player eimifukada save successfully! 11ms
+[0m[0;32m[0;35makksa: Data update successfully....[0m
+[0;32m[0;35m12h31m: Player akksa save successfully! 6ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m12h31m: Player hfphwngg save successfully! 11ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m12h31m: Player yuamikami save successfully! 10ms
+[0m[0;35mTự lưu 10 người chơi online: 151 ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m12h34m: Player ngocr0ng save successfully! 21ms
+[0m[0;33m[12:34] - Player Login: ngocr0ng: 61 ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m12h36m: Player onebbi save successfully! 21ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m12h36m: Player gauxayda save successfully! 13ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m12h36m: Player onebi save successfully! 15ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m12h36m: Player quanhai38 save successfully! 13ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m12h36m: Player carrot save successfully! 10ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m12h36m: Player eimifukada save successfully! 8ms
+[0m[0;32m[0;35makksa: Data update successfully....[0m
+[0;32m[0;35m12h36m: Player akksa save successfully! 6ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m12h36m: Player hfphwngg save successfully! 9ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m12h36m: Player yuamikami save successfully! 10ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m12h36m: Player ngocr0ng save successfully! 14ms
+[0m[0;35mTự lưu 10 người chơi online: 135 ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m12h37m: Player onebbi save successfully! 14ms
+[0m[0;33m[12:37] - Player Login: onebbi: 59 ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m12h41m: Player gauxayda save successfully! 20ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m12h41m: Player onebi save successfully! 13ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m12h41m: Player quanhai38 save successfully! 12ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m12h41m: Player carrot save successfully! 11ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m12h41m: Player eimifukada save successfully! 12ms
+[0m[0;32m[0;35makksa: Data update successfully....[0m
+[0;32m[0;35m12h41m: Player akksa save successfully! 28ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m12h41m: Player hfphwngg save successfully! 17ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m12h41m: Player yuamikami save successfully! 17ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m12h41m: Player ngocr0ng save successfully! 14ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m12h41m: Player onebbi save successfully! 13ms
+[0m[0;35mTự lưu 10 người chơi online: 174 ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m12h46m: Player gauxayda save successfully! 18ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m12h46m: Player onebi save successfully! 14ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m12h46m: Player quanhai38 save successfully! 12ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m12h46m: Player carrot save successfully! 10ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m12h46m: Player eimifukada save successfully! 7ms
+[0m[0;32m[0;35makksa: Data update successfully....[0m
+[0;32m[0;35m12h46m: Player akksa save successfully! 7ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m12h46m: Player hfphwngg save successfully! 12ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m12h46m: Player yuamikami save successfully! 12ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m12h46m: Player ngocr0ng save successfully! 10ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m12h46m: Player onebbi save successfully! 9ms
+[0m[0;35mTự lưu 10 người chơi online: 123 ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m12h51m: Player gauxayda save successfully! 26ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m12h51m: Player onebi save successfully! 14ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m12h51m: Player quanhai38 save successfully! 14ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m12h51m: Player carrot save successfully! 18ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m12h51m: Player eimifukada save successfully! 14ms
+[0m[0;32m[0;35makksa: Data update successfully....[0m
+[0;32m[0;35m12h51m: Player akksa save successfully! 14ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m12h51m: Player hfphwngg save successfully! 12ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m12h51m: Player yuamikami save successfully! 12ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m12h51m: Player ngocr0ng save successfully! 12ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m12h51m: Player onebbi save successfully! 10ms
+[0m[0;35mTự lưu 10 người chơi online: 166 ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m12h56m: Player gauxayda save successfully! 17ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m12h56m: Player onebi save successfully! 12ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m12h56m: Player quanhai38 save successfully! 12ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m12h56m: Player carrot save successfully! 14ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m12h56m: Player eimifukada save successfully! 10ms
+[0m[0;32m[0;35makksa: Data update successfully....[0m
+[0;32m[0;35m12h56m: Player akksa save successfully! 7ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m12h56m: Player hfphwngg save successfully! 10ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m12h56m: Player yuamikami save successfully! 11ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m12h56m: Player ngocr0ng save successfully! 11ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m12h56m: Player onebbi save successfully! 8ms
+[0m[0;35mTự lưu 10 người chơi online: 131 ms
+[0m[0;31mBoss Drabura (-233) hết máu nhưng chưa xử lý chết, tự xử lý
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m13h1m: Player gauxayda save successfully! 15ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m13h1m: Player onebi save successfully! 13ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m13h1m: Player quanhai38 save successfully! 12ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m13h1m: Player carrot save successfully! 11ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m13h1m: Player eimifukada save successfully! 3ms
+[0m[0;32m[0;35makksa: Data update successfully....[0m
+[0;32m[0;35m13h1m: Player akksa save successfully! 13ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m13h1m: Player hfphwngg save successfully! 12ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m13h1m: Player yuamikami save successfully! 13ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m13h1m: Player ngocr0ng save successfully! 13ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m13h1m: Player onebbi save successfully! 9ms
+[0m[0;35mTự lưu 10 người chơi online: 138 ms
+[0m[0;33m[13:3] - Player Login: sweetiefox: 73 ms
+[0m[0;33m[13:3] - Player Login: noname2: 37 ms
+[0m[0;33m[13:3] - Player Login: demonic: 49 ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m13h3m: Player quanhai38 save successfully! 14ms
+[0m[0;33m[13:3] - Player Login: quanhai38: 43 ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m13h4m: Player gauxayda save successfully! 13ms
+[0m[0;33m[13:4] - Player Login: noname3: 38 ms
+[0m[0;33m[13:4] - Player Login: gauxayda: 48 ms
+[0m[0;32m[0;35makksa: Data update successfully....[0m
+[0;32m[0;35m13h5m: Player akksa save successfully! 26ms
+[0m[0;33m[13:5] - Player Login: hfphwng: 29 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m13h6m: Player onebi save successfully! 17ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m13h6m: Player carrot save successfully! 9ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m13h6m: Player eimifukada save successfully! 8ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m13h6m: Player hfphwngg save successfully! 12ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m13h6m: Player yuamikami save successfully! 10ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m13h6m: Player ngocr0ng save successfully! 11ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m13h6m: Player onebbi save successfully! 8ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m13h6m: Player sweetiefox save successfully! 5ms
+[0m[0;32m[0;35mnoname2: Data update successfully....[0m
+[0;32m[0;35m13h6m: Player noname2 save successfully! 14ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m13h6m: Player demonic save successfully! 6ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m13h6m: Player quanhai38 save successfully! 7ms
+[0m[0;32m[0;35mnoname3: Data update successfully....[0m
+[0;32m[0;35m13h6m: Player noname3 save successfully! 25ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m13h6m: Player gauxayda save successfully! 10ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m13h6m: Player hfphwng save successfully! 8ms
+[0m[0;35mTự lưu 14 người chơi online: 179 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m13h11m: Player onebi save successfully! 16ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m13h11m: Player carrot save successfully! 13ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m13h11m: Player eimifukada save successfully! 8ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m13h11m: Player hfphwngg save successfully! 9ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m13h11m: Player yuamikami save successfully! 11ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m13h11m: Player ngocr0ng save successfully! 14ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m13h11m: Player onebbi save successfully! 10ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m13h11m: Player sweetiefox save successfully! 8ms
+[0m[0;32m[0;35mnoname2: Data update successfully....[0m
+[0;32m[0;35m13h11m: Player noname2 save successfully! 7ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m13h11m: Player demonic save successfully! 9ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m13h11m: Player quanhai38 save successfully! 20ms
+[0m[0;32m[0;35mnoname3: Data update successfully....[0m
+[0;32m[0;35m13h11m: Player noname3 save successfully! 10ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m13h11m: Player gauxayda save successfully! 10ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m13h11m: Player hfphwng save successfully! 10ms
+[0m[0;35mTự lưu 14 người chơi online: 174 ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m13h12m: Player hfphwng save successfully! 12ms
+[0m[0;33m[13:12] - Player Login: akksa: 56 ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m13h13m: Player hfphwngg save successfully! 21ms
+[0m[0;33m[13:14] - Player Login: hfphwngg: 59 ms
+[0m[0;32m[0;35makksa: Data update successfully....[0m
+[0;32m[0;35m13h15m: Player akksa save successfully! 12ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m13h15m: Player hfphwngg save successfully! 14ms
+[0m[0;33m[13:15] - Player Login: hfphwngg: 63 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m13h16m: Player onebi save successfully! 13ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m13h16m: Player carrot save successfully! 31ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m13h16m: Player eimifukada save successfully! 9ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m13h16m: Player yuamikami save successfully! 12ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m13h16m: Player ngocr0ng save successfully! 11ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m13h16m: Player onebbi save successfully! 8ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m13h16m: Player sweetiefox save successfully! 8ms
+[0m[0;32m[0;35mnoname2: Data update successfully....[0m
+[0;32m[0;35m13h16m: Player noname2 save successfully! 8ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m13h16m: Player demonic save successfully! 8ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m13h16m: Player quanhai38 save successfully! 9ms
+[0m[0;32m[0;35mnoname3: Data update successfully....[0m
+[0;32m[0;35m13h16m: Player noname3 save successfully! 7ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m13h16m: Player gauxayda save successfully! 9ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m13h16m: Player hfphwngg save successfully! 10ms
+[0m[0;35mTự lưu 13 người chơi online: 161 ms
+[0m[0;33m[13:19] - Player Login: maisjwk: 77 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m13h21m: Player onebi save successfully! 21ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m13h21m: Player carrot save successfully! 10ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m13h21m: Player eimifukada save successfully! 8ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m13h21m: Player yuamikami save successfully! 10ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m13h21m: Player ngocr0ng save successfully! 14ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m13h21m: Player onebbi save successfully! 10ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m13h21m: Player sweetiefox save successfully! 9ms
+[0m[0;32m[0;35mnoname2: Data update successfully....[0m
+[0;32m[0;35m13h21m: Player noname2 save successfully! 8ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m13h21m: Player demonic save successfully! 7ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m13h21m: Player quanhai38 save successfully! 8ms
+[0m[0;32m[0;35mnoname3: Data update successfully....[0m
+[0;32m[0;35m13h21m: Player noname3 save successfully! 9ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m13h21m: Player gauxayda save successfully! 10ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m13h21m: Player hfphwngg save successfully! 11ms
+[0m[0;32m[0;35mmaisjwk: Data update successfully....[0m
+[0;32m[0;35m13h21m: Player maisjwk save successfully! 9ms
+[0m[0;35mTự lưu 14 người chơi online: 168 ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m13h23m: Player hfphwngg save successfully! 19ms
+[0m[0;32m[0;35mTạo player mới thành công!
+[0m[0;32mdkkkd: Data inserted successfully....[0m
+[0;33m[13:24] - Player Login: dkkkd: 42 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m13h26m: Player onebi save successfully! 14ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m13h26m: Player carrot save successfully! 16ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m13h26m: Player eimifukada save successfully! 21ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m13h26m: Player yuamikami save successfully! 14ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m13h26m: Player ngocr0ng save successfully! 24ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m13h26m: Player onebbi save successfully! 18ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m13h26m: Player sweetiefox save successfully! 8ms
+[0m[0;32m[0;35mnoname2: Data update successfully....[0m
+[0;32m[0;35m13h26m: Player noname2 save successfully! 9ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m13h26m: Player demonic save successfully! 8ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m13h26m: Player quanhai38 save successfully! 12ms
+[0m[0;32m[0;35mnoname3: Data update successfully....[0m
+[0;32m[0;35m13h26m: Player noname3 save successfully! 9ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m13h26m: Player gauxayda save successfully! 7ms
+[0m[0;32m[0;35mmaisjwk: Data update successfully....[0m
+[0;32m[0;35m13h26m: Player maisjwk save successfully! 8ms
+[0m[0;32m[0;35mdkkkd: Data update successfully....[0m
+[0;32m[0;35m13h26m: Player dkkkd save successfully! 6ms
+[0m[0;35mTự lưu 14 người chơi online: 199 ms
+[0m[0;32m[0;35mdkkkd: Data update successfully....[0m
+[0;32m[0;35m13h29m: Player dkkkd save successfully! 17ms
+[0m[0;32m[0;35mmaisjwk: Data update successfully....[0m
+[0;32m[0;35m13h29m: Player maisjwk save successfully! 14ms
+[0m[0;33m[13:29] - Player Login: maisjwk: 44 ms
+[0m[0;33m[13:29] - Player Login: dkkkd: 38 ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m13h30m: Player gauxayda save successfully! 8ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m13h31m: Player onebi save successfully! 16ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m13h31m: Player carrot save successfully! 9ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m13h31m: Player eimifukada save successfully! 9ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m13h31m: Player yuamikami save successfully! 10ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m13h31m: Player ngocr0ng save successfully! 15ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m13h31m: Player onebbi save successfully! 12ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m13h31m: Player sweetiefox save successfully! 6ms
+[0m[0;32m[0;35mnoname2: Data update successfully....[0m
+[0;32m[0;35m13h31m: Player noname2 save successfully! 7ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m13h31m: Player demonic save successfully! 9ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m13h31m: Player quanhai38 save successfully! 12ms
+[0m[0;32m[0;35mnoname3: Data update successfully....[0m
+[0;32m[0;35m13h31m: Player noname3 save successfully! 13ms
+[0m[0;32m[0;35mmaisjwk: Data update successfully....[0m
+[0;32m[0;35m13h31m: Player maisjwk save successfully! 12ms
+[0m[0;32m[0;35mdkkkd: Data update successfully....[0m
+[0;32m[0;35m13h31m: Player dkkkd save successfully! 11ms
+[0m[0;35mTự lưu 13 người chơi online: 162 ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m13h33m: Player onebbi save successfully! 31ms
+[0m[0;33m[13:33] - Player Login: onebbi: 45 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m13h36m: Player onebi save successfully! 19ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m13h36m: Player carrot save successfully! 10ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m13h36m: Player eimifukada save successfully! 32ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m13h36m: Player yuamikami save successfully! 8ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m13h36m: Player ngocr0ng save successfully! 11ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m13h36m: Player sweetiefox save successfully! 8ms
+[0m[0;32m[0;35mnoname2: Data update successfully....[0m
+[0;32m[0;35m13h36m: Player noname2 save successfully! 7ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m13h36m: Player demonic save successfully! 10ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m13h36m: Player quanhai38 save successfully! 9ms
+[0m[0;32m[0;35mnoname3: Data update successfully....[0m
+[0;32m[0;35m13h36m: Player noname3 save successfully! 8ms
+[0m[0;32m[0;35mmaisjwk: Data update successfully....[0m
+[0;32m[0;35m13h36m: Player maisjwk save successfully! 8ms
+[0m[0;32m[0;35mdkkkd: Data update successfully....[0m
+[0;32m[0;35m13h36m: Player dkkkd save successfully! 7ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m13h36m: Player onebbi save successfully! 13ms
+[0m[0;35mTự lưu 13 người chơi online: 169 ms
+[0m[0;33mError in class: [0m[0;31mnro.models.services.InventoryService[0m[0;33m - in method: [0m[0;31msendItemBoxClan
+[0m[0;33mError details:
+[0m[0;31mjava.lang.NullPointerException: Cannot invoke "java.util.List.size()" because "<parameter1>.clan.itemsBoxClan" is null
+[0m[0;31m	at nro.models.services.InventoryService.sendItemBoxClan(InventoryService.java:1349)
+[0m[0;31m	at nro.models.npc_list.RuongBangHoi.openBaseMenu(RuongBangHoi.java:26)
+[0m[0;31m	at nro.models.server.MenuController.openMenuNPC(MenuController.java:41)
+[0m[0;31m	at nro.models.server.Controller.onMessage(Controller.java:590)
+[0m[0;31m	at nro.models.network.Collector.run(Collector.java:39)
+[0m[0;31m	at java.base/java.lang.Thread.run(Thread.java:1583)
+[0m--------------------------------------------------------
+[0;33m[13:38] - Player Login: laze1hp: 41 ms
+[0m[0;32m[0;35mlaze1hp: Data update successfully....[0m
+[0;32m[0;35m13h40m: Player laze1hp save successfully! 16ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m13h41m: Player onebi save successfully! 17ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m13h41m: Player carrot save successfully! 29ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m13h41m: Player eimifukada save successfully! 9ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m13h41m: Player yuamikami save successfully! 11ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m13h41m: Player ngocr0ng save successfully! 11ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m13h41m: Player sweetiefox save successfully! 7ms
+[0m[0;32m[0;35mnoname2: Data update successfully....[0m
+[0;32m[0;35m13h41m: Player noname2 save successfully! 7ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m13h41m: Player demonic save successfully! 9ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m13h41m: Player quanhai38 save successfully! 10ms
+[0m[0;32m[0;35mnoname3: Data update successfully....[0m
+[0;32m[0;35m13h41m: Player noname3 save successfully! 7ms
+[0m[0;32m[0;35mmaisjwk: Data update successfully....[0m
+[0;32m[0;35m13h41m: Player maisjwk save successfully! 6ms
+[0m[0;32m[0;35mdkkkd: Data update successfully....[0m
+[0;32m[0;35m13h41m: Player dkkkd save successfully! 8ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m13h41m: Player onebbi save successfully! 8ms
+[0m[0;35mTự lưu 13 người chơi online: 163 ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m13h45m: Player onebbi save successfully! 17ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m13h46m: Player onebi save successfully! 13ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m13h46m: Player carrot save successfully! 7ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m13h46m: Player eimifukada save successfully! 7ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m13h46m: Player yuamikami save successfully! 11ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m13h46m: Player ngocr0ng save successfully! 12ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m13h46m: Player sweetiefox save successfully! 9ms
+[0m[0;32m[0;35mnoname2: Data update successfully....[0m
+[0;32m[0;35m13h46m: Player noname2 save successfully! 10ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m13h46m: Player demonic save successfully! 9ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m13h46m: Player quanhai38 save successfully! 9ms
+[0m[0;32m[0;35mnoname3: Data update successfully....[0m
+[0;32m[0;35m13h46m: Player noname3 save successfully! 8ms
+[0m[0;32m[0;35mmaisjwk: Data update successfully....[0m
+[0;32m[0;35m13h46m: Player maisjwk save successfully! 9ms
+[0m[0;32m[0;35mdkkkd: Data update successfully....[0m
+[0;32m[0;35m13h46m: Player dkkkd save successfully! 10ms
+[0m[0;35mTự lưu 12 người chơi online: 131 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m13h51m: Player onebi save successfully! 16ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m13h51m: Player carrot save successfully! 11ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m13h51m: Player eimifukada save successfully! 17ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m13h51m: Player yuamikami save successfully! 14ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m13h51m: Player ngocr0ng save successfully! 12ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m13h51m: Player sweetiefox save successfully! 12ms
+[0m[0;32m[0;35mnoname2: Data update successfully....[0m
+[0;32m[0;35m13h51m: Player noname2 save successfully! 12ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m13h51m: Player demonic save successfully! 20ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m13h51m: Player quanhai38 save successfully! 11ms
+[0m[0;32m[0;35mnoname3: Data update successfully....[0m
+[0;32m[0;35m13h51m: Player noname3 save successfully! 7ms
+[0m[0;32m[0;35mmaisjwk: Data update successfully....[0m
+[0;32m[0;35m13h51m: Player maisjwk save successfully! 12ms
+[0m[0;32m[0;35mdkkkd: Data update successfully....[0m
+[0;32m[0;35m13h51m: Player dkkkd save successfully! 9ms
+[0m[0;35mTự lưu 12 người chơi online: 184 ms
+[0m[0;32m[0;35mnoname3: Data update successfully....[0m
+[0;32m[0;35m13h51m: Player noname3 save successfully! 15ms
+[0m[0;32m[0;35mnoname2: Data update successfully....[0m
+[0;32m[0;35m13h51m: Player noname2 save successfully! 18ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m13h56m: Player onebi save successfully! 14ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m13h56m: Player carrot save successfully! 14ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m13h56m: Player eimifukada save successfully! 12ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m13h56m: Player yuamikami save successfully! 12ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m13h56m: Player ngocr0ng save successfully! 10ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m13h56m: Player sweetiefox save successfully! 9ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m13h56m: Player demonic save successfully! 8ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m13h56m: Player quanhai38 save successfully! 10ms
+[0m[0;32m[0;35mmaisjwk: Data update successfully....[0m
+[0;32m[0;35m13h56m: Player maisjwk save successfully! 10ms
+[0m[0;32m[0;35mdkkkd: Data update successfully....[0m
+[0;32m[0;35m13h56m: Player dkkkd save successfully! 7ms
+[0m[0;35mTự lưu 10 người chơi online: 123 ms
+[0m[0;32m[0;35mmaisjwk: Data update successfully....[0m
+[0;32m[0;35m14h1m: Player maisjwk save successfully! 13ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m14h1m: Player onebi save successfully! 9ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h1m: Player carrot save successfully! 7ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m14h1m: Player eimifukada save successfully! 8ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m14h1m: Player yuamikami save successfully! 10ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m14h1m: Player ngocr0ng save successfully! 10ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m14h1m: Player sweetiefox save successfully! 7ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m14h1m: Player demonic save successfully! 8ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m14h1m: Player quanhai38 save successfully! 10ms
+[0m[0;32m[0;35mdkkkd: Data update successfully....[0m
+[0;32m[0;35m14h1m: Player dkkkd save successfully! 8ms
+[0m[0;35mTự lưu 9 người chơi online: 90 ms
+[0m[0;33m[14:1] - Player Login: hfphwngg: 54 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m14h6m: Player onebi save successfully! 16ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h6m: Player carrot save successfully! 18ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m14h6m: Player eimifukada save successfully! 10ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m14h6m: Player yuamikami save successfully! 11ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m14h6m: Player ngocr0ng save successfully! 11ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m14h6m: Player sweetiefox save successfully! 28ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m14h6m: Player demonic save successfully! 11ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m14h6m: Player quanhai38 save successfully! 11ms
+[0m[0;32m[0;35mdkkkd: Data update successfully....[0m
+[0;32m[0;35m14h6m: Player dkkkd save successfully! 7ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m14h6m: Player hfphwngg save successfully! 11ms
+[0m[0;35mTự lưu 10 người chơi online: 154 ms
+[0m[0;33m[14:7] - Player Login: noname: 99 ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m14h7m: Player hfphwngg save successfully! 15ms
+[0m[0;32m[0;35mdkkkd: Data update successfully....[0m
+[0;32m[0;35m14h7m: Player dkkkd save successfully! 10ms
+[0m[0;33m[14:7] - Player Login: hfphwngg: 68 ms
+[0m[0;33m[14:7] - Player Login: dkkkd: 27 ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h9m: Player carrot save successfully! 19ms
+[0m[0;33m[14:9] - Player Login: carrot: 54 ms
+[0m[0;32m[0;35mnoname: Data update successfully....[0m
+[0;32m[0;35m14h9m: Player noname save successfully! 10ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m14h11m: Player onebi save successfully! 28ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m14h11m: Player eimifukada save successfully! 11ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m14h11m: Player yuamikami save successfully! 11ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m14h11m: Player ngocr0ng save successfully! 8ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m14h11m: Player sweetiefox save successfully! 8ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m14h11m: Player demonic save successfully! 11ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m14h11m: Player quanhai38 save successfully! 11ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m14h11m: Player hfphwngg save successfully! 11ms
+[0m[0;32m[0;35mdkkkd: Data update successfully....[0m
+[0;32m[0;35m14h11m: Player dkkkd save successfully! 9ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h11m: Player carrot save successfully! 7ms
+[0m[0;35mTự lưu 10 người chơi online: 129 ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h13m: Player carrot save successfully! 14ms
+[0m[0;33m[14:14] - Player Login: carrot: 53 ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m14h14m: Player hfphwngg save successfully! 17ms
+[0m[0;33m[14:14] - Player Login: hfphwngg: 54 ms
+[0m[0;33m[14:14] - Player Login: noname: 54 ms
+[0m[0;32m[0;35mdkkkd: Data update successfully....[0m
+[0;32m[0;35m14h14m: Player dkkkd save successfully! 11ms
+[0m[0;32m[0;35mnoname: Data update successfully....[0m
+[0;32m[0;35m14h15m: Player noname save successfully! 14ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m14h16m: Player onebi save successfully! 24ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m14h16m: Player eimifukada save successfully! 10ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m14h16m: Player yuamikami save successfully! 11ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m14h16m: Player ngocr0ng save successfully! 10ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m14h16m: Player sweetiefox save successfully! 8ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m14h16m: Player demonic save successfully! 10ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m14h16m: Player quanhai38 save successfully! 9ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h16m: Player carrot save successfully! 10ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m14h16m: Player hfphwngg save successfully! 11ms
+[0m[0;35mTự lưu 9 người chơi online: 118 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m14h21m: Player onebi save successfully! 13ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m14h21m: Player eimifukada save successfully! 11ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m14h21m: Player yuamikami save successfully! 13ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m14h21m: Player ngocr0ng save successfully! 10ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m14h21m: Player sweetiefox save successfully! 12ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m14h21m: Player demonic save successfully! 7ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m14h21m: Player quanhai38 save successfully! 12ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h21m: Player carrot save successfully! 9ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m14h21m: Player hfphwngg save successfully! 14ms
+[0m[0;35mTự lưu 9 người chơi online: 117 ms
+[0m[0;33m[14:22] - Player Login: octieu: 82 ms
+[0m[0;33m[14:22] - Player Login: xdbom: 42 ms
+[0m[0;33m[14:23] - Player Login: lucifer01: 42 ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m14h24m: Player hfphwngg save successfully! 14ms
+[0m[0;33m[14:24] - Player Login: hfphwngg: 132 ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m14h26m: Player hfphwngg save successfully! 12ms
+[0m[0;33m[14:26] - Player Login: hfphwngg: 61 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m14h26m: Player onebi save successfully! 11ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m14h26m: Player eimifukada save successfully! 9ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m14h26m: Player yuamikami save successfully! 8ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m14h26m: Player ngocr0ng save successfully! 9ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m14h26m: Player sweetiefox save successfully! 11ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m14h26m: Player demonic save successfully! 10ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m14h26m: Player quanhai38 save successfully! 11ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h26m: Player carrot save successfully! 10ms
+[0m[0;32m[0;35moctieu: Data update successfully....[0m
+[0;32m[0;35m14h26m: Player octieu save successfully! 10ms
+[0m[0;32m[0;35mxdbom: Data update successfully....[0m
+[0;32m[0;35m14h26m: Player xdbom save successfully! 12ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m14h26m: Player lucifer01 save successfully! 11ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m14h26m: Player hfphwngg save successfully! 12ms
+[0m[0;35mTự lưu 12 người chơi online: 143 ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m14h30m: Player hfphwngg save successfully! 17ms
+[0m[0;33m[14:31] - Player Login: hfphwngg: 54 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m14h31m: Player onebi save successfully! 15ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m14h31m: Player eimifukada save successfully! 17ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m14h31m: Player yuamikami save successfully! 13ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m14h31m: Player ngocr0ng save successfully! 12ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m14h31m: Player sweetiefox save successfully! 11ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m14h31m: Player demonic save successfully! 26ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m14h31m: Player quanhai38 save successfully! 10ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h31m: Player carrot save successfully! 9ms
+[0m[0;32m[0;35moctieu: Data update successfully....[0m
+[0;32m[0;35m14h31m: Player octieu save successfully! 12ms
+[0m[0;32m[0;35mxdbom: Data update successfully....[0m
+[0;32m[0;35m14h31m: Player xdbom save successfully! 9ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m14h31m: Player lucifer01 save successfully! 7ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m14h31m: Player hfphwngg save successfully! 11ms
+[0m[0;35mTự lưu 12 người chơi online: 168 ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m14h32m: Player hfphwngg save successfully! 27ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m14h36m: Player onebi save successfully! 29ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m14h36m: Player eimifukada save successfully! 12ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m14h36m: Player yuamikami save successfully! 11ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m14h36m: Player ngocr0ng save successfully! 10ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m14h36m: Player sweetiefox save successfully! 9ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m14h36m: Player demonic save successfully! 9ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m14h36m: Player quanhai38 save successfully! 20ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h36m: Player carrot save successfully! 8ms
+[0m[0;32m[0;35moctieu: Data update successfully....[0m
+[0;32m[0;35m14h36m: Player octieu save successfully! 11ms
+[0m[0;32m[0;35mxdbom: Data update successfully....[0m
+[0;32m[0;35m14h36m: Player xdbom save successfully! 9ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m14h36m: Player lucifer01 save successfully! 8ms
+[0m[0;35mTự lưu 11 người chơi online: 153 ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h39m: Player carrot save successfully! 16ms
+[0m[0;32m[0;35moctieu: Data update successfully....[0m
+[0;32m[0;35m14h39m: Player octieu save successfully! 12ms
+[0m[0;33m[14:39] - Player Login: octieu: 55 ms
+[0m[0;33m[14:39] - Player Login: carrot: 39 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m14h41m: Player onebi save successfully! 18ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m14h41m: Player eimifukada save successfully! 9ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m14h41m: Player yuamikami save successfully! 11ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m14h41m: Player ngocr0ng save successfully! 12ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m14h41m: Player sweetiefox save successfully! 13ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m14h41m: Player demonic save successfully! 11ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m14h41m: Player quanhai38 save successfully! 11ms
+[0m[0;32m[0;35mxdbom: Data update successfully....[0m
+[0;32m[0;35m14h41m: Player xdbom save successfully! 7ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m14h41m: Player lucifer01 save successfully! 15ms
+[0m[0;32m[0;35moctieu: Data update successfully....[0m
+[0;32m[0;35m14h41m: Player octieu save successfully! 11ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h41m: Player carrot save successfully! 13ms
+[0m[0;35mTự lưu 11 người chơi online: 156 ms
+[0m[0;32m[0;35moctieu: Data update successfully....[0m
+[0;32m[0;35m14h42m: Player octieu save successfully! 18ms
+[0m[0;33m[14:42] - Player Login: hfphwngg: 63 ms
+[0m[0;33m[14:42] - Player Login: octieu: 52 ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h43m: Player carrot save successfully! 11ms
+[0m[0;33m[14:45] - Player Login: carrot: 64 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m14h46m: Player onebi save successfully! 16ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m14h46m: Player eimifukada save successfully! 9ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m14h46m: Player yuamikami save successfully! 10ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m14h46m: Player ngocr0ng save successfully! 14ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m14h46m: Player sweetiefox save successfully! 8ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m14h46m: Player demonic save successfully! 9ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m14h46m: Player quanhai38 save successfully! 14ms
+[0m[0;32m[0;35mxdbom: Data update successfully....[0m
+[0;32m[0;35m14h46m: Player xdbom save successfully! 9ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m14h46m: Player lucifer01 save successfully! 9ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m14h46m: Player hfphwngg save successfully! 11ms
+[0m[0;32m[0;35moctieu: Data update successfully....[0m
+[0;32m[0;35m14h46m: Player octieu save successfully! 7ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h46m: Player carrot save successfully! 10ms
+[0m[0;35mTự lưu 12 người chơi online: 139 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m14h51m: Player onebi save successfully! 12ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m14h51m: Player eimifukada save successfully! 10ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m14h51m: Player yuamikami save successfully! 11ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m14h51m: Player ngocr0ng save successfully! 12ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m14h51m: Player sweetiefox save successfully! 10ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m14h51m: Player demonic save successfully! 10ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m14h51m: Player quanhai38 save successfully! 12ms
+[0m[0;32m[0;35mxdbom: Data update successfully....[0m
+[0;32m[0;35m14h51m: Player xdbom save successfully! 8ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m14h51m: Player lucifer01 save successfully! 12ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m14h51m: Player hfphwngg save successfully! 12ms
+[0m[0;32m[0;35moctieu: Data update successfully....[0m
+[0;32m[0;35m14h51m: Player octieu save successfully! 10ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h51m: Player carrot save successfully! 39ms
+[0m[0;35mTự lưu 12 người chơi online: 175 ms
+[0m[0;32m[0;35moctieu: Data update successfully....[0m
+[0;32m[0;35m14h53m: Player octieu save successfully! 14ms
+[0m[0;32m[0;35mxdbom: Data update successfully....[0m
+[0;32m[0;35m14h54m: Player xdbom save successfully! 12ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m14h55m: Player hfphwngg save successfully! 13ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m14h56m: Player onebi save successfully! 12ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m14h56m: Player eimifukada save successfully! 7ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m14h56m: Player yuamikami save successfully! 13ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m14h56m: Player ngocr0ng save successfully! 17ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m14h56m: Player sweetiefox save successfully! 7ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m14h56m: Player demonic save successfully! 10ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m14h56m: Player quanhai38 save successfully! 29ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m14h56m: Player lucifer01 save successfully! 27ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m14h56m: Player carrot save successfully! 10ms
+[0m[0;35mTự lưu 9 người chơi online: 149 ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m15h0m: Player yuamikami save successfully! 17ms
+[0m[0;33m[15:0] - Player Login: yuamikami: 45 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m15h1m: Player onebi save successfully! 11ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m15h1m: Player eimifukada save successfully! 9ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m15h1m: Player ngocr0ng save successfully! 11ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m15h1m: Player sweetiefox save successfully! 9ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m15h1m: Player demonic save successfully! 9ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m15h1m: Player quanhai38 save successfully! 10ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m15h1m: Player lucifer01 save successfully! 22ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m15h1m: Player carrot save successfully! 10ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m15h1m: Player yuamikami save successfully! 41ms
+[0m[0;35mTự lưu 9 người chơi online: 144 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m15h6m: Player onebi save successfully! 75ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m15h6m: Player eimifukada save successfully! 42ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m15h6m: Player ngocr0ng save successfully! 56ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m15h6m: Player sweetiefox save successfully! 32ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m15h6m: Player demonic save successfully! 20ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m15h6m: Player quanhai38 save successfully! 47ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m15h6m: Player lucifer01 save successfully! 20ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m15h6m: Player carrot save successfully! 59ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m15h6m: Player yuamikami save successfully! 41ms
+[0m[0;35mTự lưu 9 người chơi online: 409 ms
+[0m[0;33m[15:6] - Player Login: ngocrong: 47 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m15h11m: Player onebi save successfully! 12ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m15h11m: Player eimifukada save successfully! 9ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m15h11m: Player ngocr0ng save successfully! 10ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m15h11m: Player sweetiefox save successfully! 8ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m15h11m: Player demonic save successfully! 14ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m15h11m: Player quanhai38 save successfully! 12ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m15h11m: Player lucifer01 save successfully! 10ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m15h11m: Player carrot save successfully! 7ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m15h11m: Player yuamikami save successfully! 8ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m15h11m: Player ngocrong save successfully! 10ms
+[0m[0;35mTự lưu 10 người chơi online: 120 ms
+[0m[0;32m[0;35mcarrot: Data update successfully....[0m
+[0;32m[0;35m15h11m: Player carrot save successfully! 13ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m15h12m: Player ngocr0ng save successfully! 12ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m15h12m: Player ngocrong save successfully! 11ms
+[0m[0;33m[15:12] - Player Login: onebbi: 55 ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m15h13m: Player onebbi save successfully! 10ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m15h16m: Player onebi save successfully! 19ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m15h16m: Player eimifukada save successfully! 10ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m15h16m: Player sweetiefox save successfully! 6ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m15h16m: Player demonic save successfully! 8ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m15h16m: Player quanhai38 save successfully! 9ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m15h16m: Player lucifer01 save successfully! 8ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m15h16m: Player yuamikami save successfully! 10ms
+[0m[0;35mTự lưu 7 người chơi online: 81 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m15h21m: Player onebi save successfully! 11ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m15h21m: Player eimifukada save successfully! 11ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m15h21m: Player sweetiefox save successfully! 8ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m15h21m: Player demonic save successfully! 9ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m15h21m: Player quanhai38 save successfully! 9ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m15h21m: Player lucifer01 save successfully! 7ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m15h21m: Player yuamikami save successfully! 9ms
+[0m[0;35mTự lưu 7 người chơi online: 74 ms
+[0m[0;33m[15:22] - Player Login: onebbi: 53 ms
+[0m[0;33m[15:25] - Player Login: ngocr0ng: 65 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m15h26m: Player onebi save successfully! 10ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m15h26m: Player eimifukada save successfully! 7ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m15h26m: Player sweetiefox save successfully! 6ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m15h26m: Player demonic save successfully! 6ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m15h26m: Player quanhai38 save successfully! 8ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m15h26m: Player lucifer01 save successfully! 8ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m15h26m: Player yuamikami save successfully! 7ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m15h26m: Player onebbi save successfully! 7ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m15h26m: Player ngocr0ng save successfully! 8ms
+[0m[0;35mTự lưu 9 người chơi online: 81 ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m15h26m: Player ngocr0ng save successfully! 13ms
+[0m[0;33m[15:27] - Player Login: ngocr0ng: 82 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m15h31m: Player onebi save successfully! 14ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m15h31m: Player eimifukada save successfully! 8ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m15h31m: Player sweetiefox save successfully! 10ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m15h31m: Player demonic save successfully! 9ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m15h31m: Player quanhai38 save successfully! 26ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m15h31m: Player lucifer01 save successfully! 10ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m15h31m: Player yuamikami save successfully! 8ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m15h31m: Player onebbi save successfully! 6ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m15h31m: Player ngocr0ng save successfully! 12ms
+[0m[0;35mTự lưu 9 người chơi online: 113 ms
+[0m[0;33m[15:34] - Player Login: ngocrong: 51 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m15h36m: Player onebi save successfully! 10ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m15h36m: Player eimifukada save successfully! 6ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m15h36m: Player sweetiefox save successfully! 7ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m15h36m: Player demonic save successfully! 16ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m15h36m: Player quanhai38 save successfully! 8ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m15h36m: Player lucifer01 save successfully! 6ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m15h36m: Player yuamikami save successfully! 9ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m15h36m: Player onebbi save successfully! 7ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m15h36m: Player ngocr0ng save successfully! 7ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m15h36m: Player ngocrong save successfully! 7ms
+[0m[0;35mTự lưu 10 người chơi online: 101 ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m15h37m: Player ngocrong save successfully! 7ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m15h37m: Player ngocr0ng save successfully! 9ms
+[0m[0;33m[15:40] - Player Login: ngocr0ng: 45 ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m15h41m: Player ngocr0ng save successfully! 14ms
+[0m[0;33m[15:41] - Player Login: ngocr0ng: 46 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m15h41m: Player onebi save successfully! 11ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m15h41m: Player eimifukada save successfully! 8ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m15h41m: Player sweetiefox save successfully! 9ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m15h41m: Player demonic save successfully! 9ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m15h41m: Player quanhai38 save successfully! 10ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m15h41m: Player lucifer01 save successfully! 9ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m15h41m: Player yuamikami save successfully! 8ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m15h41m: Player onebbi save successfully! 8ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m15h41m: Player ngocr0ng save successfully! 11ms
+[0m[0;35mTự lưu 9 người chơi online: 95 ms
+[0m[0;33m[15:42] - Player Login: ngocrong: 59 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m15h46m: Player onebi save successfully! 16ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m15h46m: Player eimifukada save successfully! 10ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m15h46m: Player sweetiefox save successfully! 8ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m15h46m: Player demonic save successfully! 11ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m15h46m: Player quanhai38 save successfully! 10ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m15h46m: Player lucifer01 save successfully! 8ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m15h46m: Player yuamikami save successfully! 9ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m15h46m: Player onebbi save successfully! 6ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m15h46m: Player ngocr0ng save successfully! 7ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m15h46m: Player ngocrong save successfully! 8ms
+[0m[0;35mTự lưu 10 người chơi online: 112 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m15h51m: Player onebi save successfully! 11ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m15h51m: Player eimifukada save successfully! 8ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m15h51m: Player sweetiefox save successfully! 7ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m15h51m: Player demonic save successfully! 8ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m15h51m: Player quanhai38 save successfully! 10ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m15h51m: Player lucifer01 save successfully! 12ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m15h51m: Player yuamikami save successfully! 11ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m15h51m: Player onebbi save successfully! 10ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m15h51m: Player ngocr0ng save successfully! 9ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m15h51m: Player ngocrong save successfully! 7ms
+[0m[0;35mTự lưu 10 người chơi online: 106 ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m15h52m: Player lucifer01 save successfully! 11ms
+[0m[0;33m[15:53] - Player Login: lucifer01: 37 ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m15h53m: Player lucifer01 save successfully! 97ms
+[0m[0;33m[15:53] - Player Login: lucifer01: 30 ms
+[0m[0;33m[15:54] - Player Login: lucifer04: 17 ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m15h55m: Player onebbi save successfully! 28ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m15h56m: Player onebi save successfully! 11ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m15h56m: Player eimifukada save successfully! 8ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m15h56m: Player sweetiefox save successfully! 10ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m15h56m: Player demonic save successfully! 10ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m15h56m: Player quanhai38 save successfully! 10ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m15h56m: Player yuamikami save successfully! 9ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m15h56m: Player ngocr0ng save successfully! 11ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m15h56m: Player ngocrong save successfully! 23ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m15h56m: Player lucifer01 save successfully! 7ms
+[0m[0;32m[0;35mlucifer04: Data update successfully....[0m
+[0;32m[0;35m15h56m: Player lucifer04 save successfully! 7ms
+[0m[0;35mTự lưu 10 người chơi online: 120 ms
+[0m[0;33m[15:56] - Player Login: onebbi: 75 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m16h1m: Player onebi save successfully! 12ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m16h1m: Player eimifukada save successfully! 10ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m16h1m: Player sweetiefox save successfully! 9ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m16h1m: Player demonic save successfully! 11ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m16h1m: Player quanhai38 save successfully! 9ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m16h1m: Player yuamikami save successfully! 9ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m16h1m: Player ngocr0ng save successfully! 10ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m16h1m: Player ngocrong save successfully! 9ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m16h1m: Player lucifer01 save successfully! 11ms
+[0m[0;32m[0;35mlucifer04: Data update successfully....[0m
+[0;32m[0;35m16h1m: Player lucifer04 save successfully! 6ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h1m: Player onebbi save successfully! 10ms
+[0m[0;35mTự lưu 11 người chơi online: 121 ms
+[0m[0;33m[16:1] - Player Login: gauxayda: 43 ms
+[0m[0;32m[0;35mlucifer04: Data update successfully....[0m
+[0;32m[0;35m16h3m: Player lucifer04 save successfully! 33ms
+[0m[0;32m[0;35mlucifer01: Data update successfully....[0m
+[0;32m[0;35m16h3m: Player lucifer01 save successfully! 38ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h3m: Player onebbi save successfully! 7ms
+[0m[0;33m[16:4] - Player Login: onebbi: 37 ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h5m: Player onebbi save successfully! 14ms
+[0m[0;33m[16:6] - Player Login: onebbi: 38 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m16h6m: Player onebi save successfully! 10ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m16h6m: Player eimifukada save successfully! 9ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m16h6m: Player sweetiefox save successfully! 9ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m16h6m: Player demonic save successfully! 11ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m16h6m: Player quanhai38 save successfully! 10ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m16h6m: Player yuamikami save successfully! 10ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m16h6m: Player ngocr0ng save successfully! 14ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m16h6m: Player ngocrong save successfully! 10ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m16h6m: Player gauxayda save successfully! 8ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h6m: Player onebbi save successfully! 8ms
+[0m[0;35mTự lưu 10 người chơi online: 115 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m16h11m: Player onebi save successfully! 18ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m16h11m: Player eimifukada save successfully! 10ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m16h11m: Player sweetiefox save successfully! 8ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m16h11m: Player demonic save successfully! 9ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m16h11m: Player quanhai38 save successfully! 11ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m16h11m: Player yuamikami save successfully! 12ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m16h11m: Player ngocr0ng save successfully! 12ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m16h11m: Player ngocrong save successfully! 8ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m16h11m: Player gauxayda save successfully! 7ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h11m: Player onebbi save successfully! 11ms
+[0m[0;35mTự lưu 10 người chơi online: 117 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m16h16m: Player onebi save successfully! 19ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m16h16m: Player eimifukada save successfully! 6ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m16h16m: Player sweetiefox save successfully! 6ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m16h16m: Player demonic save successfully! 10ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m16h16m: Player quanhai38 save successfully! 9ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m16h16m: Player yuamikami save successfully! 10ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m16h16m: Player ngocr0ng save successfully! 12ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m16h16m: Player ngocrong save successfully! 8ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m16h16m: Player gauxayda save successfully! 8ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h16m: Player onebbi save successfully! 15ms
+[0m[0;35mTự lưu 10 người chơi online: 116 ms
+[0m[0;33m[16:16] - Player Login: dkkkd: 36 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m16h21m: Player onebi save successfully! 24ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m16h21m: Player eimifukada save successfully! 7ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m16h21m: Player sweetiefox save successfully! 11ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m16h21m: Player demonic save successfully! 8ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m16h21m: Player quanhai38 save successfully! 11ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m16h21m: Player yuamikami save successfully! 11ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m16h21m: Player ngocr0ng save successfully! 11ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m16h21m: Player ngocrong save successfully! 8ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m16h21m: Player gauxayda save successfully! 8ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h21m: Player onebbi save successfully! 8ms
+[0m[0;32m[0;35mdkkkd: Data update successfully....[0m
+[0;32m[0;35m16h21m: Player dkkkd save successfully! 7ms
+[0m[0;35mTự lưu 11 người chơi online: 130 ms
+[0m[0;33m[16:24] - Player Login: maisjwk: 36 ms
+[0m[0;33m[16:24] - Player Login: hfphwngg: 57 ms
+[0m[0;32m[0;35mdkkkd: Data update successfully....[0m
+[0;32m[0;35m16h26m: Player dkkkd save successfully! 10ms
+[0m[0;32m[0;35mmaisjwk: Data update successfully....[0m
+[0;32m[0;35m16h26m: Player maisjwk save successfully! 5ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m16h26m: Player onebi save successfully! 11ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m16h26m: Player eimifukada save successfully! 7ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m16h26m: Player sweetiefox save successfully! 7ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m16h26m: Player demonic save successfully! 6ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m16h26m: Player quanhai38 save successfully! 8ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m16h26m: Player yuamikami save successfully! 8ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m16h26m: Player ngocr0ng save successfully! 9ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m16h26m: Player ngocrong save successfully! 6ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m16h26m: Player gauxayda save successfully! 7ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h26m: Player onebbi save successfully! 11ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m16h26m: Player hfphwngg save successfully! 9ms
+[0m[0;35mTự lưu 11 người chơi online: 101 ms
+[0m[0;33m[16:27] - Player Login: nappa: 55 ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h30m: Player onebbi save successfully! 10ms
+[0m[0;33m[16:30] - Player Login: onebbi: 26 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m16h31m: Player onebi save successfully! 9ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m16h31m: Player eimifukada save successfully! 6ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m16h31m: Player sweetiefox save successfully! 7ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m16h31m: Player demonic save successfully! 6ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m16h31m: Player quanhai38 save successfully! 6ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m16h31m: Player yuamikami save successfully! 6ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m16h31m: Player ngocr0ng save successfully! 6ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m16h31m: Player ngocrong save successfully! 5ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m16h31m: Player gauxayda save successfully! 6ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m16h31m: Player hfphwngg save successfully! 6ms
+[0m[0;32m[0;35mnappa: Data update successfully....[0m
+[0;32m[0;35m16h31m: Player nappa save successfully! 6ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h31m: Player onebbi save successfully! 6ms
+[0m[0;35mTự lưu 12 người chơi online: 91 ms
+[0m[0;33m[16:31] - Player Login: hfphwng: 48 ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m16h33m: Player hfphwngg save successfully! 275ms
+[0m[0;33m[16:33] - Player Login: hfphwngg: 41 ms
+[0m[0;33m[16:34] - Player Login: picolo: 49 ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m16h35m: Player ngocrong save successfully! 11ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m16h35m: Player ngocr0ng save successfully! 14ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m16h36m: Player onebi save successfully! 11ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m16h36m: Player eimifukada save successfully! 12ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m16h36m: Player sweetiefox save successfully! 7ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m16h36m: Player demonic save successfully! 11ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m16h36m: Player quanhai38 save successfully! 6ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m16h36m: Player yuamikami save successfully! 10ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m16h36m: Player gauxayda save successfully! 7ms
+[0m[0;32m[0;35mnappa: Data update successfully....[0m
+[0;32m[0;35m16h36m: Player nappa save successfully! 7ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h36m: Player onebbi save successfully! 8ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m16h36m: Player hfphwng save successfully! 9ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m16h36m: Player hfphwngg save successfully! 12ms
+[0m[0;32m[0;35mpicolo: Data update successfully....[0m
+[0;32m[0;35m16h36m: Player picolo save successfully! 7ms
+[0m[0;35mTự lưu 12 người chơi online: 122 ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m16h38m: Player hfphwngg save successfully! 14ms
+[0m[0;33m[16:38] - Player Login: kamekameha: 42 ms
+[0m[0;33m[16:38] - Player Login: hfphwngg: 51 ms
+[0m[0;33m[16:40] - Player Login: zalama: 45 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player onebi save successfully! 9ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player eimifukada save successfully! 6ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player sweetiefox save successfully! 6ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player demonic save successfully! 7ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player quanhai38 save successfully! 6ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player yuamikami save successfully! 17ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player gauxayda save successfully! 10ms
+[0m[0;32m[0;35mnappa: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player nappa save successfully! 8ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player onebbi save successfully! 7ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player hfphwng save successfully! 10ms
+[0m[0;32m[0;35mpicolo: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player picolo save successfully! 6ms
+[0m[0;32m[0;35mkamekameha: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player kamekameha save successfully! 7ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player hfphwngg save successfully! 9ms
+[0m[0;32m[0;35mzalama: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player zalama save successfully! 7ms
+[0m[0;35mTự lưu 14 người chơi online: 131 ms
+[0m[0;32m[0;35mkamekameha: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player kamekameha save successfully! 6ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m16h41m: Player hfphwng save successfully! 9ms
+[0m[0;33m[16:42] - Player Login: hfphwng: 37 ms
+[0m[0;33m[16:42] - Player Login: ngocr0ng: 105 ms
+[0m[0;33m[16:43] - Player Login: kamekameha: 67 ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m16h43m: Player ngocr0ng save successfully! 18ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m16h46m: Player onebi save successfully! 21ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m16h46m: Player eimifukada save successfully! 9ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m16h46m: Player sweetiefox save successfully! 6ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m16h46m: Player demonic save successfully! 7ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m16h46m: Player quanhai38 save successfully! 10ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m16h46m: Player yuamikami save successfully! 10ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m16h46m: Player gauxayda save successfully! 10ms
+[0m[0;32m[0;35mnappa: Data update successfully....[0m
+[0;32m[0;35m16h46m: Player nappa save successfully! 7ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h46m: Player onebbi save successfully! 9ms
+[0m[0;32m[0;35mpicolo: Data update successfully....[0m
+[0;32m[0;35m16h46m: Player picolo save successfully! 8ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m16h46m: Player hfphwngg save successfully! 9ms
+[0m[0;32m[0;35mzalama: Data update successfully....[0m
+[0;32m[0;35m16h46m: Player zalama save successfully! 15ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m16h46m: Player hfphwng save successfully! 12ms
+[0m[0;32m[0;35mkamekameha: Data update successfully....[0m
+[0;32m[0;35m16h46m: Player kamekameha save successfully! 9ms
+[0m[0;35mTự lưu 14 người chơi online: 159 ms
+[0m[0;32m[0;35mzalama: Data update successfully....[0m
+[0;32m[0;35m16h47m: Player zalama save successfully! 10ms
+[0m[0;33m[16:47] - Player Login: kaioken: 44 ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h47m: Player onebbi save successfully! 11ms
+[0m[0;33m[16:48] - Player Login: onebbi: 54 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m16h51m: Player onebi save successfully! 12ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m16h51m: Player eimifukada save successfully! 8ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m16h51m: Player sweetiefox save successfully! 8ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m16h51m: Player demonic save successfully! 9ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m16h51m: Player quanhai38 save successfully! 10ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m16h51m: Player yuamikami save successfully! 8ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m16h51m: Player gauxayda save successfully! 7ms
+[0m[0;32m[0;35mnappa: Data update successfully....[0m
+[0;32m[0;35m16h51m: Player nappa save successfully! 7ms
+[0m[0;32m[0;35mpicolo: Data update successfully....[0m
+[0;32m[0;35m16h51m: Player picolo save successfully! 6ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m16h51m: Player hfphwngg save successfully! 7ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m16h51m: Player hfphwng save successfully! 5ms
+[0m[0;32m[0;35mkamekameha: Data update successfully....[0m
+[0;32m[0;35m16h51m: Player kamekameha save successfully! 7ms
+[0m[0;32m[0;35mkaioken: Data update successfully....[0m
+[0;32m[0;35m16h51m: Player kaioken save successfully! 9ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h51m: Player onebbi save successfully! 5ms
+[0m[0;35mTự lưu 14 người chơi online: 123 ms
+[0m[0;33m[16:52] - Player Login: ngocr0ng: 61 ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m16h54m: Player ngocr0ng save successfully! 12ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;35m16h54m: Player ngocr0ng updated successfully! 11ms
+[0m[0;33m[16:55] - Player Login: ngocr0ng: 78 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m16h56m: Player onebi save successfully! 15ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m16h56m: Player eimifukada save successfully! 9ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m16h56m: Player sweetiefox save successfully! 13ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m16h56m: Player demonic save successfully! 9ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m16h56m: Player quanhai38 save successfully! 10ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m16h56m: Player yuamikami save successfully! 8ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m16h56m: Player gauxayda save successfully! 16ms
+[0m[0;32m[0;35mnappa: Data update successfully....[0m
+[0;32m[0;35m16h56m: Player nappa save successfully! 11ms
+[0m[0;32m[0;35mpicolo: Data update successfully....[0m
+[0;32m[0;35m16h56m: Player picolo save successfully! 17ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m16h56m: Player hfphwngg save successfully! 18ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m16h56m: Player hfphwng save successfully! 30ms
+[0m[0;32m[0;35mkamekameha: Data update successfully....[0m
+[0;32m[0;35m16h56m: Player kamekameha save successfully! 9ms
+[0m[0;32m[0;35mkaioken: Data update successfully....[0m
+[0;32m[0;35m16h56m: Player kaioken save successfully! 5ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m16h56m: Player onebbi save successfully! 29ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m16h56m: Player ngocr0ng save successfully! 10ms
+[0m[0;35mTự lưu 15 người chơi online: 231 ms
+[0m[0;32m[0;35mpicolo: Data update successfully....[0m
+[0;32m[0;35m16h59m: Player picolo save successfully! 12ms
+[0m[0;33m[16:59] - Player Login: l7octieu: 29 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m17h1m: Player onebi save successfully! 22ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m17h1m: Player eimifukada save successfully! 7ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m17h1m: Player sweetiefox save successfully! 10ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m17h1m: Player demonic save successfully! 9ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m17h1m: Player quanhai38 save successfully! 13ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m17h1m: Player yuamikami save successfully! 11ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m17h1m: Player gauxayda save successfully! 16ms
+[0m[0;32m[0;35mnappa: Data update successfully....[0m
+[0;32m[0;35m17h1m: Player nappa save successfully! 14ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m17h1m: Player hfphwngg save successfully! 13ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m17h1m: Player hfphwng save successfully! 17ms
+[0m[0;32m[0;35mkamekameha: Data update successfully....[0m
+[0;32m[0;35m17h1m: Player kamekameha save successfully! 12ms
+[0m[0;32m[0;35mkaioken: Data update successfully....[0m
+[0;32m[0;35m17h1m: Player kaioken save successfully! 15ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m17h1m: Player onebbi save successfully! 12ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m17h1m: Player ngocr0ng save successfully! 11ms
+[0m[0;32m[0;35ml7octieu: Data update successfully....[0m
+[0;32m[0;35m17h1m: Player l7octieu save successfully! 10ms
+[0m[0;35mTự lưu 15 người chơi online: 217 ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m17h2m: Player onebbi save successfully! 10ms
+[0m[0;33m[17:2] - Player Login: ngocrong: 53 ms
+[0m[0;33m[17:2] - Player Login: onebbi: 30 ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m17h3m: Player onebbi save successfully! 9ms
+[0m[0;33m[17:3] - Player Login: onebbi: 27 ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m17h4m: Player onebbi save successfully! 9ms
+[0m[0;33m[17:4] - Player Login: onebbi: 51 ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m17h5m: Player onebbi save successfully! 10ms
+[0m[0;33m[17:5] - Player Login: onebbi: 45 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player onebi save successfully! 12ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player eimifukada save successfully! 10ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player sweetiefox save successfully! 9ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player demonic save successfully! 7ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player quanhai38 save successfully! 10ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player yuamikami save successfully! 3ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player gauxayda save successfully! 10ms
+[0m[0;32m[0;35mnappa: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player nappa save successfully! 8ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player hfphwngg save successfully! 7ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player hfphwng save successfully! 9ms
+[0m[0;32m[0;35mkamekameha: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player kamekameha save successfully! 7ms
+[0m[0;32m[0;35mkaioken: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player kaioken save successfully! 6ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player ngocr0ng save successfully! 19ms
+[0m[0;32m[0;35ml7octieu: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player l7octieu save successfully! 6ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player ngocrong save successfully! 7ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m17h6m: Player onebbi save successfully! 7ms
+[0m[0;35mTự lưu 16 người chơi online: 153 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player onebi save successfully! 9ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player eimifukada save successfully! 9ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player sweetiefox save successfully! 7ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player demonic save successfully! 7ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player quanhai38 save successfully! 13ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player yuamikami save successfully! 7ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player gauxayda save successfully! 9ms
+[0m[0;32m[0;35mnappa: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player nappa save successfully! 9ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player hfphwngg save successfully! 8ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player hfphwng save successfully! 8ms
+[0m[0;32m[0;35mkamekameha: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player kamekameha save successfully! 7ms
+[0m[0;32m[0;35mkaioken: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player kaioken save successfully! 8ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player ngocr0ng save successfully! 10ms
+[0m[0;32m[0;35ml7octieu: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player l7octieu save successfully! 6ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player ngocrong save successfully! 6ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m17h11m: Player onebbi save successfully! 7ms
+[0m[0;35mTự lưu 16 người chơi online: 164 ms
+[0m[0;32m[0;35mnappa: Data update successfully....[0m
+[0;32m[0;35m17h13m: Player nappa save successfully! 12ms
+[0m[0;32m[0;35ml7octieu: Data update successfully....[0m
+[0;32m[0;35m17h13m: Player l7octieu save successfully! 6ms
+[0m[0;33m[17:13] - Player Login: nappa: 103 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m17h16m: Player onebi save successfully! 13ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m17h16m: Player eimifukada save successfully! 8ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m17h16m: Player sweetiefox save successfully! 10ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m17h16m: Player demonic save successfully! 16ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m17h16m: Player quanhai38 save successfully! 9ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m17h16m: Player yuamikami save successfully! 11ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m17h16m: Player gauxayda save successfully! 8ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m17h16m: Player hfphwngg save successfully! 10ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m17h16m: Player hfphwng save successfully! 10ms
+[0m[0;32m[0;35mkamekameha: Data update successfully....[0m
+[0;32m[0;35m17h16m: Player kamekameha save successfully! 9ms
+[0m[0;32m[0;35mkaioken: Data update successfully....[0m
+[0;32m[0;35m17h16m: Player kaioken save successfully! 10ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m17h16m: Player ngocr0ng save successfully! 27ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m17h16m: Player ngocrong save successfully! 8ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m17h16m: Player onebbi save successfully! 12ms
+[0m[0;32m[0;35mnappa: Data update successfully....[0m
+[0;32m[0;35m17h16m: Player nappa save successfully! 9ms
+[0m[0;35mTự lưu 15 người chơi online: 196 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m17h21m: Player onebi save successfully! 63ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m17h21m: Player eimifukada save successfully! 20ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m17h21m: Player sweetiefox save successfully! 13ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m17h21m: Player demonic save successfully! 18ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m17h21m: Player quanhai38 save successfully! 20ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m17h21m: Player yuamikami save successfully! 59ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m17h21m: Player gauxayda save successfully! 12ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m17h21m: Player hfphwngg save successfully! 16ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m17h21m: Player hfphwng save successfully! 11ms
+[0m[0;32m[0;35mkamekameha: Data update successfully....[0m
+[0;32m[0;35m17h21m: Player kamekameha save successfully! 5ms
+[0m[0;32m[0;35mkaioken: Data update successfully....[0m
+[0;32m[0;35m17h21m: Player kaioken save successfully! 7ms
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m17h21m: Player ngocr0ng save successfully! 9ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m17h21m: Player ngocrong save successfully! 32ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m17h21m: Player onebbi save successfully! 9ms
+[0m[0;32m[0;35mnappa: Data update successfully....[0m
+[0;32m[0;35m17h21m: Player nappa save successfully! 11ms
+[0m[0;35mTự lưu 15 người chơi online: 329 ms
+[0m[0;33mĐịa chỉ 171.255.185.228 đang tải dữ liệu
+[0m[0;33mĐịa chỉ 171.255.185.228 đang tải dữ liệu
+[0m[0;33mĐịa chỉ 171.255.185.228 đang tải dữ liệu
+[0m[0;33m[17:22] - Player Login: picolo: 40 ms
+[0m[0;33mItem template: cắt mô tả gửi client (AWN 0 byte, SRC 90 byte) để vừa 2 gói
+[0m[0;32m[0;35mngocr0ng: Data update successfully....[0m
+[0;32m[0;35m17h24m: Player ngocr0ng save successfully! 23ms
+[0m[0;32m[0;35mngocrong: Data update successfully....[0m
+[0;32m[0;35m17h24m: Player ngocrong save successfully! 10ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m17h26m: Player onebi save successfully! 11ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m17h26m: Player eimifukada save successfully! 11ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m17h26m: Player sweetiefox save successfully! 7ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m17h26m: Player demonic save successfully! 10ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m17h26m: Player quanhai38 save successfully! 9ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m17h26m: Player yuamikami save successfully! 7ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m17h26m: Player gauxayda save successfully! 10ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m17h26m: Player hfphwngg save successfully! 16ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m17h26m: Player hfphwng save successfully! 11ms
+[0m[0;32m[0;35mkamekameha: Data update successfully....[0m
+[0;32m[0;35m17h26m: Player kamekameha save successfully! 6ms
+[0m[0;32m[0;35mkaioken: Data update successfully....[0m
+[0;32m[0;35m17h26m: Player kaioken save successfully! 8ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m17h26m: Player onebbi save successfully! 8ms
+[0m[0;32m[0;35mnappa: Data update successfully....[0m
+[0;32m[0;35m17h26m: Player nappa save successfully! 8ms
+[0m[0;32m[0;35mpicolo: Data update successfully....[0m
+[0;32m[0;35m17h26m: Player picolo save successfully! 9ms
+[0m[0;35mTự lưu 14 người chơi online: 149 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m17h31m: Player onebi save successfully! 21ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m17h31m: Player eimifukada save successfully! 10ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m17h31m: Player sweetiefox save successfully! 13ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m17h31m: Player demonic save successfully! 12ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m17h31m: Player quanhai38 save successfully! 13ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m17h31m: Player yuamikami save successfully! 12ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m17h31m: Player gauxayda save successfully! 14ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m17h31m: Player hfphwngg save successfully! 13ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m17h31m: Player hfphwng save successfully! 19ms
+[0m[0;32m[0;35mkamekameha: Data update successfully....[0m
+[0;32m[0;35m17h31m: Player kamekameha save successfully! 14ms
+[0m[0;32m[0;35mkaioken: Data update successfully....[0m
+[0;32m[0;35m17h31m: Player kaioken save successfully! 8ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m17h31m: Player onebbi save successfully! 8ms
+[0m[0;32m[0;35mnappa: Data update successfully....[0m
+[0;32m[0;35m17h31m: Player nappa save successfully! 8ms
+[0m[0;32m[0;35mpicolo: Data update successfully....[0m
+[0;32m[0;35m17h31m: Player picolo save successfully! 9ms
+[0m[0;35mTự lưu 14 người chơi online: 192 ms
+[0m[0;32m[0;35mkamekameha: Data update successfully....[0m
+[0;32m[0;35m17h34m: Player kamekameha save successfully! 22ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m17h34m: Player hfphwng save successfully! 49ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m17h34m: Player hfphwngg save successfully! 58ms
+[0m[0;32m[0;35mpicolo: Data update successfully....[0m
+[0;32m[0;35m17h35m: Player picolo save successfully! 10ms
+[0m[0;32m[0;35mnappa: Data update successfully....[0m
+[0;32m[0;35m17h35m: Player nappa save successfully! 15ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m17h36m: Player onebi save successfully! 7ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m17h36m: Player eimifukada save successfully! 6ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m17h36m: Player sweetiefox save successfully! 6ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m17h36m: Player demonic save successfully! 6ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m17h36m: Player quanhai38 save successfully! 7ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m17h36m: Player yuamikami save successfully! 7ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m17h36m: Player gauxayda save successfully! 8ms
+[0m[0;32m[0;35mkaioken: Data update successfully....[0m
+[0;32m[0;35m17h36m: Player kaioken save successfully! 6ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m17h36m: Player onebbi save successfully! 8ms
+[0m[0;35mTự lưu 9 người chơi online: 68 ms
+[0m[0;33m[17:40] - Player Login: hfphwng: 46 ms
+[0m[0;33m[17:40] - Player Login: kamekameha: 36 ms
+[0m[0;32m[0;35mkamekameha: Data update successfully....[0m
+[0;32m[0;35m17h41m: Player kamekameha save successfully! 9ms
+[0m[0;33m[17:41] - Player Login: hfphwngg: 293 ms
+[0m[0;32m[0;35monebi: Data update successfully....[0m
+[0;32m[0;35m17h41m: Player onebi save successfully! 7ms
+[0m[0;32m[0;35meimifukada: Data update successfully....[0m
+[0;32m[0;35m17h41m: Player eimifukada save successfully! 10ms
+[0m[0;32m[0;35msweetiefox: Data update successfully....[0m
+[0;32m[0;35m17h41m: Player sweetiefox save successfully! 6ms
+[0m[0;32m[0;35mdemonic: Data update successfully....[0m
+[0;32m[0;35m17h41m: Player demonic save successfully! 7ms
+[0m[0;32m[0;35mquanhai38: Data update successfully....[0m
+[0;32m[0;35m17h41m: Player quanhai38 save successfully! 8ms
+[0m[0;32m[0;35myuamikami: Data update successfully....[0m
+[0;32m[0;35m17h41m: Player yuamikami save successfully! 7ms
+[0m[0;32m[0;35mgauxayda: Data update successfully....[0m
+[0;32m[0;35m17h41m: Player gauxayda save successfully! 6ms
+[0m[0;32m[0;35mkaioken: Data update successfully....[0m
+[0;32m[0;35m17h41m: Player kaioken save successfully! 6ms
+[0m[0;32m[0;35monebbi: Data update successfully....[0m
+[0;32m[0;35m17h41m: Player onebbi save successfully! 7ms
+[0m[0;32m[0;35mhfphwng: Data update successfully....[0m
+[0;32m[0;35m17h41m: Player hfphwng save successfully! 8ms
+[0m[0;32m[0;35mhfphwngg: Data update successfully....[0m
+[0;32m[0;35m17h41m: Player hfphwngg save successfully! 7ms
+[0m[0;35mTự lưu 11 người chơi online: 90 ms
 [0m

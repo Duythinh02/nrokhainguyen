@@ -145,6 +145,12 @@ public class MySession extends Session {
                     DataGame.sendDataItemBG(this);
                     Controller.gI().sendInfo(this);
                     Logger.warning("[" + TimeUtil.getCurrHour() + ":" + TimeUtil.getCurrMin() + "] - Player Login: " + this.player.name + ": " + (System.currentTimeMillis() - st) + " ms\n");
+                    try {
+                        nro.models.server.TopOnlineNotify.onLogin(this.player);
+                        nro.models.services.SuDoService.onLoginAsync(this.player);
+                    } catch (Exception e) {
+                        Logger.logException(MySession.class, e);
+                    }
                     if (this.player.notify != null && !this.player.notify.equals("null") && !this.player.notify.isEmpty() && this.player.notify.length() > 0) {
                         Service.gI().sendThongBao(this.player, this.player.notify);
                         this.player.notify = null;

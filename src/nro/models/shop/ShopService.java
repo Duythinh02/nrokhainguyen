@@ -41,6 +41,9 @@ public class ShopService {
     private static final byte COST_GEM = 1;
     private static final byte COST_RUBY = 3;
     private static final byte COST_COUPON = 4;
+    // Mua bằng Coin Khai Nguyên (item 2691, cộng mọi ô trong hành trang). Shop thường chỉ có cột vàng / ngọc
+    // nên client hiện giá 0, giá thật ghi trong mô tả vật phẩm
+    private static final byte COST_COIN_KHAI_NGUYEN = 6;
 
     private static final byte NORMAL_SHOP = 0;
     private static final byte SPEC_SHOP = 3;
@@ -193,6 +196,9 @@ public class ShopService {
                         } else if (itemShop.typeSell == COST_COUPON) {
                             msg.writer().writeInt(0);
                             msg.writer().writeInt(itemShop.cost);
+                        } else if (itemShop.typeSell == COST_COIN_KHAI_NGUYEN) {
+                            msg.writer().writeInt(0);
+                            msg.writer().writeInt(0);
                         }
                         msg.writer().writeByte(itemShop.options.size());
                         for (Item.ItemOption option : itemShop.options) {
@@ -248,6 +254,9 @@ public class ShopService {
                         } else if (itemShop.typeSell == COST_COUPON) {
                             msg.writer().writeInt(0);
                             msg.writer().writeInt(itemShop.cost);
+                        } else if (itemShop.typeSell == COST_COIN_KHAI_NGUYEN) {
+                            msg.writer().writeInt(0);
+                            msg.writer().writeInt(0);
                         }
                         msg.writer().writeByte(itemShop.options.size());
                         for (Item.ItemOption option : itemShop.options) {
@@ -495,7 +504,21 @@ public class ShopService {
         Service.gI().sendMoney(player);
     }
 
+    // Mua bằng Coin Khai Nguyên: true nếu đã trừ coin
+    private boolean subCoinKhaiNguyen(Player player, ItemShop is) {
+        if (!nro.models.services.CoinKhaiNguyenService.sub(player, is.cost)) {
+            Service.gI().sendThongBaoOK(player, "Cần " + is.cost + " " + nro.models.services.CoinKhaiNguyenService.NAME
+                    + ", bạn đang có " + nro.models.services.CoinKhaiNguyenService.count(player));
+            return false;
+        }
+        Service.gI().sendThongBao(player, "Đã dùng " + is.cost + " " + nro.models.services.CoinKhaiNguyenService.NAME);
+        return true;
+    }
+
     private boolean subMoneyByItemShop(Player player, ItemShop is) {
+        if (is.typeSell == COST_COIN_KHAI_NGUYEN) {
+            return subCoinKhaiNguyen(player, is);
+        }
         int gold = 0;
         int gem = 0;
         int ruby = 0;
@@ -531,6 +554,9 @@ public class ShopService {
     }
 
     private boolean subMoneyByItemShopV2(Player player, ItemShop is) {
+        if (is.typeSell == COST_COIN_KHAI_NGUYEN) {
+            return subCoinKhaiNguyen(player, is);
+        }
         int gold = 0;
         int gem = 0;
         int ruby = 0;

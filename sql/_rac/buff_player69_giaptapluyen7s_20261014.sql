@@ -1,1 +1,0 @@
-UPDATE player SET items_bag = JSON_SET(items_bag, '$[23]', '[1716,1,"[\\"[9,0]\\",\\"[77,45]\\",\\"[94,3]\\",\\"[97,3]\\",\\"[107,7]\\",\\"[102,7]\\",\\"[30,1]\\"]",1791911945250]') WHERE id=1375 AND name='player69' AND JSON_VALUE(items_bag,'$[23]') LIKE '[-1,0,%';

@@ -97,6 +97,7 @@ public class Client implements Runnable {
                 NgocRongNamecService.gI().idpNrNamec[player.idNRNM - 353] = -1;
                 player.idNRNM = -1;
             }
+            nro.models.services.PlayerFusionService.onLogout(player);
             ChangeMapService.gI().exitMap(player);
             TransactionService.gI().cancelTrade(player);
             if (player.clan != null) {

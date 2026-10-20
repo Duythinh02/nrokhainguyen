@@ -56,7 +56,7 @@ public class ZANGYA extends Boss {
         Service.gI().dropItemMap(this.zone, it);
         Service.gI().dropItemMap(this.zone, it1);
         Service.gI().dropItemMap(this.zone, it2);
-        nro.models.services.BossHuntService.gI().onKillBoss(plKill, 0); // boss NV 36 - 40: không cộng điểm săn boss
+        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, 5);
     }
 
     @Override

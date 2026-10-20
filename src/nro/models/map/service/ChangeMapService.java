@@ -351,7 +351,10 @@ public class ChangeMapService {
             zoneJoin = checkMapCanJoinByYardart(pl, zoneJoin);
         }
 
-        zoneJoin = checkMapCanJoin(pl, zoneJoin);
+        // Người xem khi hợp thể với người chơi khác luôn theo được người dẫn, bỏ qua điều kiện vào map
+        if (!nro.models.services.PlayerFusionService.isWatcher(pl)) {
+            zoneJoin = checkMapCanJoin(pl, zoneJoin);
+        }
 
         if (zoneJoin != null && pl.zone != null) {
             boolean currMapIsCold = MapService.gI().isMapCold(pl.zone.map);

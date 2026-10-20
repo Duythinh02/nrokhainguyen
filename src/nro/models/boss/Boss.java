@@ -338,7 +338,8 @@ public class Boss extends Player implements IBoss {
         if (this.zone == null) {
             return null;
         }
-        if (this.playerTarger != null && (this.playerTarger.isDie() || !this.zone.equals(this.playerTarger.zone))) {
+        if (this.playerTarger != null && (this.playerTarger.isDie() || !this.zone.equals(this.playerTarger.zone)
+                || nro.models.services.PlayerFusionService.isWatcher(this.playerTarger))) {
             this.playerTarger = null;
         }
         if (this.playerTarger == null || Util.canDoWithTime(this.lastTimeTargetPlayer, this.timeTargetPlayer)) {
@@ -693,6 +694,46 @@ public class Boss extends Player implements IBoss {
         return 500;
     }
 
+    // Boss trước đây không có điểm săn boss, thêm 5 điểm (2026-10-20). Không gồm Broly / Super Broly (kể cả Broly Noel),
+    // boss luyện tập, nhân bản, võ đài, siêu hạng và quái nhỏ trong phó bản.
+    private static final java.util.Set<String> EXTRA_POINT_BOSSES = java.util.Set.of(
+            "nro.models.boss.Tramhuydiet.Berus", "nro.models.boss.Tramhuydiet.Champa",
+            "nro.models.boss.list.Gomah.Gomah",
+            "nro.models.boss.Frieza.Chilled", "nro.models.boss.Frieza.Frost",
+            "nro.models.boss.Baby.Baby",
+            "nro.models.boss.Black_Goku.ZamasKaio", "nro.models.boss.Black_Goku.ZamasMax",
+            "nro.models.boss.Boss_Manager.GasManager", "nro.models.boss.Boss_Manager.OilManager",
+            "nro.models.boss.Boss_Manager.ElecManager", "nro.models.boss.Boss_Manager.MackiManager",
+            "nro.models.boss.Boss_Manager.GranolaManager",
+            // Boss sự kiện
+            "nro.models.boss.event.Halloween.BiMa", "nro.models.boss.event.Halloween.BiNgo",
+            "nro.models.boss.event.Halloween.Doi", "nro.models.boss.event.Halloween.MaTroi",
+            "nro.models.boss.event.Halloween.XuongKho",
+            "nro.models.boss.event.ValentineEvent.ThoBunma",
+            "nro.models.boss.event.VuLanFestival.Pikkon",
+            "nro.models.boss.event.WomensDay.KeTromHoa",
+            "nro.models.boss.event_hung_vuong.RongNhi1Sao", "nro.models.boss.event_hung_vuong.RongNhi2Sao",
+            "nro.models.boss.event_hung_vuong.RongNhi3Sao", "nro.models.boss.event_hung_vuong.RongNhi4Sao",
+            "nro.models.boss.event_hung_vuong.RongNhi5Sao", "nro.models.boss.event_hung_vuong.RongNhi6Sao",
+            "nro.models.boss.event_hung_vuong.RongNhi7Sao",
+            "nro.models.boss.event_hung_vuong.SonTinhNew", "nro.models.boss.event_hung_vuong.ThuyTinhNew",
+            "nro.models.boss.event_noel.ChiChiNoel", "nro.models.boss.event_noel.ColdChristmas",
+            "nro.models.boss.event_noel.GokuGodNoel", "nro.models.boss.event_noel.GokuNoel",
+            "nro.models.boss.event_noel.OngGiaNoel", "nro.models.boss.event_noel.TuanLoc",
+            "nro.models.boss.event_tet.BeNa", "nro.models.boss.event_tet.LanCon", "nro.models.boss.event_tet.MeoDen",
+            "nro.models.boss.event_tet.NewYearDragon", "nro.models.boss.event_tet.PiLong",
+            "nro.models.boss.event_tet.ThanTai",
+            "nro.models.boss.event_trung_thu.Gogeta", "nro.models.boss.event_trung_thu.KhiDot",
+            "nro.models.boss.event_trung_thu.NguyetThan", "nro.models.boss.event_trung_thu.NhatThan",
+            "nro.models.boss.event_trung_thu.Omega", "nro.models.boss.event_trung_thu.ThoDaiKa");
+    public static final int EXTRA_BOSS_POINT = 5;
+
+    private void rewardExtraBossPoint(Player plKill) {
+        if (EXTRA_POINT_BOSSES.contains(this.getClass().getName())) {
+            nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, EXTRA_BOSS_POINT);
+        }
+    }
+
     @Override
     public void die(Player plKill) {
         plKill = BossDamageLimit.ownerOrSelf(plKill); // đệ kết liễu: đồ rơi / thưởng tính cho chủ
@@ -706,12 +747,14 @@ public class Boss extends Player implements IBoss {
                 || !MapService.gI().isMapBanDoKhoBau(this.zone.map.mapId))) {
             if (!plKill.isBot) {
                 reward(plKill);
+                rewardExtraBossPoint(plKill);
             }
             ServerNotify.gI().notify(plKill.name + ": Đã tiêu diệt được " + this.name + " mọi người đều ngưỡng mộ.");
             this.changeStatus(BossStatus.DIE);
         } else {
             if (plKill != null && !plKill.isBot) {
                 reward(plKill);
+                rewardExtraBossPoint(plKill);
             }
             this.changeStatus(BossStatus.DIE);
         }

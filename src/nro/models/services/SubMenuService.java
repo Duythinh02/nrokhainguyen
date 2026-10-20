@@ -24,6 +24,8 @@ public class SubMenuService {
     public static final int CUU_SAT = 503;
     public static final int MENU = 504;
     public static final int BUY_BACK = 505;
+    public static final int HOP_THE = 506;
+    public static final int TACH_HOP_THE = 507;
 
     private static SubMenuService i;
 
@@ -40,6 +42,12 @@ public class SubMenuService {
     public void controller(Player player, int playerTarget, int menuId) {
         Player plTarget = Client.gI().getPlayer(playerTarget);
         switch (menuId) {
+            case HOP_THE:
+                PlayerFusionService.request(player, plTarget);
+                break;
+            case TACH_HOP_THE:
+                PlayerFusionService.separate(player, player.name + " tách hợp thể");
+                break;
 //            case MENU:
 //                if (plTarget != null) {
 //                    String[] selects = new String[]{"Oẳn tù tì", "Cừu sát", "Bắn Bluetooth", "Hủy"};

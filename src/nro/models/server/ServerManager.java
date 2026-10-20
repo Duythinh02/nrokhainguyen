@@ -102,6 +102,38 @@ public class ServerManager {
             } catch (Exception ignored) {
             }
         }, 5, 5, java.util.concurrent.TimeUnit.MINUTES);
+        // Bảng xếp hạng cho thông báo "Top ... đã online" khi người trong top đăng nhập
+        java.util.concurrent.ScheduledExecutorService topNotifyLoader = java.util.concurrent.Executors.newSingleThreadScheduledExecutor(r -> {
+            Thread th = new Thread(r, "TopOnlineNotify");
+            th.setDaemon(true);
+            return th;
+        });
+        topNotifyLoader.scheduleWithFixedDelay(() -> {
+            try {
+                TopOnlineNotify.refresh();
+            } catch (Exception ignored) {
+            }
+        }, 0, TopOnlineNotify.REFRESH_MINUTES, java.util.concurrent.TimeUnit.MINUTES);
+        // Việc chạy nhanh (vài giây / lần) tách luồng riêng, không bị chậm theo lần đọc bảng xếp hạng từ DB
+        java.util.concurrent.ScheduledExecutorService playerTicker = java.util.concurrent.Executors.newSingleThreadScheduledExecutor(r -> {
+            Thread th = new Thread(r, "PlayerTicker");
+            th.setDaemon(true);
+            return th;
+        });
+        // Sư đồ: bật / tắt buff khi sư phụ và đệ tử cùng khu
+        playerTicker.scheduleWithFixedDelay(() -> {
+            try {
+                nro.models.services.SuDoService.updateBuffs();
+            } catch (Exception ignored) {
+            }
+        }, 10, 3, java.util.concurrent.TimeUnit.SECONDS);
+        // Hợp thể Gogeta giữa 2 người chơi: kéo người xem theo người dẫn, tự tách khi hết điều kiện
+        playerTicker.scheduleWithFixedDelay(() -> {
+            try {
+                nro.models.services.PlayerFusionService.update();
+            } catch (Exception ignored) {
+            }
+        }, 10, 1, java.util.concurrent.TimeUnit.SECONDS);
     }
 
     public static ServerManager gI() {
