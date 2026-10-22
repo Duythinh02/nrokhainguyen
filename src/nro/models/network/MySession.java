@@ -159,6 +159,10 @@ public class MySession extends Session {
             } catch (Exception e) {
                 e.printStackTrace();
                 if (pl != null) {
+                    Client.gI().forget(pl);
+                    if (this.player == pl) {
+                        this.player = null;
+                    }
                     pl.dispose();
                 }
             }

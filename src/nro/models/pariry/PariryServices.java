@@ -51,8 +51,8 @@ public class PariryServices {
     }
 
     // Cược bằng điểm săn boss, cùng mức với Tài Xỉu; thắng nhận về 150% (gồm cả điểm cược)
-    public static final int MIN_BET = nro.models.minigame.TaiXiu.MIN_BET;
-    public static final int MAX_BET = nro.models.minigame.TaiXiu.MAX_BET;
+    public static final int MIN_BET = 5;
+    public static final int MAX_BET = 400;
     public static final int WIN_PERCENT = 150;
 
     public void bet(Player pl, boolean isOdd, int amount) {

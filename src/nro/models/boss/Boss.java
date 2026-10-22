@@ -730,7 +730,7 @@ public class Boss extends Player implements IBoss {
 
     private void rewardExtraBossPoint(Player plKill) {
         if (EXTRA_POINT_BOSSES.contains(this.getClass().getName())) {
-            nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, EXTRA_BOSS_POINT);
+            nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, EXTRA_BOSS_POINT, this);
         }
     }
 
@@ -986,6 +986,19 @@ public class Boss extends Player implements IBoss {
         t.setDaemon(true);
         return t;
     });
+
+    /**
+     * Hẹn giờ chạy việc (vd nổ tự sát) trên luồng boss-bom, không giữ luồng/khóa của người đánh.
+     */
+    protected static void scheduleBom(Runnable task, long delayMs) {
+        BOM_TIMER.schedule(() -> {
+            try {
+                task.run();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }, delayMs, TimeUnit.MILLISECONDS);
+    }
 
 
     protected void goToPlayer(Player pl, boolean isTeleport) {

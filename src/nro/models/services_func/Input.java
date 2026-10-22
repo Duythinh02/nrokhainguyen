@@ -170,8 +170,8 @@ case TAI_MD5 -> {
                             Service.gI().sendThongBao(player, "Không thể cược số âm hoặc bằng 0.");
                             return;
                         }
-                        if (soluong < TaiXiu.MIN_BET || soluong > TaiXiu.MAX_BET) {
-                            Service.gI().sendThongBao(player, "Cược ít nhất " + TaiXiu.MIN_BET + " - nhiều nhất " + TaiXiu.MAX_BET + " điểm săn boss");
+                        if (soluong < TaiXiu.MIN_BET) {
+                            Service.gI().sendThongBao(player, "Cược ít nhất " + TaiXiu.MIN_BET + " điểm săn boss");
                             return;
                         }
                         if (player.event.getEventPoint() < soluong) {
@@ -216,8 +216,8 @@ case XIU_MD5 -> {
                             Service.gI().sendThongBao(player, "Không thể cược số âm hoặc bằng 0.");
                             return;
                         }
-                        if (soluong < TaiXiu.MIN_BET || soluong > TaiXiu.MAX_BET) {
-                            Service.gI().sendThongBao(player, "Cược ít nhất " + TaiXiu.MIN_BET + " - nhiều nhất " + TaiXiu.MAX_BET + " điểm săn boss");
+                        if (soluong < TaiXiu.MIN_BET) {
+                            Service.gI().sendThongBao(player, "Cược ít nhất " + TaiXiu.MIN_BET + " điểm săn boss");
                             return;
                         }
                         if (player.event.getEventPoint() < soluong) {

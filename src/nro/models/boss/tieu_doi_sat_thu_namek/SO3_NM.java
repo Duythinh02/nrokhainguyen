@@ -56,7 +56,7 @@ public class SO3_NM extends Boss {
         Service.gI().dropItemMap(this.zone, it1);
         Service.gI().dropItemMap(this.zone, it2);
             // Boss nhiệm vụ Kuku -> Fide: 5 điểm săn boss như mọi boss
-            nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, 5);
+            nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, 5, this);
     }
 
     @Override

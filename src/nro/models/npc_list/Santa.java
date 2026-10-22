@@ -37,6 +37,7 @@ public class Santa extends Npc {
             if (soLuong >= 1) {
                 menu.add(1, "Giảm giá\n80%");
             }
+            menu.add("Cửa hàng\nCoin\nKhai Nguyên");
 
             String[] menus = menu.toArray(new String[0]);
 
@@ -57,6 +58,11 @@ public class Santa extends Npc {
 
             if (this.mapId == 5 || this.mapId == 13 || this.mapId == 20) {
                 if (player.idMark.isBaseMenu()) {
+                    // Nút cuối: shop đặc biệt Coin Khai Nguyên (CT Goku SSJ4 / CT Cađíc SSJ4)
+                    if (select == (soLuong >= 1 ? 7 : 6)) {
+                        ShopService.gI().opendShop(player, "SANTA_COIN", false);
+                        return;
+                    }
                     switch (select) {
                         case 0:
                             ShopService.gI().opendShop(player, "SANTA", false);

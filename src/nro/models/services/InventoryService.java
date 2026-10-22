@@ -444,6 +444,9 @@ public class InventoryService {
             return;
         }
         Item item = player.inventory.itemsBag.get(index);
+        if (PlayerFusionService.blockCostumeChange(player, item)) {
+            return;
+        }
         if (item.isNotNullItem()) {
             player.inventory.itemsBag.set(index, putItemBody(player, item));
             sendItemBags(player);
@@ -455,6 +458,9 @@ public class InventoryService {
 
     public void itemBodyToBag(Player player, int index) {
         Item item = player.inventory.itemsBody.get(index);
+        if (PlayerFusionService.blockCostumeChange(player, item)) {
+            return;
+        }
         if (item.isNotNullItem()) {
             if (index == 12) {
                 Service.gI().sendPetFollow(player, (short) 0);
@@ -482,6 +488,9 @@ public class InventoryService {
         try {
             if (player.pet != null && player.pet.nPoint.power >= 1500000) {
                 Item item = player.inventory.itemsBag.get(index);
+                if (PlayerFusionService.blockCostumeChange(player, item)) {
+                    return;
+                }
                 if (item.isNotNullItem()) {
                     Item itemSwap = putItemBody(player.pet, item);
                     player.inventory.itemsBag.set(index, itemSwap);
@@ -504,6 +513,9 @@ public class InventoryService {
 
     public void itemPetBodyToBag(Player player, int index) {
         Item item = player.pet.inventory.itemsBody.get(index);
+        if (PlayerFusionService.blockCostumeChange(player, item)) {
+            return;
+        }
         if (item.isNotNullItem()) {
             player.pet.inventory.itemsBody.set(index, putItemBag(player, item));
             sendItemBags(player);
@@ -1339,7 +1351,7 @@ public class InventoryService {
     }
 
     public void sendItemBoxClan(Player player) {
-        if (player == null || player.clan == null) {
+        if (player == null || player.clan == null || player.clan.itemsBoxClan == null) {
             return;
         }
         Message msg;

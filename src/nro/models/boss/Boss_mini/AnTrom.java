@@ -159,7 +159,7 @@ public class AnTrom extends Boss {
 
             if (plKill != null) {
                 BadgesTaskService.updateCountBagesTask(plKill, ConstTaskBadges.BI_MOC_SACH_TUI, 1);
-                nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, 5);
+                nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, 5, this);
             }
         }
     }

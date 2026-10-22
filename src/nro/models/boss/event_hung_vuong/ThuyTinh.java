@@ -35,7 +35,7 @@ public class ThuyTinh extends Boss {
     @Override
     public void reward(Player plKill) {
         int diem = 5;
-        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
+        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem, this);
         for (Boss boss : this.bossAppearTogether[this.currentLevel]) {
             boss.playerReward = plKill;
             boss.changeStatus(BossStatus.AFK);

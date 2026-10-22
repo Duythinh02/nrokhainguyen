@@ -2043,7 +2043,8 @@ public class NPoint {
                     sendLimitMessage(limit);
                     return POINT_CAPPED;
                 }
-                if (!doUseTiemNang((this.defg + 5L) * 100000)) {
+                // Tổng chi phí point lần: (defg+5)+...+(defg+5+point-1), trước đây chỉ tính 1 lần
+                if (!doUseTiemNang(point * (2L * (this.defg + 5) + point - 1) / 2 * 100000)) {
                     return POINT_FAIL;
                 }
                 defg += point;
@@ -2054,9 +2055,15 @@ public class NPoint {
                     sendLimitMessage(limit);
                     return POINT_CAPPED;
                 }
-                long tiemNangUse = 50000000L;
+                long tiemNang1 = 50000000L;
                 for (int i = 0; i < this.critg; i++) {
-                    tiemNangUse *= 5L;
+                    tiemNang1 *= 5L;
+                }
+                // Cộng point lần: mỗi lần sau gấp 5 lần trước (trước đây chỉ tính 1 lần)
+                long tiemNangUse = 0;
+                for (int i = 0; i < point; i++) {
+                    tiemNangUse += tiemNang1;
+                    tiemNang1 *= 5L;
                 }
                 if (!doUseTiemNang(tiemNangUse)) {
                     return POINT_FAIL;

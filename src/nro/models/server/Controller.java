@@ -9,6 +9,7 @@ import nro.models.consts.ConstAchievement;
 import nro.models.services.ClanService;
 import nro.models.services.ChatGlobalService;
 import nro.models.services.SubMenuService;
+import nro.models.services.PetPointService;
 import nro.models.services.Service;
 import nro.models.services.FlagBagService;
 import nro.models.services.ItemTimeService;
@@ -76,7 +77,7 @@ public class Controller implements IMessageHandler {
     // mua bán, mở NPC). Vẫn cho chọn menu (32) để trả lời hộp thoại và tách hợp thể.
     private static boolean isBlockedForFusionWatcher(byte cmd) {
         switch (cmd) {
-            case -7, 54, -60, -45, 34, -20, -43, -40, 18, 21, -23, -33, -91, -15, -16, -86, 6, 7, -81, 29, 33 -> {
+            case -7, 54, -60, -45, 34, -20, -43, -40, 18, 21, -23, -33, -91, -15, -16, -86, 6, 7, -81, 29, 33, -108 -> {
                 return true;
             }
             default -> {
@@ -859,6 +860,13 @@ public class Controller implements IMessageHandler {
                             player.nPoint.increasePoint(type, point);
                         }
                         break;
+                    case 18: {
+                        // Client cộng tiềm năng cho đệ tử (bảng đệ tử / tự cộng của mod)
+                        byte typePet = _msg.reader().readByte();
+                        short pointPet = _msg.reader().readShort();
+                        PetPointService.congTuClient(player, typePet, pointPet);
+                        break;
+                    }
                     case 64:
                         int playerId = _msg.reader().readInt();
                         int menuId = _msg.reader().readShort();

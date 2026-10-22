@@ -36,7 +36,7 @@ public class SonTinh extends Boss {
     @Override
     public void reward(Player plKill) {
         int diem = 5;
-        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
+        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem, this);
         this.parentBoss.playerReward = plKill;
         this.parentBoss.changeStatus(BossStatus.AFK);
     }

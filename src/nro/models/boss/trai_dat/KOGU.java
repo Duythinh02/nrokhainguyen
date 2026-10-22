@@ -56,7 +56,7 @@ public class KOGU extends Boss {
         Service.gI().dropItemMap(this.zone, it);
         Service.gI().dropItemMap(this.zone, it1);
         Service.gI().dropItemMap(this.zone, it2);
-        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, 5);
+        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, 5, this);
     }
 
     @Override

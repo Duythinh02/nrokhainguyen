@@ -30,7 +30,7 @@ public class Cooler extends Boss {
     public void reward(Player plKill) {
         BadgesTaskService.updateCountBagesTask(plKill, ConstTaskBadges.TRUM_SAN_BOSS, 1);
         int diem = 5;
-        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
+        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem, this);
         int x = this.location.x;
         int y = this.zone.map.yPhysicInTop(x, this.location.y - 24);
         int drop = 190; // 100% rơi item ID 190

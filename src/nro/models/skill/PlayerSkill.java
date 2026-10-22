@@ -61,6 +61,8 @@ public class PlayerSkill {
     public long lastTimePrepareQCKK;
     public long lastTimePrepareTuSat;
     public long lastTimePrepareLaze;
+    // Mục tiêu lúc bắt đầu nạp laze, dùng khi bắn mà client mất focus
+    public Player lazeTarget;
 
     public byte getIndexSkillSelect() {
         switch (skillSelect.template.id) {

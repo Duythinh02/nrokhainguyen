@@ -307,6 +307,8 @@ parameterizedCommands.put("upp", (player, text) -> {
                     player.pet.changeStatus(Pet.GOHOME);
                 case "bien hinh" ->
                     player.pet.transform();
+                case "cong de", "cong tiem nang" ->
+                    nro.models.services.PetPointService.openMenu(player);
                 case "sach tuyet ky" -> {
                     int typePet = player.pet.typePet;
                     if (typePet == 2 || typePet == 3 || typePet == 4) {

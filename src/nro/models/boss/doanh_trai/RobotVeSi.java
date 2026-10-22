@@ -45,7 +45,7 @@ public class RobotVeSi extends Boss {
     @Override
     public void reward(Player plKill) {
         int diem = 5;
-        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
+        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem, this);
         RedRibbonHQ.dropBossReward(this, plKill);
         // 100% rơi item 1824
         ItemMap it = new ItemMap(

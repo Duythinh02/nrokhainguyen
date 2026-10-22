@@ -183,7 +183,7 @@ public class Odo extends Boss {
 
             BadgesTaskService.updateCountBagesTask(plKill, ConstTaskBadges.O_DO, 1);
             int diem = 5;
-            nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
+            nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem, this);
 
         } catch (Exception e) {
             e.printStackTrace();

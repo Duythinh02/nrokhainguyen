@@ -129,7 +129,7 @@ public class Mabu2H extends Boss {
     @Override
     public void reward(Player plKill) {
         int diem = 5;
-        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
+        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem, this);
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);
     }
 

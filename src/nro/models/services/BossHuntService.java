@@ -38,6 +38,32 @@ public class BossHuntService {
      * @param point số điểm boss thưởng
      */
     public void rewardBossPoint(Player plKill, int point) {
+        rewardBossPoint(plKill, point, true);
+    }
+
+    // Boss trên 1 tỷ HP được BIG_BOSS_POINT điểm thay cho điểm thường
+    public static final long BIG_BOSS_HP = 1_000_000_000L;
+    public static final int BIG_BOSS_POINT = 10;
+
+    /**
+     * Gọi từ boss khi bị hạ: boss trên BIG_BOSS_HP máu (máu thật của boss NV 36 - 39 lấy từ QuestBossHp,
+     * có thể vượt giới hạn int) nhận BIG_BOSS_POINT điểm
+     */
+    public void rewardBossPoint(Player plKill, int point, nro.models.boss.Boss boss) {
+        if (boss != null && boss.nPoint != null && point > 0) {
+            long hp = Math.max(boss.nPoint.hpMax, nro.models.boss.QuestBossHp.get(boss));
+            if (hp > BIG_BOSS_HP) {
+                point = Math.max(point, BIG_BOSS_POINT);
+            }
+        }
+        rewardBossPoint(plKill, point, true);
+    }
+
+    /**
+     * @param countBossKill false khi điểm không đến từ boss (vd quái trên 1 tỷ HP): chỉ cộng điểm, không tính
+     * thêm 1 boss đã diệt trên bảng xếp hạng
+     */
+    public void rewardBossPoint(Player plKill, int point, boolean countBossKill) {
         Player owner = plKill;
         if (owner != null && owner.isPet) {
             owner = ((Pet) owner).master;
@@ -65,7 +91,11 @@ public class BossHuntService {
             Service.gI().sendThongBao(owner, "Hôm nay đã đủ " + PlayerEvent.BOSS_POINT_DAILY_LIMIT
                     + " điểm săn boss, có cái nịt điểm!");
         }
-        onKillBoss(owner, added);
+        if (countBossKill) {
+            onKillBoss(owner, added);
+        } else {
+            addRankPoint(owner, added);
+        }
     }
 
     // Cộng điểm bảng xếp hạng săn boss mà không tính thêm 1 boss đã diệt (người được chia điểm khi hợp thể)

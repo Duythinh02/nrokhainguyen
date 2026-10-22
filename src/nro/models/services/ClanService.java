@@ -660,7 +660,9 @@ public class ClanService {
                 msg.writer().writeByte(player.clan.level);
                 for (ClanMember cm : player.clan.getMembers()) {
                     Player pl = Client.gI().getPlayer(cm.id);
-                    if (pl != null) {
+                    // Nhân vật cũ đã huỷ (nPoint = null) vẫn có thể còn trong Client lúc đăng nhập lại:
+                    // trước đây NPE ở đây làm cả gói -53 không gửi được, client hiện "chưa lập bang"
+                    if (pl != null && pl.nPoint != null) {
                         cm.powerPoint = pl.nPoint.power;
                     }
                     msg.writer().writeInt(cm.id);

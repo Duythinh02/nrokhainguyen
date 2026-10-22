@@ -666,6 +666,10 @@ public class NpcFactory {
                         nro.models.services.PlayerFusionService.confirm(player, select);
                     case nro.models.services.PlayerFusionService.MENU_TACH_HOP_THE ->
                         nro.models.services.PlayerFusionService.confirmTach(player, select);
+                    case nro.models.services.PetPointService.MENU_CHON_CHI_SO ->
+                        nro.models.services.PetPointService.chonChiSo(player, select);
+                    case nro.models.services.PetPointService.MENU_CHON_SO_LAN ->
+                        nro.models.services.PetPointService.chonSoLan(player, select);
                     case ConstNpc.CONFIRM_REMOVE_ALL_ITEM_LUCKY_ROUND -> {
                         if (select == 0) {
                             for (int i = 0; i < player.inventory.itemsBoxCrackBall.size(); i++) {

@@ -21,7 +21,7 @@ public class OngGohan extends Npc {
     public void openBaseMenu(Player player) {
         if (canOpenNpc(player)) {
             if (!TaskService.gI().checkDoneTaskTalkNpc(player, this)) {
-                createOtherMenu(player, ConstNpc.BASE_MENU, loiChao(), "Sư đồ", "Đóng");
+                createOtherMenu(player, ConstNpc.BASE_MENU, loiChao(), "Sư đồ", "Cộng tiềm\nnăng đệ tử", "Đóng");
             }
         }
     }
@@ -32,6 +32,8 @@ public class OngGohan extends Npc {
             if (player.idMark.isBaseMenu()) {
                 if (select == 0) {
                     SuDoService.openMenu(this, player);
+                } else if (select == 1) {
+                    nro.models.services.PetPointService.openMenu(player);
                 }
             } else if (player.idMark.getIndexMenu() == SuDoService.MENU_SU_DO) {
                 SuDoService.confirmMenu(player, select);

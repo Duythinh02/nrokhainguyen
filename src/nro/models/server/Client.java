@@ -51,19 +51,25 @@ public class Client implements Runnable {
     }
 
     public void put(Player player) {
-        if (!players_id.containsKey(player.id)) {
-            this.players_id.put(player.id, player);
-        }
-        if (!players_name.containsValue(player)) {
-            this.players_name.put(player.name, player);
-        }
-        if (!players_userId.containsValue(player)) {
-            this.players_userId.put(player.getSession().userId, player);
-        }
+        // Luôn trỏ về bản đăng nhập mới nhất: trước đây bản cũ đã huỷ (nPoint = null) còn kẹt thì không bị thay,
+        // getPlayer trả về nhân vật hỏng -> lỗi gửi thông tin bang, client hiện "chưa lập bang"
+        this.players_id.put(player.id, player);
+        this.players_name.put(player.name, player);
+        this.players_userId.put(player.getSession().userId, player);
         if (!players.contains(player)) {
             this.players.add(player);
         }
 
+    }
+
+    // Gỡ nhân vật khỏi danh sách online mà không lưu / xử lý thoát (dùng khi đăng nhập lỗi giữa chừng)
+    public void forget(Player player) {
+        this.players_id.remove(player.id, player);
+        this.players_name.remove(player.name, player);
+        if (player.getSession() != null) {
+            this.players_userId.remove(player.getSession().userId, player);
+        }
+        this.players.remove(player);
     }
 
     private void remove(MySession session) {
@@ -83,9 +89,10 @@ public class Client implements Runnable {
     }
 
     private void remove(Player player) {
-        this.players_id.remove(player.id);
-        this.players_name.remove(player.name);
-        this.players_userId.remove(player.getSession().userId);
+        // Chỉ gỡ khi còn trỏ đúng bản này, không gỡ nhầm bản đăng nhập mới cùng id
+        this.players_id.remove(player.id, player);
+        this.players_name.remove(player.name, player);
+        this.players_userId.remove(player.getSession().userId, player);
         this.players.remove(player);
         if (!player.beforeDispose) {
             player.beforeDispose = true;

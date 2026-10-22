@@ -40,7 +40,7 @@ public class GoldenFrieza extends Boss {
     @Override
     public void reward(Player plKill) {
         int diem = 5;
-        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
+        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem, this);
         ItemMap CaiTrangFideVang = new ItemMap(zone, 629,1, this.location.x + Util.nextInt(-50, 50), this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id);
         CaiTrangFideVang.options.add(new Item.ItemOption(30, 1));
         CaiTrangFideVang.options.add(new Item.ItemOption(50, 20));

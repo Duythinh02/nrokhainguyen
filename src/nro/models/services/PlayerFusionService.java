@@ -55,6 +55,15 @@ public final class PlayerFusionService {
         return pl != null && pl.fusionPartner != null && pl.fusionLeader;
     }
 
+    // Đang hợp thể (A hoặc B) thì không được thay / cởi cải trang của bản thân lẫn đệ tử (InventoryService)
+    public static boolean blockCostumeChange(Player pl, Item item) {
+        if (pl == null || pl.fusionPartner == null || item == null || !item.isNotNullItem() || item.template.type != 5) {
+            return false;
+        }
+        Service.gI().sendThongBao(pl, "Đang hợp thể, không thể thay cải trang của sư phụ lẫn đệ tử");
+        return true;
+    }
+
     // Người xem (và đệ tử của họ) không hiện với người chơi khác (Zone.infoPlayer)
     public static boolean isHiddenFrom(Player plInfo, Player plReceive) {
         if (isWatcher(plInfo)) {
@@ -395,6 +404,10 @@ public final class PlayerFusionService {
         if (b.isDie()) {
             b.nPoint.setFullHpMp();
             PlayerService.gI().hoiSinh(b);
+        }
+        // Đệ tử của người xem không được ra ngoài (vô hình với người khác mà vẫn đánh quái / boss)
+        if (b.pet != null && b.pet.status != nro.models.player.Pet.GOHOME && !b.pet.isGoingHome()) {
+            b.pet.goHome();
         }
         if (b.zone == null || !b.zone.equals(a.zone)) {
             ChangeMapService.gI().changeMap(b, a.zone, a.location.x, a.location.y);

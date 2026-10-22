@@ -132,6 +132,9 @@ public class Saibamen6 extends Boss {
 
     @Override
     public void setBom(Player plAtt) {
+        if (this.playerSkill == null) {
+            return;
+        }
         if (!this.playerSkill.prepareTuSat) {
             for (Player pl : this.zone.getPlayers()) {
                 Service.gI().sendThongBao(pl, pl.name + " coi chừng đấy!");
@@ -163,25 +166,29 @@ public class Saibamen6 extends Boss {
         }
 
         Service.gI().chat(this, "He he he");
+        // Hẹn giờ nổ thay vì vòng lặp chờ 2.5s (vòng lặp cũ đốt 1 nhân CPU và giữ khóa injured của người đánh)
+        scheduleBom(() -> explodeTuSat(plAtt), 2500);
+    }
 
-        while (this.playerSkill.prepareTuSat) {
-            if (Util.canDoWithTime(this.playerSkill.lastTimePrepareTuSat, 2500)) {
-                this.playerSkill.prepareTuSat = false;
-                setDie(this);
-                die(plAtt);
-
-                double dame = this.nPoint.hpMax * 100;
-                List<Player> playersMap = this.zone.getNotBosses();
-
-                if (!MapService.gI().isMapOffline(this.zone.map.mapId)) {
-                    for (Player pl : playersMap) {
-                        if (!this.equals(pl)) {
-                            pl.injured(this, dame, false, false);
-                            PlayerService.gI().sendInfoHpMpMoney(pl);
-                            Service.gI().Send_Info_NV(pl);
-                        }
-                    }
-                }
+    private synchronized void explodeTuSat(Player plAtt) {
+        if (this.playerSkill == null || !this.playerSkill.prepareTuSat) {
+            return;
+        }
+        this.playerSkill.prepareTuSat = false;
+        Zone z = this.zone;
+        double dame = this.nPoint.hpMax * 100;
+        setDie(this);
+        die(plAtt);
+        if (z == null || MapService.gI().isMapOffline(z.map.mapId)) {
+            return;
+        }
+        List<Player> playersMap = z.getNotBosses();
+        for (int i = playersMap.size() - 1; i >= 0; i--) {
+            Player pl = playersMap.get(i);
+            if (!this.equals(pl)) {
+                pl.injured(this, dame, false, false);
+                PlayerService.gI().sendInfoHpMpMoney(pl);
+                Service.gI().Send_Info_NV(pl);
             }
         }
     }

@@ -23,8 +23,8 @@ import nro.models.services.ItemService;
 public class TaiXiu  implements Runnable{
 
     // Cược bằng điểm săn boss
-    public static final int MIN_BET = 5;
-    public static final int MAX_BET = 400;
+    public static final int MIN_BET = 300;
+    public static final int MAX_BET = Integer.MAX_VALUE; // không giới hạn
 
     public int goldTai;
     public int goldXiu;
@@ -210,7 +210,7 @@ public class TaiXiu  implements Runnable{
     private void processWinners(List<Player> players, boolean isTai, int x, int y, int z, int tong) {
         for (Player pl : players) {
             if (pl != null && Client.gI().getPlayerByName(pl.name) != null) {
-                int goldC = isTai ? pl.goldTai * 150 / 100 : pl.goldXiu * 150 / 100; // nhận về 150% (gồm cả điểm cược)
+                int goldC = (int) Math.min(Integer.MAX_VALUE, (isTai ? (long) pl.goldTai : (long) pl.goldXiu) * 150 / 100); // nhận về 150% (gồm cả điểm cược)
                 // Trả thưởng bằng điểm săn boss (không tính vào giới hạn điểm săn boss/ngày)
                 pl.event.addEventPoint(goldC);
                 Service.getInstance().sendThongBao(pl, "|1|Bạn đã chiến thắng!!");

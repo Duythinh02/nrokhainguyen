@@ -307,7 +307,7 @@ public class Clan {
     public void reloadClanMember() {
         for (ClanMember cm : this.members) {
             Player pl = Client.gI().getPlayer(cm.id);
-            if (pl != null) {
+            if (pl != null && pl.nPoint != null) {
                 cm.powerPoint = pl.nPoint.power;
             }
         }

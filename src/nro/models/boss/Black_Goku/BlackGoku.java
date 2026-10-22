@@ -85,7 +85,7 @@ public class BlackGoku extends Boss {
         }
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);
         int diem = 5;
-        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
+        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem, this);
     }
 
     @Override

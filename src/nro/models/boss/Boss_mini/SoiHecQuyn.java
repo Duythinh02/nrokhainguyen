@@ -188,7 +188,7 @@ public class SoiHecQuyn extends Boss {
             }
             BadgesTaskService.updateCountBagesTask(plKill, ConstTaskBadges.KE_THAO_TUNG_SOI, 1);
             int diem = 5;
-            nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
+            nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem, this);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -132,7 +132,7 @@ public class SieuBoHung extends Boss {
             Item optionalItem = ItemService.gI().createNewItem((short) dropOptional);
             Service.gI().dropItemMap(zone, optionalItemMap);
             int diem = 5;
-            nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
+            nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem, this);
         }
 
         TaskService.gI().checkDoneTaskKillBoss(plKill, this);

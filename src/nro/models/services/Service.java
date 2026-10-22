@@ -1617,7 +1617,7 @@ public class Service {
                 msg.writer().writeByte(pl.pet.nPoint.crit); //crit
                 msg.writer().writeShort(pl.pet.nPoint.def); //def
                 int sizeSkill = pl.pet.playerSkill.skills.size();
-                msg.writer().writeByte(5); //count pet skill
+                msg.writer().writeByte(sizeSkill); //count pet skill (phải khớp số skill gửi, nếu không client đọc lệch phần chỉ số gốc phía sau)
                 for (int i = 0; i < sizeSkill; i++) {
                     if (pl.pet.playerSkill.skills.get(i).skillId != -1) {
                         msg.writer().writeShort(pl.pet.playerSkill.skills.get(i).skillId);
@@ -1650,6 +1650,12 @@ public class Service {
                         }
                     }
                 }
+                // Chỉ số gốc của đệ tử (mod đọc để hiển thị / tự cộng; client cũ bỏ qua phần thừa)
+                msg.writer().writeInt(pl.pet.nPoint.hpg);
+                msg.writer().writeInt(pl.pet.nPoint.mpg);
+                msg.writer().writeInt(pl.pet.nPoint.dameg);
+                msg.writer().writeShort(pl.pet.nPoint.defg);
+                msg.writer().writeByte(pl.pet.nPoint.critg);
                 pl.sendMessage(msg);
                 msg.cleanup();
 

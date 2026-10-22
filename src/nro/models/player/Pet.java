@@ -95,6 +95,10 @@ public class Pet extends Player {
         }
     }
 
+    public boolean isGoingHome() {
+        return goingHome;
+    }
+
     public void goHome() {
         if (this.status == GOHOME) {
             return;
@@ -316,7 +320,7 @@ public class Pet extends Player {
         try {
             if (this.master != null && this.master.zone != null) {
                 super.update();
-                increasePoint();
+                // Không tự cộng ngẫu nhiên nữa: người chơi tự cộng qua PetPointService (chat "cong de")
                 updatePower();
 
                 if (isDie()) {

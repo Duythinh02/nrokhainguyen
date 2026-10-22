@@ -297,6 +297,9 @@ public class TaskService {
         }
     }
 
+    // NV 37 - 40 cần trên 120 tỷ (trần mốc 9): mở mốc 10 - 12 ở Berus (Bill.java, Hành tinh Kaio)
+    private static final String MO_GIOI_HAN_BERUS = "(Trên 120 tỷ: mở giới hạn sức mạnh ở Berus, Hành tinh Kaio)\n";
+
     // Bước "Đạt ... sức mạnh": {sức mạnh, id bước}. Xét theo đúng thứ tự (xong 1 bước có thể mở luôn bước sau, vd NV 11).
     // NV 36 bước 0 chỉ hoàn thành bằng Thẻ nhiệm vụ (xem useTheNhiemVu) nên không có ở đây.
     private static final long[][] POWER_TASKS = {
@@ -635,8 +638,13 @@ public class TaskService {
                 doneTask(player, ConstTask.TASK_37_4);
             case BossID.DEATH_BEAM_5 ->
                 doneTask(player, ConstTask.TASK_37_5);
-            case BossID.CHILER ->
-                doneTask(player, ConstTask.TASK_37_7); // bước 6 là nhặt Nhẫn thời không (Gomah)
+            case BossID.CHILER -> {
+                // Chiler có 2 dạng, mỗi dạng chết đều gọi die(): chỉ tính khi hạ dạng cuối (1 con = 1 lần).
+                // Bước 6 là nhặt Nhẫn thời không (Gomah)
+                if (boss.currentLevel >= boss.data.length - 1) {
+                    doneTask(player, ConstTask.TASK_37_7);
+                }
+            }
             // NV 38
             case BossID.KHIDOT ->
                 doneTask(player, ConstTask.TASK_38_1);
@@ -954,20 +962,24 @@ public class TaskService {
                     + "(Rừng nấm, Rừng xương, Đông Karin, Rừng Bamboo, Nam Kamê...).\n"
                     + "Xong việc thì về đây báo cáo với ta.";
             case 37 -> "Fide Vàng đang gọi đám lính Death Beam tới.\n"
+                    + MO_GIOI_HAN_BERUS
                     + "Đạt 130 tỷ sức mạnh, hạ lần lượt Death Beam 1 đến 5\n"
                     + "(Fide Vàng gọi ra ở Đông Karin, 21h - 22h),\n"
                     + "hạ Gomah ở Hành Tinh Cereal để nhặt Nhẫn thời không (rất hiếm),\n"
                     + "rồi hạ Chiler ở Khu hang động, Rừng nguyên thủy.\n"
                     + "Xong thì đến Hành tinh Bill báo cáo với Whis.";
             case 38 -> "Năng lượng âm của ngọc rồng đã sinh ra Rồng ác!\n"
+                    + MO_GIOI_HAN_BERUS
                     + "Đạt 140 tỷ sức mạnh, hạ lần lượt Khỉ đột, Nhật thần, Nguyệt thần\n"
                     + "(Nhật thần và Nguyệt thần đi cùng nhau, hạ một người thì người kia bỏ đi),\n"
                     + "rồi hạ Nhất Tinh Long ở Làng Kakarot.\n"
                     + "Xong thì lên Thần điện báo cáo với Thượng Đế.";
             case 39 -> "Kẻ sống sót cuối cùng của tộc Cereal đang gây chiến.\n"
+                    + MO_GIOI_HAN_BERUS
                     + "Đạt 150 tỷ sức mạnh, hạ lần lượt phân thân Gas, Oil, Elec, Macki\n"
                     + "ở Thành Phố Sugar, rồi hạ phân thân Granola ở Hành Tinh Cereal.";
             case 40 -> "Trận chiến cuối cùng: Gogeta và Omega xuất hiện!\n"
+                    + MO_GIOI_HAN_BERUS
                     + "Đạt 170 tỷ sức mạnh, hạ Omega rồi hạ Gogeta\n"
                     + "(hai kẻ đi cùng nhau, hạ một kẻ thì kẻ kia bỏ đi),\n"
                     + "sau đó hạ Pikkon ở Rừng Bamboo, Rừng dương xỉ, Nam Kamê.\n"

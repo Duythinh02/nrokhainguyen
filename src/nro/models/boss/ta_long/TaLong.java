@@ -23,7 +23,7 @@ public class TaLong extends Boss {
     @Override
     public void reward(Player plKill) {
         BadgesTaskService.updateCountBagesTask(plKill, ConstTaskBadges.TRUM_SAN_BOSS, 1);
-        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, 5);
+        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, 5, this);
         int x = this.location.x;
         int y = this.zone.map.yPhysicInTop(x, this.location.y - 24);
         // TODO: chưa có danh sách đồ rơi, tạm thời chỉ rơi vàng

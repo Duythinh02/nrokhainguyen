@@ -497,6 +497,11 @@ public class Item {
         return this.template.id >= 1079 && this.template.id <= 1083;
     }
 
+    // Đá bảo vệ: 987 thường, 1143 khóa (từ sự kiện)
+    public boolean isDaBaoVe() {
+        return this.template.id == 987 || this.template.id == 1143;
+    }
+
     public boolean isCongThucVip() {
         return (this.template.id >= 1071 && this.template.id <= 1073) || (this.template.id >= 1084 && this.template.id <= 1086);
     }

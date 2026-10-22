@@ -2567,9 +2567,11 @@ public class BossesData {
             ConstPlayer.XAYDA, //gender
             new short[]{609, 610, 611, -1, -1, -1}, //outfit {head, body, leg, bag, aura, eff}
             1000, //dame
-            new int[]{500}, //hp
+            new int[]{4500000}, //hp: ~9 triệu trong game (x2), gần bằng Xên con (10 triệu)
             new int[]{6}, //map join
-            new int[][]{},
+            new int[][]{ // đánh như Xên con (trước đây không có chiêu, chỉ lao vào người chơi)
+                {Skill.KAMEJOKO, 7, 5000},
+                {Skill.GALICK, 7, 1000},},
             new String[]{}, //text chat 1
             new String[]{}, //text chat 2
             new String[]{}, //text chat 3

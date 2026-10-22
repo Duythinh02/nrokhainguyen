@@ -1,0 +1,37 @@
+[0;31mSuccessfully loaded file properties!
+[0m[ServerMain] WARN com.zaxxer.hikari.HikariConfig - User Management - idleTimeout is close to or more than maxLifetime, disabling it.
+[0;32m[0;35mSuccessfully loaded part (2102)
+[0m[0;32mData version (vsData): 16
+[0m[0;32m[0;31mSuccessfully loaded bg item template (597)
+[0m[0;32m[0;35mSuccessfully loaded arr head 2 frames (52)
+[0m[0;32m[0;31mSuccessfully loaded clan (42), clan next id: 54
+[0m[0;32m[0;35mSuccessfully loaded skill (3)
+[0m[0;32m[0;31mSuccessfully loaded head avatar (464)
+[0m[0;32m[0;35mSuccessfully loaded flag bag (156)
+[0m[0;32m[0;31mSuccessfully loaded intrinsic (208)
+[0m[0;32m[0;35mSuccessfully loaded task (42)
+[0m[0;32m[0;31mSuccessfully loaded side task (59)
+[0m[0;32m[0;35mSuccessfully loaded task badges (18)
+[0m[0;32m[0;31mSuccessfully loaded clan task (59)
+[0m[0;32m[0;35mSuccessfully loaded achievement (20)
+[0m[0;32m[0;31mSuccessfully loaded map item template (2694 items)
+[0m[0;32m[0;35mSuccessfully loaded map item option template (255)
+[0m[0;32m[0;31mSuccessfully loaded shop (64)
+[0m[0;32m[0;35mSuccessfully loaded notify (0)
+[0m[0;32m[0;31mSuccessfully loaded images by name (146)
+[0m[0;32m[0;35mSuccessfully loaded mount (47)
+[0m[0;32mSuccessfully loaded kol task (7)
+[0m[0;32mSuccessfully loaded event task (59)
+[0m[0;32m[0;31mSuccessfully loaded Consign Item (86)
+[0m[0;32m[0;35mSuccessfully loaded mob template (127)
+[0m[0;32m[0;31mSuccessfully loaded npc template (125)
+[0m[0;32m[0;35mSuccessfully loaded badges template (16)
+[0m[0;32m[0;31mSuccessfully loaded map template (250)
+[0m[0;32m[0;35mSuccessfully loaded radar template (21)
+[0m[0;32m[0;31mSuccessfully loaded giftcode (4)
+[0m[0;32m[0;35mSuccessfully Top Su Kien (100)
+[0m[0;32m[0;31mSuccessfully top Thach Dau Whis (100)
+[0m[0;35mTotal database loading time: 8017 (ms)
+[0m[0;35m[1m[14:57:10] [CONNECT]      Panel quản trị đã sẵn sàng[0m
+>> Đang lưu dữ liệu và đóng kết nối...
+>> Server shutting down... Bye!

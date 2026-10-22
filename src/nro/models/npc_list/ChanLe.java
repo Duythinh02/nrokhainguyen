@@ -29,7 +29,7 @@ public class ChanLe extends Npc {
                 + "|7|(Điều Kiện Tham Gia : Mở Thành Viên)\n\n"
                 + "|2|Cược Bằng Điểm Săn Boss (đang có " + player.event.getEventPoint() + ")\n"
                 + "Đặt Tối Thiểu: " + TaiXiu.MIN_BET + " Điểm\n"
-                + "Tối Đa: " + TaiXiu.MAX_BET + " Điểm\n\n"
+                + "Tối Đa: Không giới hạn\n\n"
                 + "|7|Lưu ý : Thoát game khi chốt Kết quả sẽ MẤT Tiền cược và Tiền thưởng!", 
                 "Thể lệ", "Tham gia", "Soi Cầu");
     }

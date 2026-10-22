@@ -75,26 +75,24 @@ public class SkillService {
             } catch (IOException e) {
             }
         }
-        if (player.effectSkill != null && player.effectSkill.isHaveEffectSkill()) {
+        if (player.playerSkill == null) {
             return false;
         }
-        if (player.playerSkill == null) {
+        // Laze đã nạp xong thì vẫn bắn dù vừa dính hiệu ứng (choáng, trói...), trước đây lệnh bắn bị bỏ qua, laze mất trắng
+        boolean hasEffect = player.effectSkill != null && player.effectSkill.isHaveEffectSkill();
+        if (hasEffect && !isFiringLaze(player)) {
             return false;
         }
         if (player.playerSkill.skillSelect.template.type == 2 && canUseSkillWithMana(player) && canUseSkillWithCooldown(player)) {
             useSkillBuffToPlayer(player, plTarget);
             return true;
         }
-        if ((player.effectSkill != null && player.effectSkill.isHaveEffectSkill()
-                && (player.playerSkill.skillSelect.template.id != Skill.TU_SAT
-                && player.playerSkill.skillSelect.template.id != Skill.QUA_CAU_KENH_KHI
-                && player.playerSkill.skillSelect.template.id != Skill.MAKANKOSAPPO))
-                || (plTarget != null && !canAttackPlayer(player, plTarget))
+        if ((plTarget != null && !canAttackPlayer(player, plTarget))
                 || (mobTarget != null && mobTarget.isDie())
                 || !canUseSkillWithMana(player) || !canUseSkillWithCooldown(player)) {
             return false;
         }
-        if (player.effectSkill != null && player.effectSkill.isHaveEffectSkill() && player.effectSkill.useTroi) {
+        if (hasEffect && player.effectSkill.useTroi) {
             EffectSkillService.gI().removeUseTroi(player);
         }
         if (player.effectSkill != null && player.effectSkill.isCharging) {
@@ -485,10 +483,18 @@ public class SkillService {
                     //bắt đầu nạp laze
                     player.playerSkill.prepareLaze = true;
                     player.playerSkill.lastTimePrepareLaze = System.currentTimeMillis();
+                    player.playerSkill.lazeTarget = plTarget;
                     sendPlayerPrepareSkill(player, 3000);
                 } else {
                     //bắn laze
                     player.playerSkill.prepareLaze = false;
+                    Player savedTarget = player.playerSkill.lazeTarget;
+                    player.playerSkill.lazeTarget = null;
+                    // Client mất focus trong lúc nạp: bắn vào mục tiêu lúc bắt đầu nạp nếu còn cùng khu và còn sống
+                    if (plTarget == null && mobTarget == null && savedTarget != null
+                            && savedTarget.zone == player.zone && canAttackPlayer(player, savedTarget)) {
+                        plTarget = savedTarget;
+                    }
                     if (plTarget != null) {
                         playerAttackPlayer(player, plTarget, false);
                     }
@@ -1216,6 +1222,12 @@ public class SkillService {
             return plTarget.cFlag == 0;
         }
         return true;
+    }
+
+    // Đang bấm bắn laze đã nạp (lần bấm thứ 2)
+    private static boolean isFiringLaze(Player player) {
+        return player.playerSkill.prepareLaze && player.playerSkill.skillSelect != null
+                && player.playerSkill.skillSelect.template.id == Skill.MAKANKOSAPPO;
     }
 
     public boolean canAttackPlayer(Player p1, Player p2) {

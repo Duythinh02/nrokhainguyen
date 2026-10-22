@@ -73,7 +73,7 @@ public class PlayerEvent {
     }
 
     // Giới hạn tặng điểm săn boss mỗi ngày: mỗi tài khoản gửi tối đa và nhận tối đa TRANSFER_POINT_DAILY_LIMIT điểm/ngày
-    public static final int TRANSFER_POINT_DAILY_LIMIT = 100;
+    public static final int TRANSFER_POINT_DAILY_LIMIT = 300;
     private int transferPointDay; // ngày dạng yyyyMMdd
     private int transferPointSent;
     private int transferPointReceived;
@@ -108,7 +108,7 @@ public class PlayerEvent {
     }
 
     // Giới hạn đổi điểm săn boss sang Coin Khai Nguyên mỗi ngày
-    public static final int COIN_EXCHANGE_DAILY_LIMIT = 100;
+    public static final int COIN_EXCHANGE_DAILY_LIMIT = 2000;
     private int coinExchangeDay; // ngày dạng yyyyMMdd
     private int coinExchangeToday;
 

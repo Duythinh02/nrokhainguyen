@@ -135,7 +135,7 @@ public class Virut extends Boss {
         }
 
         int diem = 5;
-        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
+        nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem, this);
         Service.gI().sendThongBao(plKill, "+5 Point sự kiện từ Virut");
     }
 

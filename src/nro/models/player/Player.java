@@ -1317,6 +1317,7 @@ public class Player implements Runnable {
         }
         this.playerSkill.prepareQCKK = false;
         this.playerSkill.prepareLaze = false;
+        this.playerSkill.lazeTarget = null;
         this.playerSkill.prepareTuSat = false;
         this.effectSkill.removeSkillEffectWhenDie();
         nPoint.setHp(0);

@@ -142,7 +142,7 @@ public class DapDoAoHoa {
                 CombineService.gI().baHatMit.createOtherMenu(player, ConstNpc.IGNORE_MENU, "Thiếu đá quý (pha lê đỏ, pha lê xanh, pha lê hồng, pha lê tím)", "Đóng");
                 return;
             }
-            if (player.combineNew.itemsCombine.size() == 3 && player.combineNew.itemsCombine.stream().filter(item -> item.isNotNullItem() && item.template.id == 987).count() < 1) {
+            if (player.combineNew.itemsCombine.size() == 3 && player.combineNew.itemsCombine.stream().filter(item -> item.isNotNullItem() && item.isDaBaoVe()).count() < 1) {
                 CombineService.gI().baHatMit.createOtherMenu(player, ConstNpc.IGNORE_MENU, "Thiếu đồ nâng cấp", "Đóng");
                 return;
             }
@@ -151,7 +151,7 @@ public class DapDoAoHoa {
             Item itemDBV = null;
             for (int j = 0; j < player.combineNew.itemsCombine.size(); j++) {
                 if (player.combineNew.itemsCombine.get(j).isNotNullItem()) {
-                    if (player.combineNew.itemsCombine.size() == 3 && player.combineNew.itemsCombine.get(j).template.id == 987) {
+                    if (player.combineNew.itemsCombine.size() == 3 && player.combineNew.itemsCombine.get(j).isDaBaoVe()) {
                         itemDBV = player.combineNew.itemsCombine.get(j);
                         continue;
                     }
@@ -296,7 +296,7 @@ public class DapDoAoHoa {
             if (player.combineNew.itemsCombine.stream().filter(item -> item.isNotNullItem() && item.template.type == 14).count() != 1) {
                 return;
             }
-            if (player.combineNew.itemsCombine.size() == 3 && player.combineNew.itemsCombine.stream().filter(item -> item.isNotNullItem() && item.template.id == 987).count() != 1) {
+            if (player.combineNew.itemsCombine.size() == 3 && player.combineNew.itemsCombine.stream().filter(item -> item.isNotNullItem() && item.isDaBaoVe()).count() != 1) {
                 return;//admin
             }
             Item itemDo = null;
@@ -304,7 +304,7 @@ public class DapDoAoHoa {
             Item itemDBV = null;
             for (int j = 0; j < player.combineNew.itemsCombine.size(); j++) {
                 if (player.combineNew.itemsCombine.get(j).isNotNullItem()) {
-                    if (player.combineNew.itemsCombine.size() == 3 && player.combineNew.itemsCombine.get(j).template.id == 987) {
+                    if (player.combineNew.itemsCombine.size() == 3 && player.combineNew.itemsCombine.get(j).isDaBaoVe()) {
                         itemDBV = player.combineNew.itemsCombine.get(j);
                         continue;
                     }

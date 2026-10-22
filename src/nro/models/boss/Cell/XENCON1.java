@@ -35,7 +35,7 @@ public class XENCON1 extends Boss {
             Service.gI().dropItemMap(this.zone, new ItemMap(this.zone, randomItem, 1,
                     this.location.x, this.zone.map.yPhysicInTop(this.location.x, this.location.y - 24), plKill.id));
             int diem = 5;
-            nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem);
+            nro.models.services.BossHuntService.gI().rewardBossPoint(plKill, diem, this);
         }
     }
 
